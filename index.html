@@ -3,831 +3,1035 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auditoría Editorial · 20 mar 2026</title>
+<title>AuditorÃ­a Editorial Â· 22 de marzo de 2026</title>
 <style>
-  :root {
-    --red: #E53935;
-    --red-light: #FFF5F5;
-    --yellow: #F9A825;
-    --yellow-light: #FFFDE7;
-    --green: #2E7D32;
-    --green-light: #F1F8F1;
-    --gray: #F7F7F5;
-    --border: #EAEAE6;
-    --text: #1A1A1A;
-    --muted: #888;
-    --lo-color: #1B5E20;
-    --ed-color: #0D47A1;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #F2F2EE;
-    color: var(--text);
-    font-size: 15px;
-    line-height: 1.5;
-    padding-bottom: 60px;
-  }
-
-  /* HEADER */
-  .header {
-    background: #1A1A1A;
-    color: white;
-    padding: 24px 20px 20px;
-  }
-  .header-greeting {
-    font-size: 13px;
-    color: #999;
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .header-title {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 16px;
-  }
-  .header-title em {
-    color: #E53935;
-    font-style: normal;
-  }
-  .stats-row {
-    display: flex;
-    gap: 10px;
-  }
-  .stat-pill {
-    background: #2A2A2A;
-    border-radius: 20px;
-    padding: 6px 12px;
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .stat-pill .n { font-weight: 700; font-size: 15px; }
-  .stat-pill.red .n { color: #EF9A9A; }
-  .stat-pill.yellow .n { color: #FFE082; }
-  .stat-pill.green .n { color: #A5D6A7; }
-
-  /* SECTION TABS */
-  .tabs {
-    display: flex;
-    gap: 0;
-    background: white;
-    border-bottom: 1px solid var(--border);
-    overflow-x: auto;
-    scrollbar-width: none;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .tabs::-webkit-scrollbar { display: none; }
-  .tab {
-    padding: 12px 16px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--muted);
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    white-space: nowrap;
-    transition: all 0.15s;
-  }
-  .tab.active { color: var(--text); border-bottom-color: var(--text); }
-  .tab .badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--red);
-    color: white;
-    border-radius: 10px;
-    font-size: 11px;
-    font-weight: 700;
-    min-width: 18px;
-    height: 18px;
-    padding: 0 5px;
-    margin-left: 5px;
-  }
-
-  .panel { display: none; padding: 16px 16px 0; }
-  .panel.active { display: block; }
-
-  /* URGENCY GROUPS */
-  .urgency-group { margin-bottom: 20px; }
-  .urgency-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    user-select: none;
-  }
-  .urgency-label {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .urgency-label.red { color: var(--red); }
-  .urgency-label.yellow { color: var(--yellow); }
-  .urgency-label.green { color: var(--green); }
-  .urgency-count {
-    font-size: 11px;
-    color: var(--muted);
-    font-weight: 400;
-    text-transform: none;
-    letter-spacing: 0;
-  }
-  .chevron {
-    margin-left: auto;
-    color: var(--muted);
-    font-size: 12px;
-    transition: transform 0.2s;
-  }
-  .chevron.collapsed { transform: rotate(-90deg); }
-
-  /* ARTICLE CARDS */
-  .card {
-    background: white;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    margin-bottom: 10px;
-    overflow: hidden;
-  }
-  .card.red { border-left: 3px solid var(--red); }
-  .card.yellow { border-left: 3px solid var(--yellow); }
-  .card.green { border-left: 3px solid #4CAF50; }
-
-  .card-header {
-    padding: 14px 14px 10px;
-    cursor: pointer;
-  }
-  .card-meta {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 7px;
-  }
-  .pub-badge {
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 6px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-  }
-  .pub-badge.lo { background: #E8F5E9; color: var(--lo-color); }
-  .pub-badge.ed { background: #E3F2FD; color: var(--ed-color); }
-  .section-tag {
-    font-size: 11px;
-    color: var(--muted);
-  }
-  .time-est {
-    margin-left: auto;
-    font-size: 11px;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 3px;
-  }
-  .time-est.fast { color: #2E7D32; font-weight: 600; }
-
-  .card-headline {
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.35;
-    margin-bottom: 6px;
-    color: var(--text);
-  }
-  .assistant-note {
-    font-size: 13px;
-    color: #555;
-    line-height: 1.4;
-    margin-bottom: 8px;
-  }
-  .error-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-  .error-tag {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 4px;
-  }
-  .error-tag.red { background: #FFEBEE; color: #C62828; }
-  .error-tag.yellow { background: #FFF8E1; color: #E65100; }
-
-  /* CARD BODY (corrections) */
-  .card-body { display: none; border-top: 1px solid var(--border); }
-  .card-body.open { display: block; }
-
-  .correction-block { padding: 14px; border-bottom: 1px solid var(--border); }
-  .correction-block:last-child { border-bottom: none; }
-  .correction-label {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--muted);
-    margin-bottom: 5px;
-  }
-  .correction-current {
-    font-size: 13px;
-    color: #999;
-    text-decoration: line-through;
-    margin-bottom: 6px;
-    line-height: 1.4;
-  }
-  .correction-fixed {
-    font-size: 14px;
-    color: var(--text);
-    font-weight: 500;
-    line-height: 1.4;
-    background: #F0FFF4;
-    border-radius: 6px;
-    padding: 10px 12px;
-    margin-bottom: 8px;
-    border-left: 3px solid #4CAF50;
-    position: relative;
-  }
-  .char-count {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-  .char-count.over { color: var(--red); font-weight: 600; }
-  .char-count.ok { color: var(--green); }
-
-  .copy-btn {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    background: #1A1A1A;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 7px 12px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.15s;
-    margin-top: 6px;
-  }
-  .copy-btn:hover { background: #333; }
-  .copy-btn.copied { background: #2E7D32; }
-
-  .card-actions {
-    padding: 12px 14px;
-    background: #FAFAF8;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .action-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #1A1A1A;
-    text-decoration: none;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 7px 12px;
-  }
-  .action-link:hover { background: var(--gray); }
-  .action-link.primary {
-    background: #1A1A1A;
-    color: white;
-    border-color: #1A1A1A;
-  }
-  .action-link.primary:hover { background: #333; }
-
-  /* PATTERNS SECTION */
-  .patterns-card {
-    background: #1A1A1A;
-    color: white;
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 10px;
-  }
-  .patterns-title {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #999;
-    margin-bottom: 12px;
-  }
-  .pattern-item {
-    display: flex;
-    gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid #2A2A2A;
-  }
-  .pattern-item:last-child { border-bottom: none; padding-bottom: 0; }
-  .pattern-n { font-size: 24px; font-weight: 800; color: #EF9A9A; min-width: 32px; }
-  .pattern-text { font-size: 13px; }
-  .pattern-text strong { display: block; font-size: 14px; color: white; margin-bottom: 2px; }
-  .pattern-text span { color: #AAA; line-height: 1.4; }
-
-  /* OK section */
-  .ok-list { padding: 12px 14px; }
-  .ok-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-  }
-  .ok-item:last-child { border-bottom: none; }
-  .ok-icon { color: #4CAF50; font-size: 14px; margin-top: 1px; flex-shrink: 0; }
-  .ok-text { color: #555; }
-  .ok-text a { color: var(--text); text-decoration: none; font-weight: 500; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #333; }
+.header { background: #1a1a2e; color: white; padding: 20px 16px 16px; position: sticky; top: 0; z-index: 100; }
+.header h1 { font-size: 18px; font-weight: 700; line-height: 1.3; }
+.header p { font-size: 13px; color: #aaa; margin-top: 4px; }
+.tabs { display: flex; overflow-x: auto; background: #16213e; }
+.tab { flex: 0 0 auto; padding: 10px 16px; color: #aaa; font-size: 13px; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; }
+.tab.active { color: white; border-bottom-color: #e94560; }
+.content { padding: 12px; max-width: 600px; margin: 0 auto; }
+.group-header { font-size: 13px; font-weight: 600; color: #666; padding: 12px 0 8px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+.card { background: white; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: opacity 0.3s; }
+.card.resolved { opacity: 0.45; }
+.card.resolved .card-header::after { content: ' â Resuelto'; color: #27ae60; font-size: 12px; font-weight: 600; }
+.card-header { padding: 12px; cursor: pointer; }
+.card-meta { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; }
+.badge-la { background: #e94560; color: white; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+.badge-ny { background: #0f3460; color: white; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+.tag-section { background: #f0f0f0; color: #555; font-size: 11px; padding: 2px 6px; border-radius: 3px; }
+.tag-time { color: #999; font-size: 11px; }
+.card-title { font-size: 15px; font-weight: 600; line-height: 1.3; margin-bottom: 4px; }
+.card-note { font-size: 13px; color: #666; }
+.error-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
+.error-tag { font-size: 11px; padding: 2px 6px; border-radius: 3px; font-weight: 500; }
+.error-tag.hard { background: #fde8e8; color: #c0392b; }
+.error-tag.soft { background: #fef3e2; color: #b7770d; }
+.card-detail { padding: 0 12px 12px; border-top: 1px solid #f0f0f0; display: none; }
+.card-detail.open { display: block; }
+.correction { background: #f9f9f9; border-radius: 6px; padding: 10px; margin-top: 8px; font-size: 13px; }
+.correction-label { font-weight: 600; font-size: 12px; color: #888; margin-bottom: 4px; }
+.correction-original { color: #c0392b; font-style: italic; margin-bottom: 2px; }
+.correction-fix { color: #27ae60; font-weight: 500; }
+.copy-btn { font-size: 11px; color: #e94560; background: none; border: 1px solid #e94560; border-radius: 4px; padding: 2px 8px; cursor: pointer; margin-top: 6px; }
+.action-row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; align-items: center; }
+.link-btn { font-size: 12px; color: #555; text-decoration: none; border: 1px solid #ddd; border-radius: 4px; padding: 4px 10px; }
+.reverify-btn { font-size: 12px; background: #fff3e0; color: #e67e22; border: 1px solid #f39c12; border-radius: 4px; padding: 4px 10px; cursor: pointer; }
+.resolve-btn { font-size: 12px; background: #e8f8f0; color: #27ae60; border: 1px solid #27ae60; border-radius: 4px; padding: 4px 10px; cursor: pointer; }
+.resolve-btn.pending { background: #fff3e0; color: #e67e22; border-color: #f39c12; }
+.patterns { background: white; border-radius: 8px; padding: 14px; margin-bottom: 12px; }
+.patterns h3 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.pattern-item { font-size: 13px; color: #555; padding: 6px 0; border-bottom: 1px solid #f5f5f5; display: flex; justify-content: space-between; }
+.pattern-item:last-child { border-bottom: none; }
+.pattern-count { font-weight: 600; color: #c0392b; }
+.ok-card { background: white; border-radius: 8px; margin-bottom: 8px; padding: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.ok-card-meta { display: flex; gap: 6px; align-items: center; margin-bottom: 4px; }
+.ok-card-title { font-size: 14px; color: #555; }
 </style>
 </head>
 <body>
-
 <div class="header">
-  <div class="header-greeting">Viernes 20 de marzo de 2026 · 8:03 AM</div>
-  <div class="header-title">Omar, tienes <em>7 cosas urgentes</em> hoy.<br>Las más rápidas te toman 2 minutos.</div>
-  <div class="stats-row">
-    <div class="stat-pill red"><span class="n">7</span> urgentes</div>
-    <div class="stat-pill yellow"><span class="n">4</span> atención</div>
-    <div class="stat-pill green"><span class="n">1</span> OK</div>
-  </div>
+  <h1>Omar, tienes 8 cosas urgentes hoy.</h1>
+  <p>Las mÃ¡s rÃ¡pidas te toman 1 minuto. Â· 22 de marzo de 2026</p>
 </div>
-
 <div class="tabs">
-  <div class="tab active" onclick="showTab('todo')">Todo <span class="badge">7</span></div>
-  <div class="tab" onclick="showTab('lo')">La Opinión <span class="badge">4</span></div>
-  <div class="tab" onclick="showTab('ed')">El Diario NY <span class="badge">3</span></div>
+  <div class="tab active" onclick="showTab('todo')">Todo</div>
+  <div class="tab" onclick="showTab('la')">La OpiniÃ³n</div>
+  <div class="tab" onclick="showTab('ny')">El Diario NY</div>
   <div class="tab" onclick="showTab('patrones')">Patrones</div>
 </div>
+<div class="content">
 
-<!-- TAB: TODO -->
-<div class="panel active" id="tab-todo">
+<!-- ==================== TAB TODO ==================== -->
+<div id="tab-todo">
 
-  <!-- URGENTES -->
-  <div class="urgency-group">
-    <div class="urgency-header" onclick="toggleGroup('urgentes')">
-      <span class="urgency-label red">🔴 Corrígelo ahora</span>
-      <span class="urgency-count">7 artículos</span>
-      <span class="chevron" id="chevron-urgentes">▾</span>
+  <div class="group-header" onclick="toggleGroup('urgentes')">ð´ CorrÃ­gelo ahora <span>8 artÃ­culos</span></div>
+  <div id="group-urgentes">
+
+    <!-- CARD: Estadio Shakira -->
+    <div class="card" id="card-eldia-entret-1">
+      <div class="card-header" onclick="toggleCard('detail-eldia-entret-1')">
+        <div class="card-meta">
+          <span class="badge-ny">NY</span>
+          <span class="tag-section">Entretenimiento</span>
+          <span class="tag-time">~1 min</span>
+        </div>
+        <div class="card-title">El Estadio Shakira se construirÃ¡ en dos meses</div>
+        <div class="card-note">Signo de dÃ³lar ($) delante de una cantidad de personas â error factual grave.</div>
+        <div class="error-tags">
+          <span class="error-tag hard">D05</span>
+          <span class="error-tag hard">D11</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-eldia-entret-1">
+        <div class="correction">
+          <div class="correction-label">D05 â Signo $ aplicado a personas (error factual crÃ­tico)</div>
+          <div class="correction-original">Original: "TendrÃ¡ una capacidad para albergar $50,000 personas por noche."</div>
+          <div class="correction-fix">CorrecciÃ³n: TendrÃ¡ una capacidad para albergar 50,000 personas por noche.</div>
+          <button class="copy-btn" onclick="copyText('TendrÃ¡ una capacidad para albergar 50,000 personas por noche.')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="correction">
+          <div class="correction-label">D11 â Nombre de gira sin comillas tipogrÃ¡ficas</div>
+          <div class="correction-original">Original: el fin de "Las Mujeres Ya No Lloran World Tour"</div>
+          <div class="correction-fix">CorrecciÃ³n: el fin de "Las Mujeres Ya No Lloran World Tour" (verificar que sean comillas tipogrÃ¡ficas " ", no rectas)</div>
+          <button class="copy-btn" onclick="copyText('el fin de \u201cLas Mujeres Ya No Lloran World Tour\u201d')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="correction">
+          <div class="correction-label">D11 â Nombre de programa de TV sin comillas tipogrÃ¡ficas</div>
+          <div class="correction-original">Original: en el programa "Al Cielo Con Ella" de RTVE</div>
+          <div class="correction-fix">CorrecciÃ³n: en el programa "Al Cielo Con Ella" de RTVE (comillas tipogrÃ¡ficas)</div>
+          <button class="copy-btn" onclick="copyText('en el programa \u201cAl Cielo Con Ella\u201d de RTVE')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="action-row">
+          <a href="https://eldiariony.com/2026/03/22/el-estadio-shakira-se-construira-en-dos-meses/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://eldiariony.com/wp-admin/post.php?post=3651166&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://eldiariony.com/2026/03/22/el-estadio-shakira-se-construira-en-dos-meses/', 'eldia-entret-1', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
     </div>
-    <div id="group-urgentes">
 
-      <!-- CARD: Ley Cazzu -->
-      <div class="card red" id="card-cazzu">
-        <div class="card-header" onclick="toggleCard('cazzu')">
-          <div class="card-meta">
-            <span class="pub-badge ed">El Diario NY</span>
-            <span class="section-tag">Entretenimiento</span>
-            <span class="time-est fast">⚡ 1 min</span>
-          </div>
-          <div class="card-headline">"Ley Cazzu": La iniciativa que busca proteger el derechos de los menores</div>
-          <div class="assistant-note">Error gramatical en el titular publicado y en la URL. "El derechos" → "los derechos". El más fácil de hoy.</div>
-          <div class="error-tags">
-            <span class="error-tag red">Error gramatical</span>
-          </div>
+    <!-- CARD: 3 signos zodiaco -->
+    <div class="card" id="card-laop-astro-1">
+      <div class="card-header" onclick="toggleCard('detail-laop-astro-1')">
+        <div class="card-meta">
+          <span class="badge-la">LA</span>
+          <span class="tag-section">AstrologÃ­a</span>
+          <span class="tag-time">~1 min</span>
         </div>
-        <div class="card-body" id="body-cazzu">
-          <div class="correction-block">
-            <div class="correction-label">Titular actual</div>
-            <div class="correction-current">"Ley Cazzu": La iniciativa que busca proteger el derechos de los menores</div>
-            <div class="correction-label" style="margin-top:8px">Titular corregido</div>
-            <div class="correction-fixed" id="fix-cazzu-titulo">"Ley Cazzu": la iniciativa en México para proteger los derechos de los menores</div>
-            <div class="char-count ok">75 chars ✓</div>
-            <button class="copy-btn" onclick="copyText('fix-cazzu-titulo', this)">📋 Copiar titular</button>
-          </div>
-          <div class="correction-block">
-            <div class="correction-label">Metatitle</div>
-            <div class="correction-fixed" id="fix-cazzu-meta">"Ley Cazzu": proteger los derechos de los menores en México</div>
-            <div class="char-count ok">58 chars ✓</div>
-            <button class="copy-btn" onclick="copyText('fix-cazzu-meta', this)">📋 Copiar metatitle</button>
-          </div>
-          <div class="card-actions">
-            <a href="https://eldiariony.com/2026/03/20/ley-cazzu-la-iniciativa-que-busca-proteger-el-derechos-de-los-menores/" target="_blank" class="action-link">🔗 Ver artículo</a>
-            <a href="https://eldiariony.com/wp-admin/post.php?action=edit" target="_blank" class="action-link primary">✏️ Editar en WP</a>
-          </div>
+        <div class="card-title">La intuiciÃ³n de 3 signos del zodiaco tiene capacidades psÃ­quicas</div>
+        <div class="card-note">El "3" en el titular debe escribirse en letra (D03).</div>
+        <div class="error-tags">
+          <span class="error-tag hard">D03</span>
+          <span class="error-tag soft">B04</span>
         </div>
       </div>
-
-      <!-- CARD: Chuck Norris La Opinión -->
-      <div class="card red" id="card-chuck-lo">
-        <div class="card-header" onclick="toggleCard('chuck-lo')">
-          <div class="card-meta">
-            <span class="pub-badge lo">La Opinión</span>
-            <span class="section-tag">Entretenimiento</span>
-            <span class="time-est fast">⚡ 2 min</span>
-          </div>
-          <div class="card-headline">"Yo no envejezco, yo subo de nivel": el último mensaje de Chuck Norris antes de morir a los 86 años</div>
-          <div class="assistant-note">Tres errores duros. El más fácil: cambiar "un día después" por la fecha. El titular necesita verbo y recortarse a menos de 90 caracteres.</div>
-          <div class="error-tags">
-            <span class="error-tag red">D01 97 chars</span>
-            <span class="error-tag red">D03 "un día después"</span>
-            <span class="error-tag red">D05 voz pasiva</span>
-          </div>
+      <div class="card-detail" id="detail-laop-astro-1">
+        <div class="correction">
+          <div class="correction-label">D03 â NÃºmero del 1 al 9 en dÃ­gito (debe ir en letra)</div>
+          <div class="correction-original">Original: "La intuiciÃ³n de 3 signos del zodiaco tiene capacidades psÃ­quicas"</div>
+          <div class="correction-fix">CorrecciÃ³n: La intuiciÃ³n de tres signos del zodiaco tiene capacidades psÃ­quicas</div>
+          <button class="copy-btn" onclick="copyText('La intuiciÃ³n de tres signos del zodiaco tiene capacidades psÃ­quicas')">Copiar correcciÃ³n</button>
         </div>
-        <div class="card-body" id="body-chuck-lo">
-          <div class="correction-block">
-            <div class="correction-label">Titular</div>
-            <div class="correction-current">"Yo no envejezco, yo subo de nivel": el último mensaje de Chuck Norris antes de morir a los 86 años</div>
-            <div class="correction-fixed" id="fix-chuck-lo-titulo">Chuck Norris muere a los 86: su último post reveló que entrenaba nueve días antes</div>
-            <div class="char-count ok">80 chars ✓</div>
-            <button class="copy-btn" onclick="copyText('fix-chuck-lo-titulo', this)">📋 Copiar titular</button>
-          </div>
-          <div class="correction-block">
-            <div class="correction-label">Excerpt</div>
-            <div class="correction-fixed" id="fix-chuck-lo-excerpt">La leyenda del cine de acción falleció el 19 de marzo en Hawaii. Su familia lo confirmó el 20 de marzo. Tenía 86 años.</div>
-            <div class="char-count ok">118 chars ✓</div>
-            <button class="copy-btn" onclick="copyText('fix-chuck-lo-excerpt', this)">📋 Copiar excerpt</button>
-          </div>
-          <div class="correction-block">
-            <div class="correction-label">Corrección en el lead (cuerpo)</div>
-            <div class="correction-current">La noticia fue confirmada por su familia un día después, este 20 de marzo…</div>
-            <div class="correction-fixed" id="fix-chuck-lo-lead">Su familia confirmó la noticia el 20 de marzo, un día después del fallecimiento.</div>
-            <button class="copy-btn" onclick="copyText('fix-chuck-lo-lead', this)">📋 Copiar párrafo</button>
-          </div>
-          <div class="card-actions">
-            <a href="https://laopinion.com/2026/03/20/yo-no-envejezco-yo-subo-de-nivel-el-ultimo-mensaje-de-chuck-norris-antes-de-morir-a-los-86-anos/" target="_blank" class="action-link">🔗 Ver artículo</a>
-            <a href="https://laopinion.com/wp-admin/post.php?action=edit" target="_blank" class="action-link primary">✏️ Editar en WP</a>
-          </div>
+        <div class="correction">
+          <div class="correction-label">B04 â Fuente vaga en el cuerpo</div>
+          <div class="correction-original">Original: "SegÃºn un reporte de Thought Catalogâ¦"</div>
+          <div class="correction-fix">Sugerencia: Especificar el artÃ­culo o la autora del reporte de Thought Catalog, o sustituir por una fuente con mayor autoridad.</div>
+        </div>
+        <div class="action-row">
+          <a href="https://laopinion.com/2026/03/21/la-intuicion-de-3-signos-del-zodiaco-tiene-capacidades-psiquicas/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://laopinion.com/wp-admin/post.php?post=4066793&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://laopinion.com/2026/03/21/la-intuicion-de-3-signos-del-zodiaco-tiene-capacidades-psiquicas/', 'laop-astro-1', this)">Re-verificar y resolver</button>
         </div>
       </div>
+    </div>
 
-      <!-- CARD: Shonda Rhimes La Opinión -->
-      <div class="card red" id="card-shonda-lo">
-        <div class="card-header" onclick="toggleCard('shonda-lo')">
-          <div class="card-meta">
-            <span class="pub-badge lo">La Opinión</span>
-            <span class="section-tag">Entretenimiento</span>
-            <span class="time-est fast">⚡ 2 min</span>
-          </div>
-          <div class="card-headline">Shonda Rhimes se pronuncia tras la polémica exclusión de Eric Dane en el homenaje de los Oscar</div>
-          <div class="assistant-note">Titular 4 caracteres sobre el límite y lead de 43 palabras. La corrección del titular es trivial — el lead necesita un recorte.</div>
-          <div class="error-tags">
-            <span class="error-tag red">D01 94 chars</span>
-            <span class="error-tag yellow">B04 43 palabras</span>
-          </div>
+    <!-- CARD: Seguro Social -->
+    <div class="card" id="card-laop-dinero-1">
+      <div class="card-header" onclick="toggleCard('detail-laop-dinero-1')">
+        <div class="card-meta">
+          <span class="badge-la">LA</span>
+          <span class="tag-section">Dinero</span>
+          <span class="tag-time">~2 min</span>
         </div>
-        <div class="card-body" id="body-shonda-lo">
-          <div class="correction-block">
-            <div class="correction-label">Titular</div>
-            <div class="correction-current">Shonda Rhimes se pronuncia tras la polémica exclusión de Eric Dane en el homenaje de los Oscar</div>
-            <div class="correction-fixed" id="fix-shonda-lo-titulo">Shonda Rhimes defiende exclusión de Eric Dane en los Oscar: "No es una estrella de cine"</div>
-            <div class="char-count ok">87 chars ✓</div>
-            <button class="copy-btn" onclick="copyText('fix-shonda-lo-titulo', this)">📋 Copiar titular</button>
-          </div>
-          <div class="correction-block">
-            <div class="correction-label">Lead corregido</div>
-            <div class="correction-current">La ausencia del fallecido actor Eric Dane en el segmento "In Memoriam" de la ceremonia de los Premios Oscar 2026 no pasó desapercibida, y ahora la reconocida productora Shonda Rhimes salió a hablar sobre la omisión.</div>
-            <div class="correction-fixed" id="fix-shonda-lo-lead">Shonda Rhimes defendió la exclusión de Eric Dane del "In Memoriam" de los Oscar 2026: "No es una estrella de cine", dijo en la fiesta de Vanity Fair el 15 de marzo.</div>
-            <button class="copy-btn" onclick="copyText('fix-shonda-lo-lead', this)">📋 Copiar lead</button>
-          </div>
-          <div class="card-actions">
-            <a href="https://laopinion.com/2026/03/20/shonda-rhimes-se-pronuncia-tras-la-polemica-exclusion-de-eric-dane-en-el-homenaje-de-los-oscar/" target="_blank" class="action-link">🔗 Ver artículo</a>
-            <a href="https://laopinion.com/wp-admin/post.php?action=edit" target="_blank" class="action-link primary">✏️ Editar en WP</a>
-          </div>
+        <div class="card-title">Pagos del Seguro Social el 25 de marzo: quiÃ©nes reciben $2,000</div>
+        <div class="card-note">MÃºltiples montos con "$X dÃ³lares" â redundancia con el signo de dÃ³lar (D05). MÃ¡s D03.</div>
+        <div class="error-tags">
+          <span class="error-tag hard">D05</span>
+          <span class="error-tag hard">D03</span>
         </div>
       </div>
-
-      <!-- CARD: Ana Bárbara -->
-      <div class="card red" id="card-ana">
-        <div class="card-header" onclick="toggleCard('ana')">
-          <div class="card-meta">
-            <span class="pub-badge lo">La Opinión</span>
-            <span class="section-tag">Entretenimiento</span>
-            <span class="time-est">~3 min</span>
-          </div>
-          <div class="card-headline">Se revelan nuevos detalles de la supuesta separación entre Ana Bárbara y su esposo Ángel Muñoz</div>
-          <div class="assistant-note">Titular 5 caracteres sobre el límite. El lead abre con "continúa dando de qué hablar" pero el dato nuevo —que él se mudó a Beverly Hills— llega tres párrafos después. Dos correcciones rápidas.</div>
-          <div class="error-tags">
-            <span class="error-tag red">D01 95 chars</span>
-            <span class="error-tag yellow">B03 lead desplazado</span>
-          </div>
+      <div class="card-detail" id="detail-laop-dinero-1">
+        <div class="correction">
+          <div class="correction-label">D05 â Montos con signo $ y "dÃ³lares" a la vez (3 ocurrencias)</div>
+          <div class="correction-original">Original: "$2,076.41 dÃ³lares al mes" / "$1,633.76 dÃ³lares" / "$1,623.28 dÃ³lares"</div>
+          <div class="correction-fix">CorrecciÃ³n: "$2,076.41 al mes" / "$1,633.76" / "$1,623.28"</div>
+          <button class="copy-btn" onclick="copyText('$2,076.41 al mes')">Copiar primera correcciÃ³n</button>
         </div>
-        <div class="card-body" id="body-ana">
-          <div class="correction-block">
-            <div class="correction-label">Titular</div>
-            <div class="correction-current">Se revelan nuevos detalles de la supuesta separación entre Ana Bárbara y su esposo Ángel Muñoz</div>
-            <div class="correction-fixed" id="fix-ana-titulo">Ana Bárbara y Ángel Muñoz confirman separación: él se mudó a un apartamento en Beverly Hills</div>
-            <div class="char-count ok">89 chars ✓</div>
-            <button class="copy-btn" onclick="copyText('fix-ana-titulo', this)">📋 Copiar titular</button>
-          </div>
-          <div class="correction-block">
-            <div class="correction-label">Lead sugerido</div>
-            <div class="correction-current">El escándalo que envuelve a la cantante Ana Bárbara y su ahora separado esposo, Ángel Muñoz, continúa dando de qué hablar.</div>
-            <div class="correction-fixed" id="fix-ana-lead">Ángel Muñoz, esposo de Ana Bárbara, abandonó el hogar familiar esta semana y se instaló en un pequeño apartamento de Beverly Hills, según reveló el programa "Siéntese quien pueda" de Univision el 20 de marzo.</div>
-            <button class="copy-btn" onclick="copyText('fix-ana-lead', this)">📋 Copiar lead</button>
-          </div>
-          <div class="card-actions">
-            <a href="https://laopinion.com/2026/03/20/se-revelan-nuevos-detalles-de-la-supuesta-separacion-entre-ana-barbara-y-su-esposo-angel-munoz/" target="_blank" class="action-link">🔗 Ver artículo</a>
-            <a href="https://laopinion.com/wp-admin/post.php?action=edit" target="_blank" class="action-link primary">✏️ Editar en WP</a>
-          </div>
+        <div class="correction">
+          <div class="correction-label">D03 â DÃ­gito del 1-9 donde corresponde letra</div>
+          <div class="correction-original">Original: "su pago el dÃ­a 3 de cada mes"</div>
+          <div class="correction-fix">CorrecciÃ³n: su pago el dÃ­a tres de cada mes</div>
+          <button class="copy-btn" onclick="copyText('su pago el dÃ­a tres de cada mes')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="action-row">
+          <a href="https://laopinion.com/2026/03/21/pagos-del-seguro-social-el-25-de-marzo-quienes-reciben-2000/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://laopinion.com/wp-admin/post.php?post=4068521&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://laopinion.com/2026/03/21/pagos-del-seguro-social-el-25-de-marzo-quienes-reciben-2000/', 'laop-dinero-1', this)">Re-verificar y resolver</button>
         </div>
       </div>
+    </div>
 
-      <!-- CARD: Eric Dane El Diario -->
-      <div class="card red" id="card-eric-ed">
-        <div class="card-header" onclick="toggleCard('eric-ed')">
-          <div class="card-meta">
-            <span class="pub-badge ed">El Diario NY</span>
-            <span class="section-tag">Entretenimiento</span>
-            <span class="time-est fast">⚡ 2 min</span>
-          </div>
-          <div class="card-headline">Creadora de "Grey's Anatomy" defiende exclusión de Eric Dane del 'In Memoriam' de los Oscar: "No es una estrella de cine"</div>
-          <div class="assistant-note">El titular más largo de toda la muestra: 121 caracteres. Google lo trunca a los 60. La cita del titular es el fragmento más valioso — muévela al excerpt.</div>
-          <div class="error-tags">
-            <span class="error-tag red">D01 121 chars 🚨</span>
-            <span class="error-tag yellow">B04 51 palabras</span>
-          </div>
+    <!-- CARD: The Drama (Zendaya) -->
+    <div class="card" id="card-laop-entret-3">
+      <div class="card-header" onclick="toggleCard('detail-laop-entret-3')">
+        <div class="card-meta">
+          <span class="badge-la">LA</span>
+          <span class="tag-section">Entretenimiento</span>
+          <span class="tag-time">~2 min</span>
         </div>
-        <div class="card-body" id="body-eric-ed">
-          <div class="correction-block">
-            <div class="correction-label">Titular</div>
-            <div class="correction-current">Creadora de "Grey's Anatomy" defiende exclusión de Eric Dane del 'In Memoriam' de los Oscar: "No es una estrella de cine"</div>
-            <div class="correction-fixed" id="fix-eric-ed-titulo">Shonda Rhimes defiende que Eric Dane no aparezca en el In Memoriam de los Oscar</div>
-            <div class="char-count ok">79 chars ✓</div>
-            <button class="copy-btn" onclick="copyText('fix-eric-ed-titulo', this)">📋 Copiar titular</button>
-          </div>
-          <div class="correction-block">
-            <div class="correction-label">Excerpt (mueve la cita aquí)</div>
-            <div class="correction-fixed" id="fix-eric-ed-excerpt">La creadora de "Grey's Anatomy" dijo: "No es una estrella de cine" y aseguró que los Emmy le rendirán homenaje como se merece.</div>
-            <div class="char-count ok">127 chars ✓</div>
-            <button class="copy-btn" onclick="copyText('fix-eric-ed-excerpt', this)">📋 Copiar excerpt</button>
-          </div>
-          <div class="card-actions">
-            <a href="https://eldiariony.com/2026/03/20/creadora-de-greys-anatomy-defiende-exclusion-de-eric-dane-del-in-memoriam-de-los-oscar-no-es-una-estrella-de-cine/" target="_blank" class="action-link">🔗 Ver artículo</a>
-            <a href="https://eldiariony.com/wp-admin/post.php?action=edit" target="_blank" class="action-link primary">✏️ Editar en WP</a>
-          </div>
+        <div class="card-title">Zendaya y Robert Pattinson en 'The Drama': TrÃ¡iler, fecha y todo sobre la pelÃ­cula de A24</div>
+        <div class="card-note">El titular usa comillas simples para el tÃ­tulo de la pelÃ­cula ('The Drama') â deben ser dobles. MÃ¡s D03.</div>
+        <div class="error-tags">
+          <span class="error-tag hard">D11</span>
+          <span class="error-tag hard">D03</span>
         </div>
       </div>
-
-      <!-- CARD: Gloria Estefan -->
-      <div class="card red" id="card-gloria">
-        <div class="card-header" onclick="toggleCard('gloria')">
-          <div class="card-meta">
-            <span class="pub-badge ed">El Diario NY</span>
-            <span class="section-tag">Entretenimiento</span>
-            <span class="time-est fast">⚡ 1 min</span>
-          </div>
-          <div class="card-headline">Gloria y Emilio Estefan, entre los artistas que impulsan concurso para un nuevo himno de Miami</div>
-          <div class="assistant-note">Titular 4 chars sobre el límite y sin verbo. Una palabra resuelve ambos problemas.</div>
-          <div class="error-tags">
-            <span class="error-tag red">D01 94 chars</span>
-            <span class="error-tag yellow">B01 sin verbo</span>
-          </div>
+      <div class="card-detail" id="detail-laop-entret-3">
+        <div class="correction">
+          <div class="correction-label">D11 â TÃ­tulo de pelÃ­cula con comillas simples en el headline</div>
+          <div class="correction-original">Original: "Zendaya y Robert Pattinson en 'The Drama': TrÃ¡iler, fecha de estrenoâ¦"</div>
+          <div class="correction-fix">CorrecciÃ³n: Zendaya y Robert Pattinson en "The Drama": TrÃ¡iler, fecha de estrenoâ¦</div>
+          <button class="copy-btn" onclick="copyText('Zendaya y Robert Pattinson en \u201cThe Drama\u201d: TrÃ¡iler, fecha de estreno y todo sobre la nueva pelÃ­cula de A24')">Copiar correcciÃ³n</button>
         </div>
-        <div class="card-body" id="body-gloria">
-          <div class="correction-block">
-            <div class="correction-label">Titular</div>
-            <div class="correction-current">Gloria y Emilio Estefan, entre los artistas que impulsan concurso para un nuevo himno de Miami</div>
-            <div class="correction-fixed" id="fix-gloria-titulo">Gloria y Emilio Estefan impulsan concurso para crear el nuevo himno de Miami</div>
-            <div class="char-count ok">74 chars ✓</div>
-            <button class="copy-btn" onclick="copyText('fix-gloria-titulo', this)">📋 Copiar titular</button>
-          </div>
-          <div class="correction-block">
-            <div class="correction-label">Metatitle</div>
-            <div class="correction-fixed" id="fix-gloria-meta">Gloria Estefan impulsa concurso para el nuevo himno de Miami</div>
-            <div class="char-count ok">60 chars ✓</div>
-            <button class="copy-btn" onclick="copyText('fix-gloria-meta', this)">📋 Copiar metatitle</button>
-          </div>
-          <div class="card-actions">
-            <a href="https://eldiariony.com/2026/03/20/gloria-y-emilio-estefan-entre-los-artistas-que-impulsan-concurso-para-un-nuevo-himno-de-miami/" target="_blank" class="action-link">🔗 Ver artículo</a>
-            <a href="https://eldiariony.com/wp-admin/post.php?action=edit" target="_blank" class="action-link primary">✏️ Editar en WP</a>
-          </div>
+        <div class="correction">
+          <div class="correction-label">D11 â TÃ­tulo sin comillas en el cuerpo</div>
+          <div class="correction-original">Original: "Sin duda, The Drama promete ser una de las comedias romÃ¡nticas mÃ¡s comentadas del aÃ±o"</div>
+          <div class="correction-fix">CorrecciÃ³n: Sin duda, "The Drama" promete ser una de las comedias romÃ¡nticas mÃ¡s comentadas del aÃ±o</div>
+          <button class="copy-btn" onclick="copyText('Sin duda, \u201cThe Drama\u201d promete ser una de las comedias romÃ¡nticas mÃ¡s comentadas del aÃ±o')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="correction">
+          <div class="correction-label">D03 â Fecha con dÃ­gito del 1-9</div>
+          <div class="correction-original">Original: "llegarÃ¡ a los cines el 3 de abril de 2026"</div>
+          <div class="correction-fix">CorrecciÃ³n: llegarÃ¡ a los cines el tres de abril de 2026</div>
+          <button class="copy-btn" onclick="copyText('llegarÃ¡ a los cines el tres de abril de 2026')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="action-row">
+          <a href="https://laopinion.com/2026/03/21/zendaya-y-robert-pattinson-en-the-drama-trailer-fecha-de-estreno-y-todo-sobre-la-nueva-pelicula-de-a24/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://laopinion.com/wp-admin/post.php?post=4068347&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://laopinion.com/2026/03/21/zendaya-y-robert-pattinson-en-the-drama-trailer-fecha-de-estreno-y-todo-sobre-la-nueva-pelicula-de-a24/', 'laop-entret-3', this)">Re-verificar y resolver</button>
         </div>
       </div>
+    </div>
 
-      <!-- CARD: LCDF6 votaciones -->
-      <div class="card red" id="card-lcdf">
-        <div class="card-header" onclick="toggleCard('lcdf')">
-          <div class="card-meta">
-            <span class="pub-badge lo">La Opinión</span>
-            <span class="section-tag">Entretenimiento</span>
-            <span class="time-est fast">⚡ 1 min</span>
-          </div>
-          <div class="card-headline">"La Casa de los Famosos 6": Así van las votaciones hoy 20 de marzo</div>
-          <div class="assistant-note">"Hoy" en el titular caduca en horas. Cuando alguien abra esto en seis meses leerá "hoy" sin fecha de referencia. Quitarlo toma 10 segundos.</div>
-          <div class="error-tags">
-            <span class="error-tag red">D03 "hoy"</span>
-          </div>
+    <!-- CARD: Omeprazol -->
+    <div class="card" id="card-eldia-salud-1">
+      <div class="card-header" onclick="toggleCard('detail-eldia-salud-1')">
+        <div class="card-meta">
+          <span class="badge-ny">NY</span>
+          <span class="tag-section">Salud</span>
+          <span class="tag-time">~2 min</span>
         </div>
-        <div class="card-body" id="body-lcdf">
-          <div class="correction-block">
-            <div class="correction-label">Titular</div>
-            <div class="correction-current">"La Casa de los Famosos 6": Así van las votaciones hoy 20 de marzo</div>
-            <div class="correction-fixed" id="fix-lcdf-titulo">La Casa de los Famosos 6 actualiza las votaciones del 20 de marzo: Oriana y Caeli lideran</div>
-            <div class="char-count ok">88 chars ✓</div>
-            <button class="copy-btn" onclick="copyText('fix-lcdf-titulo', this)">📋 Copiar titular</button>
-          </div>
-          <div class="card-actions">
-            <a href="https://laopinion.com/2026/03/20/la-casa-de-los-famosos-6-asi-van-las-votaciones-hoy-20-de-marzo/" target="_blank" class="action-link">🔗 Ver artículo</a>
-            <a href="https://laopinion.com/wp-admin/post.php?action=edit" target="_blank" class="action-link primary">✏️ Editar en WP</a>
-          </div>
+        <div class="card-title">Los riesgos de tomar omeprazol y otros antiÃ¡cidos a diario, segÃºn expertos</div>
+        <div class="card-note">Dos errores gramaticales en el cuerpo del texto: concordancia y conjugaciÃ³n incorrectas.</div>
+        <div class="error-tags">
+          <span class="error-tag hard">D07</span>
         </div>
       </div>
+      <div class="card-detail" id="detail-eldia-salud-1">
+        <div class="correction">
+          <div class="correction-label">Error gramatical â Concordancia de nÃºmero</div>
+          <div class="correction-original">Original: "la causas de ese 'fuego' en la garganta"</div>
+          <div class="correction-fix">CorrecciÃ³n: las causas de ese "fuego" en la garganta</div>
+          <button class="copy-btn" onclick="copyText('las causas de ese \u201cfuego\u201d en la garganta')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="correction">
+          <div class="correction-label">Error gramatical â ConjugaciÃ³n verbal</div>
+          <div class="correction-original">Original: "que puede afecta mucho la calidad de vida"</div>
+          <div class="correction-fix">CorrecciÃ³n: que puede afectar mucho la calidad de vida</div>
+          <button class="copy-btn" onclick="copyText('que puede afectar mucho la calidad de vida')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="correction">
+          <div class="correction-label">Typo â Abreviatura mal escrita</div>
+          <div class="correction-original">Original: "En EE.UUs, los antiÃ¡cidos de venta libreâ¦"</div>
+          <div class="correction-fix">CorrecciÃ³n: En EE. UU., los antiÃ¡cidos de venta libreâ¦</div>
+          <button class="copy-btn" onclick="copyText('En EE. UU., los antiÃ¡cidos de venta libre')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="action-row">
+          <a href="https://eldiariony.com/2026/03/21/riesgos-tomar-omeprazol-y-antiacidos-a-diario-segun-expertos/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://eldiariony.com/wp-admin/post.php?post=3651102&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://eldiariony.com/2026/03/21/riesgos-tomar-omeprazol-y-antiacidos-a-diario-segun-expertos/', 'eldia-salud-1', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
 
-    </div><!-- /group-urgentes -->
+    <!-- CARD: CÃ³lico renal -->
+    <div class="card" id="card-eldia-salud-2">
+      <div class="card-header" onclick="toggleCard('detail-eldia-salud-2')">
+        <div class="card-meta">
+          <span class="badge-ny">NY</span>
+          <span class="tag-section">Salud</span>
+          <span class="tag-time">~1 min</span>
+        </div>
+        <div class="card-title">CÃ³lico renal: 3 formas de calmar el dolor sin usar analgÃ©sicos</div>
+        <div class="card-note">El "3" en el titular y en el subtÃ­tulo del cuerpo debe ir en letra (D03).</div>
+        <div class="error-tags">
+          <span class="error-tag hard">D03</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-eldia-salud-2">
+        <div class="correction">
+          <div class="correction-label">D03 â NÃºmero 1-9 en dÃ­gito en el titular</div>
+          <div class="correction-original">Original: "CÃ³lico renal: 3 formas de calmar el dolor sin usar analgÃ©sicos"</div>
+          <div class="correction-fix">CorrecciÃ³n: CÃ³lico renal: tres formas de calmar el dolor sin usar analgÃ©sicos</div>
+          <button class="copy-btn" onclick="copyText('CÃ³lico renal: tres formas de calmar el dolor sin usar analgÃ©sicos')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="correction">
+          <div class="correction-label">D03 â Mismo error en subtÃ­tulo del cuerpo</div>
+          <div class="correction-original">Original: "3 formas de calmar el cÃ³lico renal sin analgÃ©sicos"</div>
+          <div class="correction-fix">CorrecciÃ³n: Tres formas de calmar el cÃ³lico renal sin analgÃ©sicos</div>
+          <button class="copy-btn" onclick="copyText('Tres formas de calmar el cÃ³lico renal sin analgÃ©sicos')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="action-row">
+          <a href="https://eldiariony.com/2026/03/20/colico-renal-3-formas-de-calmar-el-dolor-sin-usar-analgesicos/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://eldiariony.com/wp-admin/post.php?post=3650679&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://eldiariony.com/2026/03/20/colico-renal-3-formas-de-calmar-el-dolor-sin-usar-analgesicos/', 'eldia-salud-2', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Queso azul (D06) -->
+    <div class="card" id="card-eldia-estilo-1">
+      <div class="card-header" onclick="toggleCard('detail-eldia-estilo-1')">
+        <div class="card-meta">
+          <span class="badge-ny">NY</span>
+          <span class="tag-section">Estilo de Vida</span>
+          <span class="tag-time">~1 min</span>
+        </div>
+        <div class="card-title">Â¿Por quÃ© el queso azul sÃ­ se puede comer y otros quesos con moho no?</div>
+        <div class="card-note">El titular abre con signo de interrogaciÃ³n (Â¿) â violaciÃ³n directa de D06.</div>
+        <div class="error-tags">
+          <span class="error-tag hard">D06</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-eldia-estilo-1">
+        <div class="correction">
+          <div class="correction-label">D06 â Titular abre con Â¿</div>
+          <div class="correction-original">Original: "Â¿Por quÃ© el queso azul sÃ­ se puede comer y otros quesos con moho no?"</div>
+          <div class="correction-fix">CorrecciÃ³n: Por quÃ© el queso azul sÃ­ se puede comer y otros quesos con moho no</div>
+          <button class="copy-btn" onclick="copyText('Por quÃ© el queso azul sÃ­ se puede comer y otros quesos con moho no')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="correction">
+          <div class="correction-label">Sugerencia de reformulaciÃ³n con mÃ¡s gancho</div>
+          <div class="correction-original">Alternativa informativa sin interrogaciÃ³n inicial:</div>
+          <div class="correction-fix">El queso azul tiene moho y es seguro comerlo: la razÃ³n cientÃ­fica que pocos conocen</div>
+          <button class="copy-btn" onclick="copyText('El queso azul tiene moho y es seguro comerlo: la razÃ³n cientÃ­fica que pocos conocen')">Copiar alternativa</button>
+        </div>
+        <div class="action-row">
+          <a href="https://eldiariony.com/2026/03/22/por-que-el-queso-azul-si-se-puede-comer-y-otros-quesos-con-moho-no/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://eldiariony.com/wp-admin/post.php?post=3650002&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://eldiariony.com/2026/03/22/por-que-el-queso-azul-si-se-puede-comer-y-otros-quesos-con-moho-no/', 'eldia-estilo-1', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Columna MarÃ­a MarÃ­n (D07) -->
+    <div class="card" id="card-eldia-estilo-2">
+      <div class="card-header" onclick="toggleCard('detail-eldia-estilo-2')">
+        <div class="card-meta">
+          <span class="badge-ny">NY</span>
+          <span class="tag-section">Estilo de Vida</span>
+          <span class="tag-time">~1 min</span>
+        </div>
+        <div class="card-title">Columna de MarÃ­a MarÃ­n: Cuando no puedes tenerloâ¦mÃ¡s lo deseas</div>
+        <div class="card-note">Uso de mayÃºsculas para Ã©nfasis ("SÃ") en el cuerpo del texto â viola D07. Falta cierre de comillas en cita de Mark Twain.</div>
+        <div class="error-tags">
+          <span class="error-tag hard">D07</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-eldia-estilo-2">
+        <div class="correction">
+          <div class="correction-label">D07 â MayÃºsculas para dar Ã©nfasis</div>
+          <div class="correction-original">Original: "Mira a tu alrededor y valora todo lo que SÃ tienes."</div>
+          <div class="correction-fix">CorrecciÃ³n: Mira a tu alrededor y valora todo lo que sÃ­ tienes.</div>
+          <button class="copy-btn" onclick="copyText('Mira a tu alrededor y valora todo lo que sÃ­ tienes.')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="correction">
+          <div class="correction-label">Error de puntuaciÃ³n â Cita sin cierre de comillas</div>
+          <div class="correction-original">Original: "para que un hombre desee algo, lo Ãºnico que hace falta es que parezca difÃ­cil de lograr [sin cierre de comillas]"</div>
+          <div class="correction-fix">CorrecciÃ³n: "para que un hombre desee algo, lo Ãºnico que hace falta es que parezca difÃ­cil de lograr"</div>
+          <button class="copy-btn" onclick="copyText('\u201cpara que un hombre desee algo, lo Ãºnico que hace falta es que parezca difÃ­cil de lograr\u201d')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="action-row">
+          <a href="https://eldiariony.com/2026/03/21/columna-de-maria-marin-cuando-no-puedes-tenerlomas-lo-deseas/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://eldiariony.com/wp-admin/post.php?post=3648313&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://eldiariony.com/2026/03/21/columna-de-maria-marin-cuando-no-puedes-tenerlomas-lo-deseas/', 'eldia-estilo-2', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /group-urgentes -->
+
+  <div class="group-header" onclick="toggleGroup('moderado')">ð¡ Cuando puedas <span>6 artÃ­culos</span></div>
+  <div id="group-moderado">
+
+    <!-- CARD: Chase Bank -->
+    <div class="card" id="card-laop-dinero-2">
+      <div class="card-header" onclick="toggleCard('detail-laop-dinero-2')">
+        <div class="card-meta">
+          <span class="badge-la">LA</span>
+          <span class="tag-section">Dinero</span>
+          <span class="tag-time">~1 min</span>
+        </div>
+        <div class="card-title">Cambios en Chase Bank que afectarÃ¡n a clientes en 2026</div>
+        <div class="card-note">Monto escrito con signo $ y "dÃ³lares" simultÃ¡neamente (D05).</div>
+        <div class="error-tags">
+          <span class="error-tag hard">D05</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-laop-dinero-2">
+        <div class="correction">
+          <div class="correction-label">D05 â Signo $ con "dÃ³lares" redundante</div>
+          <div class="correction-original">Original: "pasarÃ¡ de $550 a $795 dÃ³lares"</div>
+          <div class="correction-fix">CorrecciÃ³n: pasarÃ¡ de $550 a $795</div>
+          <button class="copy-btn" onclick="copyText('pasarÃ¡ de $550 a $795')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="action-row">
+          <a href="https://laopinion.com/2026/03/21/cambios-en-chase-bank-que-afectaran-a-clientes-en-2026/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://laopinion.com/wp-admin/post.php?post=4068509&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://laopinion.com/2026/03/21/cambios-en-chase-bank-que-afectaran-a-clientes-en-2026/', 'laop-dinero-2', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Justin Timberlake -->
+    <div class="card" id="card-eldia-entret-2">
+      <div class="card-header" onclick="toggleCard('detail-eldia-entret-2')">
+        <div class="card-meta">
+          <span class="badge-ny">NY</span>
+          <span class="tag-section">Entretenimiento</span>
+          <span class="tag-time">~1 min</span>
+        </div>
+        <div class="card-title">Revelan video del arresto de Justin Timberlake en NY en 2024</div>
+        <div class="card-note">Monto de multa escrito sin signo de dÃ³lar (D05).</div>
+        <div class="error-tags">
+          <span class="error-tag hard">D05</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-eldia-entret-2">
+        <div class="correction">
+          <div class="correction-label">D05 â Monto sin signo de dÃ³lar</div>
+          <div class="correction-original">Original: "pagar una multa de 500 dÃ³lares"</div>
+          <div class="correction-fix">CorrecciÃ³n: pagar una multa de $500</div>
+          <button class="copy-btn" onclick="copyText('pagar una multa de $500')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="action-row">
+          <a href="https://eldiariony.com/2026/03/21/revelan-video-del-arresto-de-justin-timberlake-en-ny-en-2024/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://eldiariony.com/wp-admin/post.php?post=3651040&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://eldiariony.com/2026/03/21/revelan-video-del-arresto-de-justin-timberlake-en-ny-en-2024/', 'eldia-entret-2', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: CafÃ© sueÃ±o -->
+    <div class="card" id="card-laop-salud-1">
+      <div class="card-header" onclick="toggleCard('detail-laop-salud-1')">
+        <div class="card-meta">
+          <span class="badge-la">LA</span>
+          <span class="tag-section">Salud</span>
+          <span class="tag-time">~2 min</span>
+        </div>
+        <div class="card-title">El cafÃ© no altera el sueÃ±o tal como se cree popularmente, revela estudio</div>
+        <div class="card-note">NÃºmeros del 1-9 en dÃ­gitos en la secciÃ³n de metabolizadores (D03).</div>
+        <div class="error-tags">
+          <span class="error-tag hard">D03</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-laop-salud-1">
+        <div class="correction">
+          <div class="correction-label">D03 â Rangos horarios con dÃ­gitos del 1-9</div>
+          <div class="correction-original">Original: "Eliminan cafeÃ­na en 4-5 horas" / "Tardan hasta 9 horas"</div>
+          <div class="correction-fix">CorrecciÃ³n: "Eliminan cafeÃ­na en cuatro a cinco horas" / "Tardan hasta nueve horas"</div>
+          <button class="copy-btn" onclick="copyText('Eliminan cafeÃ­na en cuatro a cinco horas')">Copiar primera correcciÃ³n</button>
+        </div>
+        <div class="action-row">
+          <a href="https://laopinion.com/2026/03/22/el-cafe-no-altera-el-sueno-tal-como-se-cree-popularmente-revela-estudio/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://laopinion.com/wp-admin/post.php?post=4066786&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://laopinion.com/2026/03/22/el-cafe-no-altera-el-sueno-tal-como-se-cree-popularmente-revela-estudio/', 'laop-salud-1', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Espinaca -->
+    <div class="card" id="card-laop-salud-2">
+      <div class="card-header" onclick="toggleCard('detail-laop-salud-2')">
+        <div class="card-meta">
+          <span class="badge-la">LA</span>
+          <span class="tag-section">Salud</span>
+          <span class="tag-time">~1 min</span>
+        </div>
+        <div class="card-title">La espinaca es un superalimento, pero no puede ser consumida por todos</div>
+        <div class="card-note">Las advertencias sobre contraindicaciones se atribuyen genÃ©ricamente a "urÃ³logos y nefrÃ³logos" sin estudio o nombre especÃ­fico (B04).</div>
+        <div class="error-tags">
+          <span class="error-tag soft">B04</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-laop-salud-2">
+        <div class="correction">
+          <div class="correction-label">B04 â Fuente mÃ©dica sin especificar</div>
+          <div class="correction-original">Original: "SegÃºn urÃ³logos y nefrÃ³logos, los pacientes con historial de litiasis renalâ¦"</div>
+          <div class="correction-fix">Sugerencia: Atribuir a una fuente especÃ­fica (instituciÃ³n, estudio o especialista nombrado) para reforzar la credibilidad del consejo mÃ©dico.</div>
+        </div>
+        <div class="action-row">
+          <a href="https://laopinion.com/2026/03/21/la-espinaca-es-un-superalimento-pero-no-puede-ser-consumida-por-todos-por-que-es-contraindicada-en-casos-especiales/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://laopinion.com/wp-admin/post.php?post=4066073&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://laopinion.com/2026/03/21/la-espinaca-es-un-superalimento-pero-no-puede-ser-consumida-por-todos-por-que-es-contraindicada-en-casos-especiales/', 'laop-salud-2', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: iPhone DarkSword -->
+    <div class="card" id="card-laop-tecno-1">
+      <div class="card-header" onclick="toggleCard('detail-laop-tecno-1')">
+        <div class="card-meta">
+          <span class="badge-la">LA</span>
+          <span class="tag-section">TecnologÃ­a</span>
+          <span class="tag-time">~1 min</span>
+        </div>
+        <div class="card-title">Alerta de Google: el grave fallo de seguridad que expone a los iPhone mÃ¡s antiguos</div>
+        <div class="card-note">Adjetivo "grave" en el titular podrÃ­a moderarse; artefacto tipogrÃ¡fico "v" antes de enlace en "Sigue leyendo" (B03, formato).</div>
+        <div class="error-tags">
+          <span class="error-tag soft">B03</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-laop-tecno-1">
+        <div class="correction">
+          <div class="correction-label">B03 â Adjetivo de valor en el titular</div>
+          <div class="correction-original">Original: "el grave fallo de seguridad"</div>
+          <div class="correction-fix">Sugerencia: "el fallo de seguridad crÃ­tico" o "el fallo de seguridad sin parche" â mÃ¡s descriptivo y menos valorativo.</div>
+        </div>
+        <div class="correction">
+          <div class="correction-label">Formato â Artefacto tipogrÃ¡fico en "Sigue leyendo"</div>
+          <div class="correction-original">Original: "Sigue leyendo:v Google descubre un falloâ¦"</div>
+          <div class="correction-fix">CorrecciÃ³n: Eliminar la "v" suelta antes del primer enlace de "Sigue leyendo".</div>
+        </div>
+        <div class="action-row">
+          <a href="https://laopinion.com/2026/03/20/alerta-de-google-el-grave-fallo-de-seguridad-que-expone-a-los-iphone-mas-antiguos/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://laopinion.com/wp-admin/post.php?post=4067869&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://laopinion.com/2026/03/20/alerta-de-google-el-grave-fallo-de-seguridad-que-expone-a-los-iphone-mas-antiguos/', 'laop-tecno-1', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Pescado frito -->
+    <div class="card" id="card-eldia-comida-1">
+      <div class="card-header" onclick="toggleCard('detail-eldia-comida-1')">
+        <div class="card-meta">
+          <span class="badge-ny">NY</span>
+          <span class="tag-section">Comida</span>
+          <span class="tag-time">~1 min</span>
+        </div>
+        <div class="card-title">CÃ³mo lograr un pescado frito crujiente y sin excesos de aceite, segÃºn un chef</div>
+        <div class="card-note">DÃ­gito "2 minutos" y "4 veces" en instrucciones de receta donde corresponden letras (D03).</div>
+        <div class="error-tags">
+          <span class="error-tag hard">D03</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-eldia-comida-1">
+        <div class="correction">
+          <div class="correction-label">D03 â NÃºmeros del 1-9 en dÃ­gitos</div>
+          <div class="correction-original">Original: "Con 2 minutos es mÃ¡s que suficiente"</div>
+          <div class="correction-fix">CorrecciÃ³n: Con dos minutos es mÃ¡s que suficiente</div>
+          <button class="copy-btn" onclick="copyText('Con dos minutos es mÃ¡s que suficiente para que quede dorado por fuera y jugoso por dentro.')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="correction">
+          <div class="correction-label">D03 â NÃºmero en instrucciÃ³n de ingredientes</div>
+          <div class="correction-original">Original: "cambiando el agua 4 veces"</div>
+          <div class="correction-fix">CorrecciÃ³n: cambiando el agua cuatro veces</div>
+          <button class="copy-btn" onclick="copyText('cambiando el agua cuatro veces')">Copiar correcciÃ³n</button>
+        </div>
+        <div class="action-row">
+          <a href="https://eldiariony.com/2026/03/21/como-lograr-un-pescado-frito-crujiente-y-sin-excesos-de-aceite-segun-un-chef/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://eldiariony.com/wp-admin/post.php?post=3649434&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://eldiariony.com/2026/03/21/como-lograr-un-pescado-frito-crujiente-y-sin-excesos-de-aceite-segun-un-chef/', 'eldia-comida-1', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /group-moderado -->
+
+  <div class="group-header" onclick="toggleGroup('ok')">â Sin observaciones <span>3 artÃ­culos</span></div>
+  <div id="group-ok" style="display:none">
+
+    <div class="ok-card">
+      <div class="ok-card-meta"><span class="badge-la">LA</span><span class="tag-section">Entretenimiento</span></div>
+      <div class="ok-card-title">Barry Keoghan revela que el acoso en lÃ­nea lo ha llevado al aislamiento</div>
+    </div>
+    <div class="ok-card">
+      <div class="ok-card-meta"><span class="badge-la">LA</span><span class="tag-section">Entretenimiento</span></div>
+      <div class="ok-card-title">"NacÃ­ para amarlo": Emma Heming celebra su 17Âº aniversario con Bruce Willis</div>
+    </div>
+    <div class="ok-card">
+      <div class="ok-card-meta"><span class="badge-ny">NY</span><span class="tag-section">Dinero</span></div>
+      <div class="ok-card-title">El error silencioso que daÃ±a tu historial crediticio sin darte cuenta</div>
+    </div>
+
+  </div><!-- /group-ok -->
+
+</div><!-- /tab-todo -->
+
+<!-- ==================== TAB LA OPINIÃN ==================== -->
+<div id="tab-la" style="display:none">
+
+  <div class="group-header" onclick="toggleGroup('la-urgentes')">ð´ CorrÃ­gelo ahora <span>3 artÃ­culos</span></div>
+  <div id="group-la-urgentes">
+
+    <div class="card" id="card-laop-entret-3b">
+      <div class="card-header" onclick="toggleCard('detail-laop-entret-3b')">
+        <div class="card-meta"><span class="badge-la">LA</span><span class="tag-section">Entretenimiento</span><span class="tag-time">~2 min</span></div>
+        <div class="card-title">Zendaya y Robert Pattinson en 'The Drama': TrÃ¡iler, fecha y todo sobre la pelÃ­cula de A24</div>
+        <div class="card-note">Comillas simples en el titular (D11) y dÃ­gito "3" donde corresponde "tres" (D03).</div>
+        <div class="error-tags"><span class="error-tag hard">D11</span><span class="error-tag hard">D03</span></div>
+      </div>
+      <div class="card-detail" id="detail-laop-entret-3b">
+        <div class="correction">
+          <div class="correction-label">D11 â TÃ­tulo de pelÃ­cula con comillas simples en headline</div>
+          <div class="correction-original">Original: "'The Drama'"</div>
+          <div class="correction-fix">CorrecciÃ³n: "The Drama" (comillas tipogrÃ¡ficas dobles)</div>
+          <button class="copy-btn" onclick="copyText('\u201cThe Drama\u201d')">Copiar</button>
+        </div>
+        <div class="correction">
+          <div class="correction-label">D03 â Fecha con dÃ­gito del 1-9</div>
+          <div class="correction-original">Original: "el 3 de abril de 2026"</div>
+          <div class="correction-fix">CorrecciÃ³n: el tres de abril de 2026</div>
+          <button class="copy-btn" onclick="copyText('el tres de abril de 2026')">Copiar</button>
+        </div>
+        <div class="action-row">
+          <a href="https://laopinion.com/2026/03/21/zendaya-y-robert-pattinson-en-the-drama-trailer-fecha-de-estreno-y-todo-sobre-la-nueva-pelicula-de-a24/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://laopinion.com/wp-admin/post.php?post=4068347&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://laopinion.com/2026/03/21/zendaya-y-robert-pattinson-en-the-drama-trailer-fecha-de-estreno-y-todo-sobre-la-nueva-pelicula-de-a24/', 'laop-entret-3b', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="card-laop-astro-1b">
+      <div class="card-header" onclick="toggleCard('detail-laop-astro-1b')">
+        <div class="card-meta"><span class="badge-la">LA</span><span class="tag-section">AstrologÃ­a</span><span class="tag-time">~1 min</span></div>
+        <div class="card-title">La intuiciÃ³n de 3 signos del zodiaco tiene capacidades psÃ­quicas</div>
+        <div class="card-note">"3" debe ir en letra en el titular (D03).</div>
+        <div class="error-tags"><span class="error-tag hard">D03</span><span class="error-tag soft">B04</span></div>
+      </div>
+      <div class="card-detail" id="detail-laop-astro-1b">
+        <div class="correction">
+          <div class="correction-label">D03 â NÃºmero en titular</div>
+          <div class="correction-original">Original: "La intuiciÃ³n de 3 signos del zodiaco"</div>
+          <div class="correction-fix">CorrecciÃ³n: La intuiciÃ³n de tres signos del zodiaco</div>
+          <button class="copy-btn" onclick="copyText('La intuiciÃ³n de tres signos del zodiaco tiene capacidades psÃ­quicas')">Copiar</button>
+        </div>
+        <div class="action-row">
+          <a href="https://laopinion.com/2026/03/21/la-intuicion-de-3-signos-del-zodiaco-tiene-capacidades-psiquicas/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://laopinion.com/wp-admin/post.php?post=4066793&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://laopinion.com/2026/03/21/la-intuicion-de-3-signos-del-zodiaco-tiene-capacidades-psiquicas/', 'laop-astro-1b', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="card-laop-dinero-1b">
+      <div class="card-header" onclick="toggleCard('detail-laop-dinero-1b')">
+        <div class="card-meta"><span class="badge-la">LA</span><span class="tag-section">Dinero</span><span class="tag-time">~2 min</span></div>
+        <div class="card-title">Pagos del Seguro Social el 25 de marzo: quiÃ©nes reciben $2,000</div>
+        <div class="card-note">MÃºltiples montos con "$X dÃ³lares" (D05) y "dÃ­a 3" sin letra (D03).</div>
+        <div class="error-tags"><span class="error-tag hard">D05</span><span class="error-tag hard">D03</span></div>
+      </div>
+      <div class="card-detail" id="detail-laop-dinero-1b">
+        <div class="correction">
+          <div class="correction-label">D05 â Montos redundantes (3 ocurrencias)</div>
+          <div class="correction-original">Original: "$2,076.41 dÃ³lares" / "$1,633.76 dÃ³lares" / "$1,623.28 dÃ³lares"</div>
+          <div class="correction-fix">CorrecciÃ³n: "$2,076.41" / "$1,633.76" / "$1,623.28"</div>
+          <button class="copy-btn" onclick="copyText('$2,076.41 al mes')">Copiar primera</button>
+        </div>
+        <div class="correction">
+          <div class="correction-label">D03 â "dÃ­a 3" debe ir en letra</div>
+          <div class="correction-original">Original: "el dÃ­a 3 de cada mes"</div>
+          <div class="correction-fix">CorrecciÃ³n: el dÃ­a tres de cada mes</div>
+          <button class="copy-btn" onclick="copyText('el dÃ­a tres de cada mes')">Copiar</button>
+        </div>
+        <div class="action-row">
+          <a href="https://laopinion.com/2026/03/21/pagos-del-seguro-social-el-25-de-marzo-quienes-reciben-2000/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://laopinion.com/wp-admin/post.php?post=4068521&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://laopinion.com/2026/03/21/pagos-del-seguro-social-el-25-de-marzo-quienes-reciben-2000/', 'laop-dinero-1b', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- ATENCIÓN -->
-  <div class="urgency-group">
-    <div class="urgency-header" onclick="toggleGroup('atencion')">
-      <span class="urgency-label yellow">🟡 Cuando puedas</span>
-      <span class="urgency-count">4 artículos · no urgentes pero mejorables</span>
-      <span class="chevron collapsed" id="chevron-atencion">▾</span>
+  <div class="group-header" onclick="toggleGroup('la-moderado')">ð¡ Cuando puedas <span>3 artÃ­culos</span></div>
+  <div id="group-la-moderado">
+
+    <div class="card" id="card-laop-salud-1b">
+      <div class="card-header" onclick="toggleCard('detail-laop-salud-1b')">
+        <div class="card-meta"><span class="badge-la">LA</span><span class="tag-section">Salud</span><span class="tag-time">~2 min</span></div>
+        <div class="card-title">El cafÃ© no altera el sueÃ±o tal como se cree popularmente, revela estudio</div>
+        <div class="card-note">Rangos horarios con dÃ­gitos del 1-9 en la secciÃ³n de metabolizadores (D03).</div>
+        <div class="error-tags"><span class="error-tag hard">D03</span></div>
+      </div>
+      <div class="card-detail" id="detail-laop-salud-1b">
+        <div class="correction">
+          <div class="correction-label">D03</div>
+          <div class="correction-original">Original: "en 4-5 horas" / "hasta 9 horas"</div>
+          <div class="correction-fix">CorrecciÃ³n: "en cuatro a cinco horas" / "hasta nueve horas"</div>
+          <button class="copy-btn" onclick="copyText('en cuatro a cinco horas')">Copiar</button>
+        </div>
+        <div class="action-row">
+          <a href="https://laopinion.com/2026/03/22/el-cafe-no-altera-el-sueno-tal-como-se-cree-popularmente-revela-estudio/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://laopinion.com/wp-admin/post.php?post=4066786&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://laopinion.com/2026/03/22/el-cafe-no-altera-el-sueno-tal-como-se-cree-popularmente-revela-estudio/', 'laop-salud-1b', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
     </div>
-    <div id="group-atencion" style="display:none">
 
-      <div class="card yellow" id="card-patrick">
-        <div class="card-header" onclick="toggleCard('patrick')">
-          <div class="card-meta">
-            <span class="pub-badge ed">El Diario NY</span>
-            <span class="section-tag">Entretenimiento</span>
-            <span class="time-est">~2 min</span>
-          </div>
-          <div class="card-headline">Patrick Dempsey vuelve a la TV con un atípico personaje</div>
-          <div class="assistant-note">El titular de la sección dice "atípico personaje" (vago) pero el metatitle configurado en el CMS dice "personaje marcado por el Alzheimer" (informativo). Alinearlos.</div>
-          <div class="error-tags">
-            <span class="error-tag yellow">Inconsistencia titular/meta</span>
-          </div>
+    <div class="card" id="card-laop-salud-2b">
+      <div class="card-header" onclick="toggleCard('detail-laop-salud-2b')">
+        <div class="card-meta"><span class="badge-la">LA</span><span class="tag-section">Salud</span><span class="tag-time">~1 min</span></div>
+        <div class="card-title">La espinaca es un superalimento, pero no puede ser consumida por todos</div>
+        <div class="card-note">AtribuciÃ³n mÃ©dica genÃ©rica (B04).</div>
+        <div class="error-tags"><span class="error-tag soft">B04</span></div>
+      </div>
+      <div class="card-detail" id="detail-laop-salud-2b">
+        <div class="correction">
+          <div class="correction-label">B04 â Fuente vaga</div>
+          <div class="correction-original">Original: "SegÃºn urÃ³logos y nefrÃ³logosâ¦"</div>
+          <div class="correction-fix">Sugerencia: Nombrar instituciÃ³n o estudio especÃ­fico.</div>
         </div>
-        <div class="card-body" id="body-patrick">
-          <div class="correction-block">
-            <div class="correction-label">Titular de sección (actualizar a)</div>
-            <div class="correction-fixed" id="fix-patrick-titulo">Patrick Dempsey regresa a la televisión como sicario con Alzheimer en nueva serie de Fox</div>
-            <div class="char-count ok">87 chars ✓</div>
-            <button class="copy-btn" onclick="copyText('fix-patrick-titulo', this)">📋 Copiar titular</button>
-          </div>
-          <div class="card-actions">
-            <a href="https://eldiariony.com/2026/03/20/patrick-dempsey-vuelve-a-la-tv-con-un-atipico-personaje/" target="_blank" class="action-link">🔗 Ver artículo</a>
-          </div>
+        <div class="action-row">
+          <a href="https://laopinion.com/2026/03/21/la-espinaca-es-un-superalimento-pero-no-puede-ser-consumida-por-todos-por-que-es-contraindicada-en-casos-especiales/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://laopinion.com/wp-admin/post.php?post=4066073&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://laopinion.com/2026/03/21/la-espinaca-es-un-superalimento-pero-no-puede-ser-consumida-por-todos-por-que-es-contraindicada-en-casos-especiales/', 'laop-salud-2b', this)">Re-verificar y resolver</button>
         </div>
       </div>
-
-      <div class="card yellow" id="card-catherine">
-        <div class="card-header" onclick="toggleCard('catherine')">
-          <div class="card-meta">
-            <span class="pub-badge ed">El Diario NY</span>
-            <span class="section-tag">Entretenimiento</span>
-            <span class="time-est">~3 min</span>
-          </div>
-          <div class="card-headline">Catherine Zeta-Jones y Michael Douglas insisten en la venta de su mansión en Nueva York</div>
-          <div class="assistant-note">El titular publicado oculta el dato nuevo ($9.75M, nueva rebaja). El lead abre con contexto histórico en vez del hecho noticiable de hoy. Vale la pena corregir para que la nota funcione en búsqueda.</div>
-          <div class="error-tags">
-            <span class="error-tag yellow">Titular < titular meta</span>
-            <span class="error-tag yellow">B03 lead desplazado</span>
-          </div>
-        </div>
-        <div class="card-body" id="body-catherine">
-          <div class="correction-block">
-            <div class="correction-label">Titular</div>
-            <div class="correction-current">Catherine Zeta-Jones y Michael Douglas insisten en la venta de su mansión en Nueva York</div>
-            <div class="correction-fixed" id="fix-catherine-titulo">Catherine Zeta-Jones y Michael Douglas bajan a $9.75 millones su mansión de Nueva York</div>
-            <div class="char-count ok">85 chars ✓</div>
-            <button class="copy-btn" onclick="copyText('fix-catherine-titulo', this)">📋 Copiar titular</button>
-          </div>
-          <div class="card-actions">
-            <a href="https://eldiariony.com/2026/03/20/catherine-zeta-jones-y-michael-douglas-insisten-en-la-venta-de-su-mansion-en-nueva-york/" target="_blank" class="action-link">🔗 Ver artículo</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="card yellow" id="card-kylie">
-        <div class="card-header" onclick="toggleCard('kylie')">
-          <div class="card-meta">
-            <span class="pub-badge lo">La Opinión</span>
-            <span class="section-tag">Entretenimiento</span>
-          </div>
-          <div class="card-headline">Kylie Jenner irrumpe en la escena del rap con una aparición sorpresa</div>
-          <div class="assistant-note">El lead abre con "La reina está de vuelta" antes del hecho. El titular está bien construido.</div>
-          <div class="error-tags">
-            <span class="error-tag yellow">B03 lead poético</span>
-          </div>
-        </div>
-        <div class="card-body" id="body-kylie">
-          <div class="correction-block">
-            <div class="correction-label">Lead sugerido</div>
-            <div class="correction-current">La reina está de vuelta. Kylie Jenner, la magnate de los negocios y estrella de reality shows, resucitó su icónica era "King Kylie"…</div>
-            <div class="correction-fixed" id="fix-kylie-lead">Kylie Jenner regresó a la música el 20 de marzo como artista invitada en "Let King Tonka Talk", el nuevo sencillo del rapero Yeats, su primera aparición en el rap en diez años.</div>
-            <button class="copy-btn" onclick="copyText('fix-kylie-lead', this)">📋 Copiar lead</button>
-          </div>
-          <div class="card-actions">
-            <a href="https://laopinion.com/2026/03/20/kylie-jenner-irrumpe-en-la-escena-del-rap-con-una-aparicion-sorpresa/" target="_blank" class="action-link">🔗 Ver artículo</a>
-          </div>
-        </div>
-      </div>
-
     </div>
+
+    <div class="card" id="card-laop-dinero-2b">
+      <div class="card-header" onclick="toggleCard('detail-laop-dinero-2b')">
+        <div class="card-meta"><span class="badge-la">LA</span><span class="tag-section">Dinero</span><span class="tag-time">~1 min</span></div>
+        <div class="card-title">Cambios en Chase Bank que afectarÃ¡n a clientes en 2026</div>
+        <div class="card-note">Monto con signo $ y "dÃ³lares" (D05).</div>
+        <div class="error-tags"><span class="error-tag hard">D05</span></div>
+      </div>
+      <div class="card-detail" id="detail-laop-dinero-2b">
+        <div class="correction">
+          <div class="correction-label">D05</div>
+          <div class="correction-original">Original: "pasarÃ¡ de $550 a $795 dÃ³lares"</div>
+          <div class="correction-fix">CorrecciÃ³n: pasarÃ¡ de $550 a $795</div>
+          <button class="copy-btn" onclick="copyText('pasarÃ¡ de $550 a $795')">Copiar</button>
+        </div>
+        <div class="action-row">
+          <a href="https://laopinion.com/2026/03/21/cambios-en-chase-bank-que-afectaran-a-clientes-en-2026/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://laopinion.com/wp-admin/post.php?post=4068509&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://laopinion.com/2026/03/21/cambios-en-chase-bank-que-afectaran-a-clientes-en-2026/', 'laop-dinero-2b', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- OK -->
-  <div class="urgency-group">
-    <div class="urgency-header" onclick="toggleGroup('ok')">
-      <span class="urgency-label green">✅ Sin observaciones</span>
-      <span class="urgency-count">1 artículo</span>
-      <span class="chevron collapsed" id="chevron-ok">▾</span>
-    </div>
-    <div id="group-ok" style="display:none">
-      <div class="card green">
-        <div class="ok-list">
-          <div class="ok-item">
-            <span class="ok-icon">✓</span>
-            <span class="ok-text"><a href="https://eldiariony.com/2026/03/20/patrick-dempsey-vuelve-a-la-tv-con-un-atipico-personaje/" target="_blank">Patrick Dempsey regresa a la TV con un personaje marcado por el Alzheimer</a> — El Diario NY · Estructura sólida, sin errores duros</span>
-          </div>
+  <div class="group-header" onclick="toggleGroup('la-ok')">â Sin observaciones <span>2 artÃ­culos</span></div>
+  <div id="group-la-ok" style="display:none">
+    <div class="ok-card"><div class="ok-card-meta"><span class="badge-la">LA</span><span class="tag-section">Entretenimiento</span></div><div class="ok-card-title">Barry Keoghan revela que el acoso en lÃ­nea lo ha llevado al aislamiento</div></div>
+    <div class="ok-card"><div class="ok-card-meta"><span class="badge-la">LA</span><span class="tag-section">Entretenimiento</span></div><div class="ok-card-title">"NacÃ­ para amarlo": Emma Heming celebra su 17Âº aniversario con Bruce Willis</div></div>
+  </div>
+
+</div><!-- /tab-la -->
+
+<!-- ==================== TAB EL DIARIO NY ==================== -->
+<div id="tab-ny" style="display:none">
+
+  <div class="group-header" onclick="toggleGroup('ny-urgentes')">ð´ CorrÃ­gelo ahora <span>5 artÃ­culos</span></div>
+  <div id="group-ny-urgentes">
+
+    <div class="card" id="card-eldia-entret-1b">
+      <div class="card-header" onclick="toggleCard('detail-eldia-entret-1b')">
+        <div class="card-meta"><span class="badge-ny">NY</span><span class="tag-section">Entretenimiento</span><span class="tag-time">~1 min</span></div>
+        <div class="card-title">El Estadio Shakira se construirÃ¡ en dos meses</div>
+        <div class="card-note">Signo $ delante de nÃºmero de personas â error crÃ­tico. TambiÃ©n D11.</div>
+        <div class="error-tags"><span class="error-tag hard">D05</span><span class="error-tag hard">D11</span></div>
+      </div>
+      <div class="card-detail" id="detail-eldia-entret-1b">
+        <div class="correction">
+          <div class="correction-label">D05 â Signo $ aplicado a personas (error crÃ­tico)</div>
+          <div class="correction-original">Original: "capacidad para albergar $50,000 personas"</div>
+          <div class="correction-fix">CorrecciÃ³n: capacidad para albergar 50,000 personas</div>
+          <button class="copy-btn" onclick="copyText('capacidad para albergar 50,000 personas por noche')">Copiar</button>
+        </div>
+        <div class="action-row">
+          <a href="https://eldiariony.com/2026/03/22/el-estadio-shakira-se-construira-en-dos-meses/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://eldiariony.com/wp-admin/post.php?post=3651166&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://eldiariony.com/2026/03/22/el-estadio-shakira-se-construira-en-dos-meses/', 'eldia-entret-1b', this)">Re-verificar y resolver</button>
         </div>
       </div>
     </div>
+
+    <div class="card" id="card-eldia-salud-1b">
+      <div class="card-header" onclick="toggleCard('detail-eldia-salud-1b')">
+        <div class="card-meta"><span class="badge-ny">NY</span><span class="tag-section">Salud</span><span class="tag-time">~2 min</span></div>
+        <div class="card-title">Los riesgos de tomar omeprazol y otros antiÃ¡cidos a diario, segÃºn expertos</div>
+        <div class="card-note">Dos errores gramaticales activos en el cuerpo del artÃ­culo + typo en abreviatura.</div>
+        <div class="error-tags"><span class="error-tag hard">D07</span></div>
+      </div>
+      <div class="card-detail" id="detail-eldia-salud-1b">
+        <div class="correction">
+          <div class="correction-label">Error gramatical 1 â Concordancia</div>
+          <div class="correction-original">Original: "la causas de ese fuego"</div>
+          <div class="correction-fix">CorrecciÃ³n: las causas de ese fuego</div>
+          <button class="copy-btn" onclick="copyText('las causas de ese \u201cfuego\u201d en la garganta')">Copiar</button>
+        </div>
+        <div class="correction">
+          <div class="correction-label">Error gramatical 2 â ConjugaciÃ³n</div>
+          <div class="correction-original">Original: "que puede afecta mucho"</div>
+          <div class="correction-fix">CorrecciÃ³n: que puede afectar mucho</div>
+          <button class="copy-btn" onclick="copyText('que puede afectar mucho la calidad de vida')">Copiar</button>
+        </div>
+        <div class="correction">
+          <div class="correction-label">Typo â Abreviatura</div>
+          <div class="correction-original">Original: "En EE.UUs"</div>
+          <div class="correction-fix">CorrecciÃ³n: En EE. UU.</div>
+          <button class="copy-btn" onclick="copyText('En EE. UU.,')">Copiar</button>
+        </div>
+        <div class="action-row">
+          <a href="https://eldiariony.com/2026/03/21/riesgos-tomar-omeprazol-y-antiacidos-a-diario-segun-expertos/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://eldiariony.com/wp-admin/post.php?post=3651102&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://eldiariony.com/2026/03/21/riesgos-tomar-omeprazol-y-antiacidos-a-diario-segun-expertos/', 'eldia-salud-1b', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="card-eldia-salud-2b">
+      <div class="card-header" onclick="toggleCard('detail-eldia-salud-2b')">
+        <div class="card-meta"><span class="badge-ny">NY</span><span class="tag-section">Salud</span><span class="tag-time">~1 min</span></div>
+        <div class="card-title">CÃ³lico renal: 3 formas de calmar el dolor sin usar analgÃ©sicos</div>
+        <div class="card-note">"3" en el titular y en el subtÃ­tulo del artÃ­culo deben ir en letra (D03).</div>
+        <div class="error-tags"><span class="error-tag hard">D03</span></div>
+      </div>
+      <div class="card-detail" id="detail-eldia-salud-2b">
+        <div class="correction">
+          <div class="correction-label">D03 â Titular y subtÃ­tulo</div>
+          <div class="correction-original">Original: "3 formas de calmar el dolorâ¦"</div>
+          <div class="correction-fix">CorrecciÃ³n: Tres formas de calmar el dolorâ¦</div>
+          <button class="copy-btn" onclick="copyText('CÃ³lico renal: tres formas de calmar el dolor sin usar analgÃ©sicos')">Copiar titular</button>
+        </div>
+        <div class="action-row">
+          <a href="https://eldiariony.com/2026/03/20/colico-renal-3-formas-de-calmar-el-dolor-sin-usar-analgesicos/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://eldiariony.com/wp-admin/post.php?post=3650679&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://eldiariony.com/2026/03/20/colico-renal-3-formas-de-calmar-el-dolor-sin-usar-analgesicos/', 'eldia-salud-2b', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="card-eldia-estilo-1b">
+      <div class="card-header" onclick="toggleCard('detail-eldia-estilo-1b')">
+        <div class="card-meta"><span class="badge-ny">NY</span><span class="tag-section">Estilo de Vida</span><span class="tag-time">~1 min</span></div>
+        <div class="card-title">Â¿Por quÃ© el queso azul sÃ­ se puede comer y otros quesos con moho no?</div>
+        <div class="card-note">El titular abre con Â¿ â violaciÃ³n directa de D06.</div>
+        <div class="error-tags"><span class="error-tag hard">D06</span></div>
+      </div>
+      <div class="card-detail" id="detail-eldia-estilo-1b">
+        <div class="correction">
+          <div class="correction-label">D06 â Titular abre con signo de interrogaciÃ³n</div>
+          <div class="correction-original">Original: "Â¿Por quÃ© el queso azul sÃ­ se puede comerâ¦?"</div>
+          <div class="correction-fix">CorrecciÃ³n: El queso azul tiene moho y es seguro comerlo: la razÃ³n cientÃ­fica que pocos conocen</div>
+          <button class="copy-btn" onclick="copyText('El queso azul tiene moho y es seguro comerlo: la razÃ³n cientÃ­fica que pocos conocen')">Copiar alternativa</button>
+        </div>
+        <div class="action-row">
+          <a href="https://eldiariony.com/2026/03/22/por-que-el-queso-azul-si-se-puede-comer-y-otros-quesos-con-moho-no/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://eldiariony.com/wp-admin/post.php?post=3650002&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://eldiariony.com/2026/03/22/por-que-el-queso-azul-si-se-puede-comer-y-otros-quesos-con-moho-no/', 'eldia-estilo-1b', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="card-eldia-estilo-2b">
+      <div class="card-header" onclick="toggleCard('detail-eldia-estilo-2b')">
+        <div class="card-meta"><span class="badge-ny">NY</span><span class="tag-section">Estilo de Vida</span><span class="tag-time">~1 min</span></div>
+        <div class="card-title">Columna de MarÃ­a MarÃ­n: Cuando no puedes tenerloâ¦mÃ¡s lo deseas</fasis</div>
+          <div class="correction-original">Original: "valora todo lo que SÃ tienes"</div>
+          <div class="correction-fix">CorrecciÃ³n: valora todo lo que sÃ­ tienes</div>
+          <button class="copy-btn" onclick="copyText('valora todo lo que sÃ­ tienes')">Copiar</button>
+        </div>
+        <div class="action-row">
+          <a href="https://eldiariony.com/2026/03/21/columna-de-maria-marin-cuando-no-puedes-tenerlomas-lo-deseas/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://eldiariony.com/wp-admin/post.php?post=3648313&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://eldiariony.com/2026/03/21/columna-de-maria-marin-cuando-no-puedes-tenerlomas-lo-deseas/', 'eldia-estilo-2b', this)">Re-verificar y resolver</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-</div>
+  <div class="group-header" onclick="toggleGroup('ny-moderado')">ð¡ Cuando puedas <span>3 artÃ­culos</span></div>
+  <div id="group-ny-moderado">
 
-<!-- TAB: LA OPINIÓN -->
-<div class="panel" id="tab-lo">
-  <p style="padding:20px;color:var(--muted);font-size:13px">Vista filtrada por publicación — mismo contenido que la pestaña "Todo", filtrado a La Opinión.</p>
-</div>
-
-<!-- TAB: EL DIARIO -->
-<div class="panel" id="tab-ed">
-  <p style="padding:20px;color:var(--muted);font-size:13px">Vista filtrada por publicación — mismo contenido que la pestaña "Todo", filtrado a El Diario NY.</p>
-</div>
-
-<!-- TAB: PATRONES -->
-<div class="panel" id="tab-patrones">
-  <div class="patterns-card">
-    <div class="patterns-title">Lo que se repite hoy</div>
-
-    <div class="pattern-item">
-      <div class="pattern-n">6/9</div>
-      <div class="pattern-text">
-        <strong>Referencias temporales relativas (D03)</strong>
-        <span>"Hoy", "ayer", "este viernes", "un día después" aparecen en 6 de 9 artículos. No es un error individual — es el template de los formatos recurrentes (horóscopo, votaciones, resúmenes semanales). Requiere una regla fija en el flujo del CMS.</span>
+    <div class="card" id="card-eldia-entret-2b">
+      <div class="card-header" onclick="toggleCard('detail-eldia-entret-2b')">
+        <div class="card-meta"><span class="badge-ny">NY</span><span class="tag-section">Entretenimiento</span><span class="tag-time">~1 min</span></div>
+        <div class="card-title">Revelan video del arresto de Justin Timberlake en NY en 2024</div>
+        <div class="card-note">Multa escrita sin signo $ (D05).</div>
+        <div class="error-tags"><span class="error-tag hard">D05</span></div>
+      </div>
+      <div class="card-detail" id="detail-eldia-entret-2b">
+        <div class="correction">
+          <div class="correction-label">D05</div>
+          <div class="correction-original">Original: "multa de 500 dÃ³lares"</div>
+          <div class="correction-fix">CorrecciÃ³n: multa de $500</div>
+          <button class="copy-btn" onclick="copyText('multa de $500')">Copiar</button>
+        </div>
+        <div class="action-row">
+          <a href="https://eldiariony.com/2026/03/21/revelan-video-del-arresto-de-justin-timberlake-en-ny-en-2024/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://eldiariony.com/wp-admin/post.php?post=3651040&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://eldiariony.com/2026/03/21/revelan-video-del-arresto-de-justin-timberlake-en-ny-en-2024/', 'eldia-entret-2b', this)">Re-verificar y resolver</button>
+        </div>
       </div>
     </div>
 
-    <div class="pattern-item">
-      <div class="pattern-n">4/9</div>
-      <div class="pattern-text">
-        <strong>Titulares sobre 90 chars (D01)</strong>
-        <span>La mitad de los artículos urgentes tienen este problema. Si el CMS hereda el titular como metatitle sin recorte automático, todos estos artículos tienen truncamiento en Google. Vale preguntar a tech si hay un campo SEO independiente configurado.</span>
+    <div class="card" id="card-eldia-comida-1b">
+      <div class="card-header" onclick="toggleCard('detail-eldia-comida-1b')">
+        <div class="card-meta"><span class="badge-ny">NY</span><span class="tag-section">Comida</span><span class="tag-time">~1 min</span></div>
+        <div class="card-title">CÃ³mo lograr un pescado frito crujiente y sin excesos de aceite, segÃºn un chef</div>
+        <div class="card-note">"2 minutos" y "4 veces" con dÃ­gitos del 1-9 en instrucciones de receta (D03).</div>
+        <div class="error-tags"><span class="error-tag hard">D03</span></div>
+      </div>
+      <div class="card-detail" id="detail-eldia-comida-1b">
+        <div class="correction">
+          <div class="correction-label">D03</div>
+          <div class="correction-original">Original: "Con 2 minutos es mÃ¡s que suficiente" / "cambiando el agua 4 veces"</div>
+          <div class="correction-fix">CorrecciÃ³n: "Con dos minutos es mÃ¡s que suficiente" / "cambiando el agua cuatro veces"</div>
+          <button class="copy-btn" onclick="copyText('Con dos minutos es mÃ¡s que suficiente')">Copiar primera</button>
+        </div>
+        <div class="action-row">
+          <a href="https://eldiariony.com/2026/03/21/como-lograr-un-pescado-frito-crujiente-y-sin-excesos-de-aceite-segun-un-chef/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://eldiariony.com/wp-admin/post.php?post=3649434&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://eldiariony.com/2026/03/21/como-lograr-un-pescado-frito-crujiente-y-sin-excesos-de-aceite-segun-un-chef/', 'eldia-comida-1b', this)">Re-verificar y resolver</button>
+        </div>
       </div>
     </div>
 
-    <div class="pattern-item">
-      <div class="pattern-n">3/9</div>
-      <div class="pattern-text">
-        <strong>Lead con hecho desplazado (B03)</strong>
-        <span>El dato más importante llega en el segundo o tercer párrafo. Los tres casos están en La Opinión. Patrón de redacción que favorece el contexto antes que el hecho nuevo.</span>
+    <div class="card" id="card-laop-tecno-1b">
+      <div class="card-header" onclick="toggleCard('detail-laop-tecno-1b')">
+        <div class="card-meta"><span class="badge-la">LA</span><span class="tag-section">TecnologÃ­a</span><span class="tag-time">~1 min</span></div>
+        <div class="card-title">Alerta de Google: el grave fallo de seguridad que expone a los iPhone mÃ¡s antiguos</div>
+        <div class="card-note">Adjetivo "grave" en titular y artefacto tipogrÃ¡fico "v" en secciÃ³n "Sigue leyendo" (B03).</div>
+        <div class="error-tags"><span class="error-tag soft">B03</span></div>
+      </div>
+      <div class="card-detail" id="detail-laop-tecno-1b">
+        <div class="correction">
+          <div class="correction-label">B03 + formato</div>
+          <div class="correction-original">Original: "el grave fallo de seguridad" + "Sigue leyendo:v Googleâ¦"</div>
+          <div class="correction-fix">Sugerencia titular: "el fallo de seguridad crÃ­tico" | Eliminar la "v" suelta antes del primer enlace.</div>
+        </div>
+        <div class="action-row">
+          <a href="https://laopinion.com/2026/03/20/alerta-de-google-el-grave-fallo-de-seguridad-que-expone-a-los-iphone-mas-antiguos/" target="_blank" class="link-btn">Ver artÃ­culo</a>
+          <a href="https://laopinion.com/wp-admin/post.php?post=4067869&action=edit" target="_blank" class="link-btn">Editar en WP</a>
+          <button class="reverify-btn resolve-btn" onclick="openAndPendingResolve('https://laopinion.com/2026/03/20/alerta-de-google-el-grave-fallo-de-seguridad-que-expone-a-los-iphone-mas-antiguos/', 'laop-tecno-1b', this)">Re-verificar y resolver</button>
+        </div>
       </div>
     </div>
 
-    <div class="pattern-item">
-      <div class="pattern-n">1</div>
-      <div class="pattern-text">
-        <strong>Error gramatical publicado (D06) — único pero prioritario</strong>
-        <span>"El derechos" en el titular y URL de Ley Cazzu (El Diario). Este tipo de error en el titular daña la credibilidad de la nota ante el lector y en sistemas de calidad de contenido.</span>
-      </div>
-    </div>
   </div>
-</div>
+
+  <div class="group-header" onclick="toggleGroup('ny-ok')">â Sin observaciones <span>1 artÃ­culo</span></div>
+  <div id="group-ny-ok" style="display:none">
+    <div class="ok-card"><div class="ok-card-meta"><span class="badge-ny">NY</span><span class="tag-section">Dinero</span></div><div class="ok-card-title">El error silencioso que daÃ±a tu historial crediticio sin darte cuenta</div></div>
+  </div>
+
+</div><!-- /tab-ny -->
+
+<!-- ==================== TAB PATRONES ==================== -->
+<div id="tab-patrones" style="display:none">
+  <div class="patterns">
+    <h3>Errores mÃ¡s frecuentes hoy Â· 22 de marzo de 2026</h3>
+    <div class="pattern-item"><span>D03 â NÃºmeros 1-9 en dÃ­gito (debe ir en letra)</span><span class="pattern-count">6Ã</span></div>
+    <div class="pattern-item"><span>D05 â Montos: signo $ y "dÃ³lares" simultÃ¡neos o sin signo $</span><span class="pattern-count">4Ã</span></div>
+    <div class="pattern-item"><span>D11 â TÃ­tulos de obras con comillas incorrectas o sin comillas</span><span class="pattern-count">3Ã</span></div>
+    <div class="pattern-item"><span>D07 â MayÃºsculas para Ã©nfasis en el cuerpo</span><span class="pattern-count">2Ã</span></div>
+    <div class="pattern-item"><span>D06 â Titular abre con Â¿</span><span class="pattern-count">1Ã</span></div>
+    <div class="pattern-item"><span>B04 â Fuente mÃ©dica o editorial sin atribuciÃ³n especÃ­fica</span><span class="pattern-count">2Ã</span></div>
+    <div class="pattern-item"><span>B03 â Adjetivos de valor en titulares sin respaldo explÃ­cito</span><span class="pattern-count">2Ã</span></div>
+  </div>
+  <div class="patterns">
+    <h3>PublicaciÃ³n con mÃ¡s errores hoy</h3>
+    <div class="pattern-item"><span>El Diario NY</span><span class="pattern-count">5 urgentes</span></div>
+    <div class="pattern-item"><span>La OpiniÃ³n</span><span class="pattern-count">3 urgentes</span></div>
+  </div>
+  <div class="patterns">
+    <h3>SecciÃ³n con mÃ¡s incidencias</h3>
+    <div class="pattern-item"><span>Salud (ambas publicaciones)</span><span class="pattern-count">4 artÃ­culos afectados</span></div>
+    <div class="pattern-item"><span>Entretenimiento (ambas publicaciones)</span><span class="pattern-count">2 urgentes</span></div>
+  </div>
+</div><!-- /tab-patrones -->
+
+</div><!-- /content -->
 
 <script>
-function showTab(name) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-  document.getElementById('tab-' + name).classList.add('active');
-}
-
-function toggleCard(id) {
-  const body = document.getElementById('body-' + id);
-  body.classList.toggle('open');
-}
-
-function toggleGroup(id) {
-  const group = document.getElementById('group-' + id);
-  const chevron = document.getElementById('chevron-' + id);
-  const isHidden = group.style.display === 'none';
-  group.style.display = isHidden ? 'block' : 'none';
-  chevron.classList.toggle('collapsed', !isHidden);
-}
-
-function copyText(id, btn) {
-  const text = document.getElementById(id).textContent.trim();
-  navigator.clipboard.writeText(text).then(() => {
-    const original = btn.textContent;
-    btn.textContent = '✓ Copiado';
-    btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = original;
-      btn.classList.remove('copied');
-    }, 2000);
+function showTab(t) {
+  ['todo','la','ny','patrones'].forEach(id => {
+    document.getElementById('tab-'+id).style.display = 'none';
+  });
+  document.getElementById('tab-'+t).style.display = 'block';
+  document.querySelectorAll('.tab').forEach((el,i) => {
+    el.classList.toggle('active', ['todo','la','ny','patrones'][i] === t);
   });
 }
+function toggleGroup(id) {
+  const el = document.getElementById('group-'+id);
+  if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+function toggleCard(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+function copyText(txt) {
+  navigator.clipboard.writeText(txt).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = txt; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+  });
+}
+const STORAGE_KEY = 'auditoria_resolved_20260322';
+function getResolved() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { return {}; }
+}
+function saveResolved(obj) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(obj)); } catch(e) {}
+}
+function openAndPendingResolve(articleUrl, cardId, btn) {
+  window.open(articleUrl, '_blank');
+  btn.textContent = 'Confirmar resuelto';
+  btn.classList.add('pending');
+  btn.onclick = function() { markResolved(cardId, btn); };
+}
+function markResolved(cardId, btn) {
+  const resolved = getResolved();
+  resolved[cardId] = new Date().toISOString();
+  saveResolved(resolved);
+  const card = document.getElementById('card-'+cardId);
+  if (card) card.classList.add('resolved');
+  btn.textContent = 'â Resuelto';
+  btn.disabled = true;
+}
+function initResolvedState() {
+  const resolved = getResolved();
+  Object.keys(resolved).forEach(cardId => {
+    const card = document.getElementById('card-'+cardId);
+    if (card) {
+      card.classList.add('resolved');
+      const btn = card.querySelector('.resolve-btn');
+      if (btn) { btn.textContent = 'â Resuelto'; btn.disabled = true; }
+    }
+  });
+}
+window.addEventListener('DOMContentLoaded', initResolvedState);
 </script>
 </body>
 </html>
