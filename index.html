@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auditoría Editorial · 20 mar 2026</title>
+<style>
+  :root {
+    --red: #E53935;
+    --red-light: #FFF5F5;
+    --yellow: #F9A825;
+    --yellow-light: #FFFDE7;
+    --green: #2E7D32;
+    --green-light: #F1F8F1;
+    --gray: #F7F7F5;
+    --border: #EAEAE6;
+    --text: #1A1A1A;
+    --muted: #888;
+    --lo-color: #1B5E20;
+    --ed-color: #0D47A1;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #F2F2EE;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.5;
+    padding-bottom: 60px;
+  }
+
+  /* HEADER */
+  .header {
+    background: #1A1A1A;
+    color: white;
+    padding: 24px 20px 20px;
+  }
+  .header-greeting {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .header-title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .header-title em {
+    color: #E53935;
+    font-style: normal;
+  }
+  .stats-row {
+    display: flex;
+    gap: 10px;
+  }
+  .stat-pill {
+    background: #2A2A2A;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .stat-pill .n { font-weight: 700; font-size: 15px; }
+  .stat-pill.red .n { color: #EF9A9A; }
+  .stat-pill.yellow .n { color: #FFE082; }
+  .stat-pill.green .n { color: #A5D6A7; }
+
+  /* SECTION TABS */
+  .tabs {
+    display: flex;
+    gap: 0;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  .tab.active { color: var(--text); border-bottom-color: var(--text); }
+  .tab .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--red);
+    color: white;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    margin-left: 5px;
+  }
+
+  .panel { display: none; padding: 16px 16px 0; }
+  .panel.active { display: block; }
+
+  /* URGENCY GROUPS */
+  .urgency-group { margin-bottom: 20px; }
+  .urgency-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .urgency-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .urgency-label.red { color: var(--red); }
+  .urgency-label.yellow { color: var(--yellow); }
+  .urgency-label.green { color: var(--green); }
+  .urgency-count {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .chevron {
+    margin-left: auto;
+    color: var(--muted);
+    font-size: 12px;
+    transition: transform 0.2s;
+  }
+  .chevron.collapsed { transform: rotate(-90deg); }
+
+  /* ARTICLE CARDS */
+  .card {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .card.red { border-left: 3px solid var(--red); }
+  .card.yellow { border-left: 3px solid var(--yellow); }
+  .card.green { border-left: 3px solid #4CAF50; }
+
+  .card-header {
+    padding: 14px 14px 10px;
+    cursor: pointer;
+  }
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 7px;
+  }
+  .pub-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .pub-badge.lo { background: #E8F5E9; color: var(--lo-color); }
+  .pub-badge.ed { background: #E3F2FD; color: var(--ed-color); }
+  .section-tag {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .time-est {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .time-est.fast { color: #2E7D32; font-weight: 600; }
+
+  .card-headline {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .assistant-note {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .error-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .error-tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .error-tag.red { background: #FFEBEE; color: #C62828; }
+  .error-tag.yellow { background: #FFF8E1; color: #E65100; }
+
+  /* CARD BODY (corrections) */
+  .card-body { display: none; border-top: 1px solid var(--border); }
+  .card-body.open { display: block; }
+
+  .correction-block { padding: 14px; border-bottom: 1px solid var(--border); }
+  .correction-block:last-child { border-bottom: none; }
+  .correction-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+  .correction-current {
+    font-size: 13px;
+    color: #999;
+    text-decoration: line-through;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .correction-fixed {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 500;
+    line-height: 1.4;
+    background: #F0FFF4;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-left: 3px solid #4CAF50;
+    position: relative;
+  }
+  .char-count {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .char-count.over { color: var(--red); font-weight: 600; }
+  .char-count.ok { color: var(--green); }
+
+  .copy-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #1A1A1A;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-top: 6px;
+  }
+  .copy-btn:hover { background: #333; }
+  .copy-btn.copied { background: #2E7D32; }
+
+  .card-actions {
+    padding: 12px 14px;
+    background: #FAFAF8;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .action-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #1A1A1A;
+    text-decoration: none;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 7px 12px;
+  }
+  .action-link:hover { background: var(--gray); }
+  .action-link.primary {
+    background: #1A1A1A;
+    color: white;
+    border-color: #1A1A1A;
+  }
+  .action-link.primary:hover { background: #333; }
+
+  /* PATTERNS SECTION */
+  .patterns-card {
+    background: #1A1A1A;
+    color: white;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 10px;
+  }
+  .patterns-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #999;
+    margin-bottom: 12px;
+  }
+  .pattern-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #2A2A2A;
+  }
+  .pattern-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .pattern-n { font-size: 24px; font-weight: 800; color: #EF9A9A; min-width: 32px; }
+  .pattern-text { font-size: 13px; }
+  .pattern-text strong { display: block; font-size: 14px; color: white; margin-bottom: 2px; }
+  .pattern-text span { color: #AAA; line-height: 1.4; }
+
+  /* OK section */
+  .ok-list { padding: 12px 14px; }
+  .ok-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .ok-item:last-child { border-bottom: none; }
+  .ok-icon { color: #4CAF50; font-size: 14px; margin-top: 1px; flex-shrink: 0; }
+  .ok-text { color: #555; }
+  .ok-text a { color: var(--text); text-decoration: none; font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-greeting">Viernes 20 de marzo de 2026 · 8:03 AM</div>
+  <div class="header-title">Omar, tienes <em>7 cosas urgentes</em> hoy.<br>Las más rápidas te toman 2 minutos.</div>
+  <div class="stats-row">
+    <div class="stat-pill red"><span class="n">7</span> urgentes</div>
+    <div class="stat-pill yellow"><span class="n">4</span> atención</div>
+    <div class="stat-pill green"><span class="n">1</span> OK</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('todo')">Todo <span class="badge">7</span></div>
+  <div class="tab" onclick="showTab('lo')">La Opinión <span class="badge">4</span></div>
+  <div class="tab" onclick="showTab('ed')">El Diario NY <span class="badge">3</span></div>
+  <div class="tab" onclick="showTab('patrones')">Patrones</div>
+</div>
+
+<!-- TAB: TODO -->
+<div class="panel active" id="tab-todo">
+
+  <!-- URGENTES -->
+  <div class="urgency-group">
+    <div class="urgency-header" onclick="toggleGroup('urgentes')">
+      <span class="urgency-label red">🔴 Corrígelo ahora</span>
+      <span class="urgency-count">7 artículos</span>
+      <span class="chevron" id="chevron-urgentes">▾</span>
+    </div>
+    <div id="group-urgentes">
+
+      <!-- CARD: Ley Cazzu -->
+      <div class="card red" id="card-cazzu">
+        <div class="card-header" onclick="toggleCard('cazzu')">
+          <div class="card-meta">
+            <span class="pub-badge ed">El Diario NY</span>
+            <span class="section-tag">Entretenimiento</span>
+            <span class="time-est fast">⚡ 1 min</span>
+          </div>
+          <div class="card-headline">"Ley Cazzu": La iniciativa que busca proteger el derechos de los menores</div>
+          <div class="assistant-note">Error gramatical en el titular publicado y en la URL. "El derechos" → "los derechos". El más fácil de hoy.</div>
+          <div class="error-tags">
+            <span class="error-tag red">Error gramatical</span>
+          </div>
+        </div>
+        <div class="card-body" id="body-cazzu">
+          <div class="correction-block">
+            <div class="correction-label">Titular actual</div>
+            <div class="correction-current">"Ley Cazzu": La iniciativa que busca proteger el derechos de los menores</div>
+            <div class="correction-label" style="margin-top:8px">Titular corregido</div>
+            <div class="correction-fixed" id="fix-cazzu-titulo">"Ley Cazzu": la iniciativa en México para proteger los derechos de los menores</div>
+            <div class="char-count ok">75 chars ✓</div>
+            <button class="copy-btn" onclick="copyText('fix-cazzu-titulo', this)">📋 Copiar titular</button>
+          </div>
+          <div class="correction-block">
+            <div class="correction-label">Metatitle</div>
+            <div class="correction-fixed" id="fix-cazzu-meta">"Ley Cazzu": proteger los derechos de los menores en México</div>
+            <div class="char-count ok">58 chars ✓</div>
+            <button class="copy-btn" onclick="copyText('fix-cazzu-meta', this)">📋 Copiar metatitle</button>
+          </div>
+          <div class="card-actions">
+            <a href="https://eldiariony.com/2026/03/20/ley-cazzu-la-iniciativa-que-busca-proteger-el-derechos-de-los-menores/" target="_blank" class="action-link">🔗 Ver artículo</a>
+            <a href="https://eldiariony.com/wp-admin/post.php?action=edit" target="_blank" class="action-link primary">✏️ Editar en WP</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Chuck Norris La Opinión -->
+      <div class="card red" id="card-chuck-lo">
+        <div class="card-header" onclick="toggleCard('chuck-lo')">
+          <div class="card-meta">
+            <span class="pub-badge lo">La Opinión</span>
+            <span class="section-tag">Entretenimiento</span>
+            <span class="time-est fast">⚡ 2 min</span>
+          </div>
+          <div class="card-headline">"Yo no envejezco, yo subo de nivel": el último mensaje de Chuck Norris antes de morir a los 86 años</div>
+          <div class="assistant-note">Tres errores duros. El más fácil: cambiar "un día después" por la fecha. El titular necesita verbo y recortarse a menos de 90 caracteres.</div>
+          <div class="error-tags">
+            <span class="error-tag red">D01 97 chars</span>
+            <span class="error-tag red">D03 "un día después"</span>
+            <span class="error-tag red">D05 voz pasiva</span>
+          </div>
+        </div>
+        <div class="card-body" id="body-chuck-lo">
+          <div class="correction-block">
+            <div class="correction-label">Titular</div>
+            <div class="correction-current">"Yo no envejezco, yo subo de nivel": el último mensaje de Chuck Norris antes de morir a los 86 años</div>
+            <div class="correction-fixed" id="fix-chuck-lo-titulo">Chuck Norris muere a los 86: su último post reveló que entrenaba nueve días antes</div>
+            <div class="char-count ok">80 chars ✓</div>
+            <button class="copy-btn" onclick="copyText('fix-chuck-lo-titulo', this)">📋 Copiar titular</button>
+          </div>
+          <div class="correction-block">
+            <div class="correction-label">Excerpt</div>
+            <div class="correction-fixed" id="fix-chuck-lo-excerpt">La leyenda del cine de acción falleció el 19 de marzo en Hawaii. Su familia lo confirmó el 20 de marzo. Tenía 86 años.</div>
+            <div class="char-count ok">118 chars ✓</div>
+            <button class="copy-btn" onclick="copyText('fix-chuck-lo-excerpt', this)">📋 Copiar excerpt</button>
+          </div>
+          <div class="correction-block">
+            <div class="correction-label">Corrección en el lead (cuerpo)</div>
+            <div class="correction-current">La noticia fue confirmada por su familia un día después, este 20 de marzo…</div>
+            <div class="correction-fixed" id="fix-chuck-lo-lead">Su familia confirmó la noticia el 20 de marzo, un día después del fallecimiento.</div>
+            <button class="copy-btn" onclick="copyText('fix-chuck-lo-lead', this)">📋 Copiar párrafo</button>
+          </div>
+          <div class="card-actions">
+            <a href="https://laopinion.com/2026/03/20/yo-no-envejezco-yo-subo-de-nivel-el-ultimo-mensaje-de-chuck-norris-antes-de-morir-a-los-86-anos/" target="_blank" class="action-link">🔗 Ver artículo</a>
+            <a href="https://laopinion.com/wp-admin/post.php?action=edit" target="_blank" class="action-link primary">✏️ Editar en WP</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Shonda Rhimes La Opinión -->
+      <div class="card red" id="card-shonda-lo">
+        <div class="card-header" onclick="toggleCard('shonda-lo')">
+          <div class="card-meta">
+            <span class="pub-badge lo">La Opinión</span>
+            <span class="section-tag">Entretenimiento</span>
+            <span class="time-est fast">⚡ 2 min</span>
+          </div>
+          <div class="card-headline">Shonda Rhimes se pronuncia tras la polémica exclusión de Eric Dane en el homenaje de los Oscar</div>
+          <div class="assistant-note">Titular 4 caracteres sobre el límite y lead de 43 palabras. La corrección del titular es trivial — el lead necesita un recorte.</div>
+          <div class="error-tags">
+            <span class="error-tag red">D01 94 chars</span>
+            <span class="error-tag yellow">B04 43 palabras</span>
+          </div>
+        </div>
+        <div class="card-body" id="body-shonda-lo">
+          <div class="correction-block">
+            <div class="correction-label">Titular</div>
+            <div class="correction-current">Shonda Rhimes se pronuncia tras la polémica exclusión de Eric Dane en el homenaje de los Oscar</div>
+            <div class="correction-fixed" id="fix-shonda-lo-titulo">Shonda Rhimes defiende exclusión de Eric Dane en los Oscar: "No es una estrella de cine"</div>
+            <div class="char-count ok">87 chars ✓</div>
+            <button class="copy-btn" onclick="copyText('fix-shonda-lo-titulo', this)">📋 Copiar titular</button>
+          </div>
+          <div class="correction-block">
+            <div class="correction-label">Lead corregido</div>
+            <div class="correction-current">La ausencia del fallecido actor Eric Dane en el segmento "In Memoriam" de la ceremonia de los Premios Oscar 2026 no pasó desapercibida, y ahora la reconocida productora Shonda Rhimes salió a hablar sobre la omisión.</div>
+            <div class="correction-fixed" id="fix-shonda-lo-lead">Shonda Rhimes defendió la exclusión de Eric Dane del "In Memoriam" de los Oscar 2026: "No es una estrella de cine", dijo en la fiesta de Vanity Fair el 15 de marzo.</div>
+            <button class="copy-btn" onclick="copyText('fix-shonda-lo-lead', this)">📋 Copiar lead</button>
+          </div>
+          <div class="card-actions">
+            <a href="https://laopinion.com/2026/03/20/shonda-rhimes-se-pronuncia-tras-la-polemica-exclusion-de-eric-dane-en-el-homenaje-de-los-oscar/" target="_blank" class="action-link">🔗 Ver artículo</a>
+            <a href="https://laopinion.com/wp-admin/post.php?action=edit" target="_blank" class="action-link primary">✏️ Editar en WP</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Ana Bárbara -->
+      <div class="card red" id="card-ana">
+        <div class="card-header" onclick="toggleCard('ana')">
+          <div class="card-meta">
+            <span class="pub-badge lo">La Opinión</span>
+            <span class="section-tag">Entretenimiento</span>
+            <span class="time-est">~3 min</span>
+          </div>
+          <div class="card-headline">Se revelan nuevos detalles de la supuesta separación entre Ana Bárbara y su esposo Ángel Muñoz</div>
+          <div class="assistant-note">Titular 5 caracteres sobre el límite. El lead abre con "continúa dando de qué hablar" pero el dato nuevo —que él se mudó a Beverly Hills— llega tres párrafos después. Dos correcciones rápidas.</div>
+          <div class="error-tags">
+            <span class="error-tag red">D01 95 chars</span>
+            <span class="error-tag yellow">B03 lead desplazado</span>
+          </div>
+        </div>
+        <div class="card-body" id="body-ana">
+          <div class="correction-block">
+            <div class="correction-label">Titular</div>
+            <div class="correction-current">Se revelan nuevos detalles de la supuesta separación entre Ana Bárbara y su esposo Ángel Muñoz</div>
+            <div class="correction-fixed" id="fix-ana-titulo">Ana Bárbara y Ángel Muñoz confirman separación: él se mudó a un apartamento en Beverly Hills</div>
+            <div class="char-count ok">89 chars ✓</div>
+            <button class="copy-btn" onclick="copyText('fix-ana-titulo', this)">📋 Copiar titular</button>
+          </div>
+          <div class="correction-block">
+            <div class="correction-label">Lead sugerido</div>
+            <div class="correction-current">El escándalo que envuelve a la cantante Ana Bárbara y su ahora separado esposo, Ángel Muñoz, continúa dando de qué hablar.</div>
+            <div class="correction-fixed" id="fix-ana-lead">Ángel Muñoz, esposo de Ana Bárbara, abandonó el hogar familiar esta semana y se instaló en un pequeño apartamento de Beverly Hills, según reveló el programa "Siéntese quien pueda" de Univision el 20 de marzo.</div>
+            <button class="copy-btn" onclick="copyText('fix-ana-lead', this)">📋 Copiar lead</button>
+          </div>
+          <div class="card-actions">
+            <a href="https://laopinion.com/2026/03/20/se-revelan-nuevos-detalles-de-la-supuesta-separacion-entre-ana-barbara-y-su-esposo-angel-munoz/" target="_blank" class="action-link">🔗 Ver artículo</a>
+            <a href="https://laopinion.com/wp-admin/post.php?action=edit" target="_blank" class="action-link primary">✏️ Editar en WP</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Eric Dane El Diario -->
+      <div class="card red" id="card-eric-ed">
+        <div class="card-header" onclick="toggleCard('eric-ed')">
+          <div class="card-meta">
+            <span class="pub-badge ed">El Diario NY</span>
+            <span class="section-tag">Entretenimiento</span>
+            <span class="time-est fast">⚡ 2 min</span>
+          </div>
+          <div class="card-headline">Creadora de "Grey's Anatomy" defiende exclusión de Eric Dane del 'In Memoriam' de los Oscar: "No es una estrella de cine"</div>
+          <div class="assistant-note">El titular más largo de toda la muestra: 121 caracteres. Google lo trunca a los 60. La cita del titular es el fragmento más valioso — muévela al excerpt.</div>
+          <div class="error-tags">
+            <span class="error-tag red">D01 121 chars 🚨</span>
+            <span class="error-tag yellow">B04 51 palabras</span>
+          </div>
+        </div>
+        <div class="card-body" id="body-eric-ed">
+          <div class="correction-block">
+            <div class="correction-label">Titular</div>
+            <div class="correction-current">Creadora de "Grey's Anatomy" defiende exclusión de Eric Dane del 'In Memoriam' de los Oscar: "No es una estrella de cine"</div>
+            <div class="correction-fixed" id="fix-eric-ed-titulo">Shonda Rhimes defiende que Eric Dane no aparezca en el In Memoriam de los Oscar</div>
+            <div class="char-count ok">79 chars ✓</div>
+            <button class="copy-btn" onclick="copyText('fix-eric-ed-titulo', this)">📋 Copiar titular</button>
+          </div>
+          <div class="correction-block">
+            <div class="correction-label">Excerpt (mueve la cita aquí)</div>
+            <div class="correction-fixed" id="fix-eric-ed-excerpt">La creadora de "Grey's Anatomy" dijo: "No es una estrella de cine" y aseguró que los Emmy le rendirán homenaje como se merece.</div>
+            <div class="char-count ok">127 chars ✓</div>
+            <button class="copy-btn" onclick="copyText('fix-eric-ed-excerpt', this)">📋 Copiar excerpt</button>
+          </div>
+          <div class="card-actions">
+            <a href="https://eldiariony.com/2026/03/20/creadora-de-greys-anatomy-defiende-exclusion-de-eric-dane-del-in-memoriam-de-los-oscar-no-es-una-estrella-de-cine/" target="_blank" class="action-link">🔗 Ver artículo</a>
+            <a href="https://eldiariony.com/wp-admin/post.php?action=edit" target="_blank" class="action-link primary">✏️ Editar en WP</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Gloria Estefan -->
+      <div class="card red" id="card-gloria">
+        <div class="card-header" onclick="toggleCard('gloria')">
+          <div class="card-meta">
+            <span class="pub-badge ed">El Diario NY</span>
+            <span class="section-tag">Entretenimiento</span>
+            <span class="time-est fast">⚡ 1 min</span>
+          </div>
+          <div class="card-headline">Gloria y Emilio Estefan, entre los artistas que impulsan concurso para un nuevo himno de Miami</div>
+          <div class="assistant-note">Titular 4 chars sobre el límite y sin verbo. Una palabra resuelve ambos problemas.</div>
+          <div class="error-tags">
+            <span class="error-tag red">D01 94 chars</span>
+            <span class="error-tag yellow">B01 sin verbo</span>
+          </div>
+        </div>
+        <div class="card-body" id="body-gloria">
+          <div class="correction-block">
+            <div class="correction-label">Titular</div>
+            <div class="correction-current">Gloria y Emilio Estefan, entre los artistas que impulsan concurso para un nuevo himno de Miami</div>
+            <div class="correction-fixed" id="fix-gloria-titulo">Gloria y Emilio Estefan impulsan concurso para crear el nuevo himno de Miami</div>
+            <div class="char-count ok">74 chars ✓</div>
+            <button class="copy-btn" onclick="copyText('fix-gloria-titulo', this)">📋 Copiar titular</button>
+          </div>
+          <div class="correction-block">
+            <div class="correction-label">Metatitle</div>
+            <div class="correction-fixed" id="fix-gloria-meta">Gloria Estefan impulsa concurso para el nuevo himno de Miami</div>
+            <div class="char-count ok">60 chars ✓</div>
+            <button class="copy-btn" onclick="copyText('fix-gloria-meta', this)">📋 Copiar metatitle</button>
+          </div>
+          <div class="card-actions">
+            <a href="https://eldiariony.com/2026/03/20/gloria-y-emilio-estefan-entre-los-artistas-que-impulsan-concurso-para-un-nuevo-himno-de-miami/" target="_blank" class="action-link">🔗 Ver artículo</a>
+            <a href="https://eldiariony.com/wp-admin/post.php?action=edit" target="_blank" class="action-link primary">✏️ Editar en WP</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: LCDF6 votaciones -->
+      <div class="card red" id="card-lcdf">
+        <div class="card-header" onclick="toggleCard('lcdf')">
+          <div class="card-meta">
+            <span class="pub-badge lo">La Opinión</span>
+            <span class="section-tag">Entretenimiento</span>
+            <span class="time-est fast">⚡ 1 min</span>
+          </div>
+          <div class="card-headline">"La Casa de los Famosos 6": Así van las votaciones hoy 20 de marzo</div>
+          <div class="assistant-note">"Hoy" en el titular caduca en horas. Cuando alguien abra esto en seis meses leerá "hoy" sin fecha de referencia. Quitarlo toma 10 segundos.</div>
+          <div class="error-tags">
+            <span class="error-tag red">D03 "hoy"</span>
+          </div>
+        </div>
+        <div class="card-body" id="body-lcdf">
+          <div class="correction-block">
+            <div class="correction-label">Titular</div>
+            <div class="correction-current">"La Casa de los Famosos 6": Así van las votaciones hoy 20 de marzo</div>
+            <div class="correction-fixed" id="fix-lcdf-titulo">La Casa de los Famosos 6 actualiza las votaciones del 20 de marzo: Oriana y Caeli lideran</div>
+            <div class="char-count ok">88 chars ✓</div>
+            <button class="copy-btn" onclick="copyText('fix-lcdf-titulo', this)">📋 Copiar titular</button>
+          </div>
+          <div class="card-actions">
+            <a href="https://laopinion.com/2026/03/20/la-casa-de-los-famosos-6-asi-van-las-votaciones-hoy-20-de-marzo/" target="_blank" class="action-link">🔗 Ver artículo</a>
+            <a href="https://laopinion.com/wp-admin/post.php?action=edit" target="_blank" class="action-link primary">✏️ Editar en WP</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /group-urgentes -->
+  </div>
+
+  <!-- ATENCIÓN -->
+  <div class="urgency-group">
+    <div class="urgency-header" onclick="toggleGroup('atencion')">
+      <span class="urgency-label yellow">🟡 Cuando puedas</span>
+      <span class="urgency-count">4 artículos · no urgentes pero mejorables</span>
+      <span class="chevron collapsed" id="chevron-atencion">▾</span>
+    </div>
+    <div id="group-atencion" style="display:none">
+
+      <div class="card yellow" id="card-patrick">
+        <div class="card-header" onclick="toggleCard('patrick')">
+          <div class="card-meta">
+            <span class="pub-badge ed">El Diario NY</span>
+            <span class="section-tag">Entretenimiento</span>
+            <span class="time-est">~2 min</span>
+          </div>
+          <div class="card-headline">Patrick Dempsey vuelve a la TV con un atípico personaje</div>
+          <div class="assistant-note">El titular de la sección dice "atípico personaje" (vago) pero el metatitle configurado en el CMS dice "personaje marcado por el Alzheimer" (informativo). Alinearlos.</div>
+          <div class="error-tags">
+            <span class="error-tag yellow">Inconsistencia titular/meta</span>
+          </div>
+        </div>
+        <div class="card-body" id="body-patrick">
+          <div class="correction-block">
+            <div class="correction-label">Titular de sección (actualizar a)</div>
+            <div class="correction-fixed" id="fix-patrick-titulo">Patrick Dempsey regresa a la televisión como sicario con Alzheimer en nueva serie de Fox</div>
+            <div class="char-count ok">87 chars ✓</div>
+            <button class="copy-btn" onclick="copyText('fix-patrick-titulo', this)">📋 Copiar titular</button>
+          </div>
+          <div class="card-actions">
+            <a href="https://eldiariony.com/2026/03/20/patrick-dempsey-vuelve-a-la-tv-con-un-atipico-personaje/" target="_blank" class="action-link">🔗 Ver artículo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card yellow" id="card-catherine">
+        <div class="card-header" onclick="toggleCard('catherine')">
+          <div class="card-meta">
+            <span class="pub-badge ed">El Diario NY</span>
+            <span class="section-tag">Entretenimiento</span>
+            <span class="time-est">~3 min</span>
+          </div>
+          <div class="card-headline">Catherine Zeta-Jones y Michael Douglas insisten en la venta de su mansión en Nueva York</div>
+          <div class="assistant-note">El titular publicado oculta el dato nuevo ($9.75M, nueva rebaja). El lead abre con contexto histórico en vez del hecho noticiable de hoy. Vale la pena corregir para que la nota funcione en búsqueda.</div>
+          <div class="error-tags">
+            <span class="error-tag yellow">Titular < titular meta</span>
+            <span class="error-tag yellow">B03 lead desplazado</span>
+          </div>
+        </div>
+        <div class="card-body" id="body-catherine">
+          <div class="correction-block">
+            <div class="correction-label">Titular</div>
+            <div class="correction-current">Catherine Zeta-Jones y Michael Douglas insisten en la venta de su mansión en Nueva York</div>
+            <div class="correction-fixed" id="fix-catherine-titulo">Catherine Zeta-Jones y Michael Douglas bajan a $9.75 millones su mansión de Nueva York</div>
+            <div class="char-count ok">85 chars ✓</div>
+            <button class="copy-btn" onclick="copyText('fix-catherine-titulo', this)">📋 Copiar titular</button>
+          </div>
+          <div class="card-actions">
+            <a href="https://eldiariony.com/2026/03/20/catherine-zeta-jones-y-michael-douglas-insisten-en-la-venta-de-su-mansion-en-nueva-york/" target="_blank" class="action-link">🔗 Ver artículo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card yellow" id="card-kylie">
+        <div class="card-header" onclick="toggleCard('kylie')">
+          <div class="card-meta">
+            <span class="pub-badge lo">La Opinión</span>
+            <span class="section-tag">Entretenimiento</span>
+          </div>
+          <div class="card-headline">Kylie Jenner irrumpe en la escena del rap con una aparición sorpresa</div>
+          <div class="assistant-note">El lead abre con "La reina está de vuelta" antes del hecho. El titular está bien construido.</div>
+          <div class="error-tags">
+            <span class="error-tag yellow">B03 lead poético</span>
+          </div>
+        </div>
+        <div class="card-body" id="body-kylie">
+          <div class="correction-block">
+            <div class="correction-label">Lead sugerido</div>
+            <div class="correction-current">La reina está de vuelta. Kylie Jenner, la magnate de los negocios y estrella de reality shows, resucitó su icónica era "King Kylie"…</div>
+            <div class="correction-fixed" id="fix-kylie-lead">Kylie Jenner regresó a la música el 20 de marzo como artista invitada en "Let King Tonka Talk", el nuevo sencillo del rapero Yeats, su primera aparición en el rap en diez años.</div>
+            <button class="copy-btn" onclick="copyText('fix-kylie-lead', this)">📋 Copiar lead</button>
+          </div>
+          <div class="card-actions">
+            <a href="https://laopinion.com/2026/03/20/kylie-jenner-irrumpe-en-la-escena-del-rap-con-una-aparicion-sorpresa/" target="_blank" class="action-link">🔗 Ver artículo</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- OK -->
+  <div class="urgency-group">
+    <div class="urgency-header" onclick="toggleGroup('ok')">
+      <span class="urgency-label green">✅ Sin observaciones</span>
+      <span class="urgency-count">1 artículo</span>
+      <span class="chevron collapsed" id="chevron-ok">▾</span>
+    </div>
+    <div id="group-ok" style="display:none">
+      <div class="card green">
+        <div class="ok-list">
+          <div class="ok-item">
+            <span class="ok-icon">✓</span>
+            <span class="ok-text"><a href="https://eldiariony.com/2026/03/20/patrick-dempsey-vuelve-a-la-tv-con-un-atipico-personaje/" target="_blank">Patrick Dempsey regresa a la TV con un personaje marcado por el Alzheimer</a> — El Diario NY · Estructura sólida, sin errores duros</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TAB: LA OPINIÓN -->
+<div class="panel" id="tab-lo">
+  <p style="padding:20px;color:var(--muted);font-size:13px">Vista filtrada por publicación — mismo contenido que la pestaña "Todo", filtrado a La Opinión.</p>
+</div>
+
+<!-- TAB: EL DIARIO -->
+<div class="panel" id="tab-ed">
+  <p style="padding:20px;color:var(--muted);font-size:13px">Vista filtrada por publicación — mismo contenido que la pestaña "Todo", filtrado a El Diario NY.</p>
+</div>
+
+<!-- TAB: PATRONES -->
+<div class="panel" id="tab-patrones">
+  <div class="patterns-card">
+    <div class="patterns-title">Lo que se repite hoy</div>
+
+    <div class="pattern-item">
+      <div class="pattern-n">6/9</div>
+      <div class="pattern-text">
+        <strong>Referencias temporales relativas (D03)</strong>
+        <span>"Hoy", "ayer", "este viernes", "un día después" aparecen en 6 de 9 artículos. No es un error individual — es el template de los formatos recurrentes (horóscopo, votaciones, resúmenes semanales). Requiere una regla fija en el flujo del CMS.</span>
+      </div>
+    </div>
+
+    <div class="pattern-item">
+      <div class="pattern-n">4/9</div>
+      <div class="pattern-text">
+        <strong>Titulares sobre 90 chars (D01)</strong>
+        <span>La mitad de los artículos urgentes tienen este problema. Si el CMS hereda el titular como metatitle sin recorte automático, todos estos artículos tienen truncamiento en Google. Vale preguntar a tech si hay un campo SEO independiente configurado.</span>
+      </div>
+    </div>
+
+    <div class="pattern-item">
+      <div class="pattern-n">3/9</div>
+      <div class="pattern-text">
+        <strong>Lead con hecho desplazado (B03)</strong>
+        <span>El dato más importante llega en el segundo o tercer párrafo. Los tres casos están en La Opinión. Patrón de redacción que favorece el contexto antes que el hecho nuevo.</span>
+      </div>
+    </div>
+
+    <div class="pattern-item">
+      <div class="pattern-n">1</div>
+      <div class="pattern-text">
+        <strong>Error gramatical publicado (D06) — único pero prioritario</strong>
+        <span>"El derechos" en el titular y URL de Ley Cazzu (El Diario). Este tipo de error en el titular daña la credibilidad de la nota ante el lector y en sistemas de calidad de contenido.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+function toggleCard(id) {
+  const body = document.getElementById('body-' + id);
+  body.classList.toggle('open');
+}
+
+function toggleGroup(id) {
+  const group = document.getElementById('group-' + id);
+  const chevron = document.getElementById('chevron-' + id);
+  const isHidden = group.style.display === 'none';
+  group.style.display = isHidden ? 'block' : 'none';
+  chevron.classList.toggle('collapsed', !isHidden);
+}
+
+function copyText(id, btn) {
+  const text = document.getElementById(id).textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const original = btn.textContent;
+    btn.textContent = '✓ Copiado';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>
