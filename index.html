@@ -1,42 +1,1011 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Auditoría Editorial · 22 de marzo de 2026</title>
-<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f5f5f5;color:#333}.header{background:#1a1a2e;color:#fff;padding:20px 16px 16px;position:sticky;top:0;z-index:100}.header h1{font-size:18px;font-weight:700;line-height:1.3}.header p{font-size:13px;color:#aaa;margin-top:4px}.tabs{display:flex;overflow-x:auto;background:#16213e}.tab{flex:0 0 auto;padding:10px 16px;color:#aaa;font-size:13px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}.tab.active{color:#fff;border-bottom-color:#e94560}.content{padding:12px;max-width:600px;margin:0 auto}.group-header{font-size:13px;font-weight:600;color:#666;padding:12px 0 8px;cursor:pointer;display:flex;justify-content:space-between}.card{background:#fff;border-radius:8px;margin-bottom:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);transition:opacity .3s}.card.resolved{opacity:.4}.card-header{padding:12px;cursor:pointer}.card-meta{display:flex;gap:6px;align-items:center;margin-bottom:6px;flex-wrap:wrap}.badge-LA{background:#e94560;color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px}.badge-NY{background:#0f3460;color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px}.tag-sec{background:#f0f0f0;color:#555;font-size:11px;padding:2px 6px;border-radius:3px}.tag-time{color:#999;font-size:11px}.card-title{font-size:15px;font-weight:600;line-height:1.3;margin-bottom:4px}.card-note{font-size:13px;color:#666}.etags{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}.etag{font-size:11px;padding:2px 6px;border-radius:3px;font-weight:500}.etag.d{background:#fde8e8;color:#c0392b}.etag.b{background:#fef3e2;color:#b7770d}.detail{padding:0 12px 12px;border-top:1px solid #f0f0f0;display:none}.detail.open{display:block}.corr{background:#f9f9f9;border-radius:6px;padding:10px;margin-top:8px;font-size:13px}.corr-label{font-weight:600;font-size:12px;color:#888;margin-bottom:4px}.corr-orig{color:#c0392b;font-style:italic;margin-bottom:2px}.corr-fix{color:#27ae60;font-weight:500}.copy-btn{font-size:11px;color:#e94560;background:none;border:1px solid #e94560;border-radius:4px;padding:2px 8px;cursor:pointer;margin-top:6px}.actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}.lnk{font-size:12px;color:#555;text-decoration:none;border:1px solid #ddd;border-radius:4px;padding:4px 10px}.rev-btn{font-size:12px;background:#e8f8f0;color:#27ae60;border:1px solid #27ae60;border-radius:4px;padding:4px 10px;cursor:pointer}.rev-btn.pending{background:#fff3e0;color:#e67e22;border-color:#f39c12}.patterns{background:#fff;border-radius:8px;padding:14px;margin-bottom:12px}.patterns h3{font-size:14px;font-weight:600;margin-bottom:8px}.pi{font-size:13px;color:#555;padding:6px 0;border-bottom:1px solid #f5f5f5;display:flex;justify-content:space-between}.pi:last-child{border-bottom:none}.pc{font-weight:600;color:#c0392b}</style>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Auditoría Editorial · domingo 22 de marzo</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f5f5;color:#333}
+.header{background:#1a1a2e;color:#fff;padding:20px 16px 16px;position:sticky;top:0;z-index:100}
+.header h1{font-size:18px;font-weight:700;line-height:1.3}
+.header p{font-size:13px;color:#aaa;margin-top:4px}
+.header-stats{display:flex;gap:12px;margin-top:8px;flex-wrap:wrap}
+.hstat{font-size:12px;color:#ccc}.hstat span{font-weight:700;color:#fff}
+.tabs{display:flex;overflow-x:auto;background:#16213e}
+.tab{flex:0 0 auto;padding:10px 14px;color:#aaa;font-size:12px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+.tab.active{color:#fff;border-bottom-color:#e94560}
+.content{padding:12px;max-width:600px;margin:0 auto}
+.group-header{font-size:13px;font-weight:600;color:#666;padding:12px 0 8px;cursor:pointer;display:flex;justify-content:space-between}
+.card{background:#fff;border-radius:8px;margin-bottom:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);transition:opacity .3s}
+.card.resolved{opacity:.4}
+.card-header{padding:12px;cursor:pointer}
+.card-meta{display:flex;gap:6px;align-items:center;margin-bottom:6px;flex-wrap:wrap}
+.badge-LA{background:#145F44;color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px}
+.badge-NY{background:#0f3460;color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px}
+.tag-sec{background:#f0f0f0;color:#555;font-size:11px;padding:2px 6px;border-radius:3px}
+.tag-time{color:#999;font-size:11px}
+.card-title{font-size:15px;font-weight:600;line-height:1.3;margin-bottom:4px}
+.card-note{font-size:13px;color:#666}
+.etags{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
+.etag{font-size:11px;padding:2px 6px;border-radius:3px;font-weight:500}
+.etag.d{background:#fde8e8;color:#c0392b}
+.etag.b{background:#fef3e2;color:#b7770d}
+.etag.s{background:#e8f0fe;color:#1a73e8}
+.detail{padding:0 12px 12px;border-top:1px solid #f0f0f0;display:none}
+.detail.open{display:block}
+.corr{background:#f9f9f9;border-radius:6px;padding:10px;margin-top:8px;font-size:13px}
+.corr-label{font-weight:600;font-size:12px;color:#888;margin-bottom:4px}
+.corr-orig{color:#c0392b;font-style:italic;margin-bottom:2px}
+.corr-fix{color:#27ae60;font-weight:500}
+.corr-seo{border-left:3px solid #1a73e8;padding-left:8px;margin-top:8px;font-size:13px}
+.corr-seo-label{font-weight:600;font-size:12px;color:#1a73e8;margin-bottom:4px}
+.copy-btn{font-size:11px;color:#e94560;background:none;border:1px solid #e94560;border-radius:4px;padding:2px 8px;cursor:pointer;margin-top:6px;display:inline-block}
+.actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.lnk{font-size:12px;color:#555;text-decoration:none;border:1px solid #ddd;border-radius:4px;padding:4px 10px}
+.rev-btn{font-size:12px;background:#e8f8f0;color:#27ae60;border:1px solid #27ae60;border-radius:4px;padding:4px 10px;cursor:pointer}
+.rev-btn.pending{background:#fff3e0;color:#e67e22;border-color:#f39c12}
+.seo-card{background:#fff;border-radius:8px;margin-bottom:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:3px solid #1a73e8}
+.seo-score{font-size:11px;font-weight:700;padding:2px 7px;border-radius:10px;margin-left:6px}
+.seo-score.crit{background:#fde8e8;color:#c0392b}
+.seo-score.warn{background:#fef3e2;color:#b7770d}
+.seo-score.ok{background:#e8f8f0;color:#27ae60}
+.seo-meta{font-size:12px;color:#888;margin-top:4px}
+.seo-meta span{font-weight:600;color:#555}
+.patterns{background:#fff;border-radius:8px;padding:14px;margin-bottom:12px}
+.patterns h3{font-size:14px;font-weight:600;margin-bottom:8px}
+.pi{font-size:13px;color:#555;padding:6px 0;border-bottom:1px solid #f5f5f5;display:flex;justify-content:space-between}
+.pi:last-child{border-bottom:none}
+.pc{font-weight:600;color:#c0392b}
+.pattern-note{font-size:12px;color:#888;margin-top:12px;padding:8px;background:#fff8e1;border-radius:6px}
+</style>
 </head>
 <body>
 <div class="header">
-  <h1>Omar, tienes 7 cosas urgentes hoy.</h1>
-  <p>Las más rápidas te toman 1 minuto. · 22 de marzo de 2026</p>
+  <h1>Omar, tienes 6 cosas urgentes del domingo 22 de marzo.</h1>
+  <p>39 artículos auditados · 10 secciones · La mayoría toma menos de 2 minutos.</p>
+  <div class="header-stats">
+    <div class="hstat">Editorial: <span>6🔴 7🟡 26✅</span></div>
+    <div class="hstat">SEO con sugerencias: <span>5 art.</span></div>
+    <div class="hstat">NY Salud + Estilo: <span>0 publicaciones</span></div>
+  </div>
 </div>
 <div class="tabs">
   <div class="tab active" onclick="showTab('todo')">Todo</div>
   <div class="tab" onclick="showTab('la')">La Opinión</div>
   <div class="tab" onclick="showTab('ny')">El Diario NY</div>
+  <div class="tab" onclick="showTab('seo')">SEO / Discover</div>
   <div class="tab" onclick="showTab('pat')">Patrones</div>
 </div>
 <div class="content">
   <div id="tab-todo">
-    <div class="group-header" onclick="tgg('urg')">🔴 Corrígelo ahora <span>7 artículos</span></div>
-    <div id="g-urg"><div class="card" id="card-la-4068347"><div class="card-header" onclick="tg('d-la-4068347')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~1 min</span></div><div class="card-title">Zendaya y Robert Pattinson en “The Drama”: Tráiler, fecha de estreno y todo sobre la nueva película de A24</div><div class="card-note">Fecha escrita en letra en el excerpt</div><div class="etags"><span class="etag d">D02</span></div></div><div class="detail" id="d-la-4068347"><div class="corr"><div class="corr-label">D02 — Día del mes en letra</div><div class="corr-orig">Original: el tres de abril de 2026</div><div class="corr-fix">Corrección: el 3 de abril de 2026</div><button class="copy-btn" data-copy="el 3 de abril de 2026">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/21/zendaya-y-robert-pattinson-en-the-drama-trailer-fecha-de-estreno-y-todo-sobre-la-nueva-pelicula-de-a24/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068347&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/21/zendaya-y-robert-pattinson-en-the-drama-trailer-fecha-de-estreno-y-todo-sobre-la-nueva-pelicula-de-a24/','la-4068347',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4068750"><div class="card-header" onclick="tg('d-la-4068750')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Astrología</span><span class="tag-time">~1 min</span></div><div class="card-title">La suerte espera a 3 signos del zodiaco chino del 23 al 29 de marzo</div><div class="card-note">Número menor a 10 en dígito — título y excerpt</div><div class="etags"><span class="etag d">D03</span></div></div><div class="detail" id="d-la-4068750"><div class="corr"><div class="corr-label">D03 — Título: número en dígito</div><div class="corr-orig">Original: La suerte espera a 3 signos del zodiaco chino</div><div class="corr-fix">Corrección: La suerte espera a tres signos del zodiaco chino</div><button class="copy-btn" data-copy="La suerte espera a tres signos del zodiaco chino">Copiar</button></div><div class="corr"><div class="corr-label">D03 — Excerpt: número en dígito</div><div class="corr-orig">Original: estos 3 signos del horóscopo chino</div><div class="corr-fix">Corrección: estos tres signos del horóscopo chino</div><button class="copy-btn" data-copy="estos tres signos del horóscopo chino">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/22/la-suerte-espera-a-3-signos-del-zodiaco-chino-del-23-al-29-de-marzo/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068750&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/la-suerte-espera-a-3-signos-del-zodiaco-chino-del-23-al-29-de-marzo/','la-4068750',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4068796"><div class="card-header" onclick="tg('d-la-4068796')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Dinero</span><span class="tag-time">~1 min</span></div><div class="card-title">5 nuevas tiendas de Publix antes de abril: ya hay ubicaciones confirmadas</div><div class="card-note">Número menor a 10 en dígito en el titular</div><div class="etags"><span class="etag d">D03</span></div></div><div class="detail" id="d-la-4068796"><div class="corr"><div class="corr-label">D03 — Titular: dígito en lugar de letra</div><div class="corr-orig">Original: 5 nuevas tiendas de Publix antes de abril</div><div class="corr-fix">Corrección: Cinco nuevas tiendas de Publix antes de abril</div><button class="copy-btn" data-copy="Cinco nuevas tiendas de Publix antes de abril">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/22/5-nuevas-tiendas-de-publix-antes-de-abril-ya-hay-ubicaciones-confirmadas/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068796&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/5-nuevas-tiendas-de-publix-antes-de-abril-ya-hay-ubicaciones-confirmadas/','la-4068796',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4068771"><div class="card-header" onclick="tg('d-la-4068771')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Dinero</span><span class="tag-time">~1 min</span></div><div class="card-title">Tasas hipotecarias EE.UU. aumentan al 6.22%: el nivel más alto en más de 3 meses</div><div class="card-note">Número menor a 10 en dígito en el titular</div><div class="etags"><span class="etag d">D03</span></div></div><div class="detail" id="d-la-4068771"><div class="corr"><div class="corr-label">D03 — Titular: dígito en lugar de letra</div><div class="corr-orig">Original: el nivel más alto en más de 3 meses</div><div class="corr-fix">Corrección: el nivel más alto en más de tres meses</div><button class="copy-btn" data-copy="el nivel más alto en más de tres meses">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/22/tasas-hipotecarias-ee-uu-aumentan-al-6-22-el-nivel-mas-alto-en-mas-de-3-meses/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068771&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/tasas-hipotecarias-ee-uu-aumentan-al-6-22-el-nivel-mas-alto-en-mas-de-3-meses/','la-4068771',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3651172"><div class="card-header" onclick="tg('d-ny-3651172')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~1 min</span></div><div class="card-title">La nueva película de Ryan Gosling lidera la taquilla estadounidense</div><div class="card-note">Monto con símbolo $ y palabra dólares simultáneamente</div><div class="etags"><span class="etag d">D05</span></div></div><div class="detail" id="d-ny-3651172"><div class="corr"><div class="corr-label">D05 — $ y dólares juntos</div><div class="corr-orig">Original: $33 millones de dólares</div><div class="corr-fix">Corrección: $33 millones</div><button class="copy-btn" data-copy="$33 millones">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/22/la-nueva-pelicula-de-ryan-gosling-lidera-la-taquilla-estadounidense/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3651172&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/la-nueva-pelicula-de-ryan-gosling-lidera-la-taquilla-estadounidense/','ny-3651172',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3650002"><div class="card-header" onclick="tg('d-ny-3650002')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Comida</span><span class="tag-time">~1 min</span></div><div class="card-title">¿Por qué el queso azul sí se puede comer y otros quesos con moho no?</div><div class="card-note">Titular abre con signo de interrogación (¿)</div><div class="etags"><span class="etag d">D06</span></div></div><div class="detail" id="d-ny-3650002"><div class="corr"><div class="corr-label">D06 — Titular abre con ¿</div><div class="corr-orig">Original: ¿Por qué el queso azul sí se puede comer y otros quesos con moho no?</div><div class="corr-fix">Corrección: Esto explica por qué el queso azul sí se puede comer y otros quesos con moho no</div><button class="copy-btn" data-copy="Esto explica por qué el queso azul sí se puede comer y otros quesos con moho no">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/22/por-que-el-queso-azul-si-se-puede-comer-y-otros-quesos-con-moho-no/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3650002&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/por-que-el-queso-azul-si-se-puede-comer-y-otros-quesos-con-moho-no/','ny-3650002',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3650720"><div class="card-header" onclick="tg('d-ny-3650720')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span><span class="tag-time">~1 min</span></div><div class="card-title">Los 10 productos más vendidos en Walmart por el Spring Break: el último es vital</div><div class="card-note">Clickbait de listicle sin respaldo editorial</div><div class="etags"><span class="etag b">B01</span></div></div><div class="detail" id="d-ny-3650720"><div class="corr"><div class="corr-label">B01 — Clickbait: el último es vital</div><div class="corr-orig">Original: el último es vital</div><div class="corr-fix">Corrección: Eliminar. Sugerencia: Los 10 productos más vendidos en Walmart para el Spring Break 2026</div><button class="copy-btn" data-copy="Eliminar. Sugerencia: Los 10 productos más vendidos en Walmart para el Spring Break 2026">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/21/los-10-productos-mas-vendidos-en-walmart-por-el-spring-break-el-ultimo-es-vital/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3650720&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/21/los-10-productos-mas-vendidos-en-walmart-por-el-spring-break-el-ultimo-es-vital/','ny-3650720',this)">Re-verificar y resolver</button></div></div></div></div>
-    <div class="group-header" onclick="tgg('mod')">🟡 Cuando puedas <span>17 artículos</span></div>
-    <div id="g-mod"><div class="card" id="card-la-4068619"><div class="card-header" onclick="tg('d-la-4068619')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~2 min</span></div><div class="card-title">Barry Keoghan revela que el acoso en línea lo ha llevado al aislamiento</div><div class="card-note">Fuente de la entrevista no identificada</div><div class="etags"><span class="etag b">B04</span></div></div><div class="detail" id="d-la-4068619"><div class="corr"><div class="corr-label">B04 — Fuente vaga</div><div class="corr-orig">Original: En una nueva entrevista...</div><div class="corr-fix">Corrección: Especificar: En entrevista con [nombre del medio], Barry Keoghan...</div><button class="copy-btn" data-copy="Especificar: En entrevista con [nombre del medio], Barry Keoghan...">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/21/barry-keoghan-revela-que-el-acoso-en-linea-lo-ha-llevado-al-aislamiento-ya-no-quiero-salir-a-la-calle/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068619&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/21/barry-keoghan-revela-que-el-acoso-en-linea-lo-ha-llevado-al-aislamiento-ya-no-quiero-salir-a-la-calle/','la-4068619',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4068612"><div class="card-header" onclick="tg('d-la-4068612')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~2 min</span></div><div class="card-title">"Nací para amarlo": Emma Heming celebra su 17º aniversario de bodas con Bruce Willis</div><div class="card-note">Adjetivo sin sustento en excerpt</div><div class="etags"><span class="etag b">B03</span></div></div><div class="detail" id="d-la-4068612"><div class="corr"><div class="corr-label">B03 — Hiperbólico sin sustento</div><div class="corr-orig">Original: ha sido un ejemplo de unidad frente a la adversidad</div><div class="corr-fix">Corrección: Sustituir con dato concreto del aniversario o de la situación actual</div><button class="copy-btn" data-copy="Sustituir con dato concreto del aniversario o de la situación actual">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/21/naci-para-amarlo-emma-heming-celebra-su-17o-aniversario-de-bodas-con-bruce-willis/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068612&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/21/naci-para-amarlo-emma-heming-celebra-su-17o-aniversario-de-bodas-con-bruce-willis/','la-4068612',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4067486"><div class="card-header" onclick="tg('d-la-4067486')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Salud</span><span class="tag-time">~2 min</span></div><div class="card-title">Duermes y no recuerdas ningún sueño: esto es lo que ocurre en tu cerebro</div><div class="card-note">Excerpt sin anclaje noticioso ni fuente</div><div class="etags"><span class="etag b">B02</span></div></div><div class="detail" id="d-la-4067486"><div class="corr"><div class="corr-label">B02 — Sin anclaje noticioso</div><div class="corr-orig">Original: Para entender qué ocurre, hay que adentrarse en la arquitectura del sueño...</div><div class="corr-fix">Corrección: Añadir en excerpt: la investigación, institución o contexto que origina la nota</div><button class="copy-btn" data-copy="Añadir en excerpt: la investigación, institución o contexto que origina la nota">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/22/por-que-duermes-y-sientes-que-no-suenas/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4067486&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/por-que-duermes-y-sientes-que-no-suenas/','la-4067486',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4066786"><div class="card-header" onclick="tg('d-la-4066786')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Salud</span><span class="tag-time">~2 min</span></div><div class="card-title">El café no altera el sueño tal como se cree popularmente, revela estudio</div><div class="card-note">Estudio sin nombre ni publicación identificada</div><div class="etags"><span class="etag b">B04</span></div></div><div class="detail" id="d-la-4066786"><div class="corr"><div class="corr-label">B04 — Fuente vaga</div><div class="corr-orig">Original: Una investigación en Suecia...</div><div class="corr-fix">Corrección: Especificar: estudio publicado en [revista], de la Universidad de [nombre], Suecia</div><button class="copy-btn" data-copy="Especificar: estudio publicado en [revista], de la Universidad de [nombre], Suecia">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/22/el-cafe-no-altera-el-sueno-tal-como-se-cree-popularmente-revela-estudio/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4066786&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/el-cafe-no-altera-el-sueno-tal-como-se-cree-popularmente-revela-estudio/','la-4066786',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4066073"><div class="card-header" onclick="tg('d-la-4066073')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Salud</span><span class="tag-time">~2 min</span></div><div class="card-title">La espinaca es un superalimento, pero no puede ser consumida por todos</div><div class="card-note">Término hiperbólico sin sustento en excerpt</div><div class="etags"><span class="etag b">B03</span></div></div><div class="detail" id="d-la-4066073"><div class="corr"><div class="corr-label">B03 — Hiperbólico</div><div class="corr-orig">Original: es un superalimento</div><div class="corr-fix">Corrección: Sustituir con descripción concreta: alimento rico en hierro y oxalatos, contraindicado para...</div><button class="copy-btn" data-copy="Sustituir con descripción concreta: alimento rico en hierro y oxalatos, contraindicado para...">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/21/la-espinaca-es-un-superalimento-pero-no-puede-ser-consumida-por-todos-por-que-es-contraindicada-en-casos-especiales/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4066073&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/21/la-espinaca-es-un-superalimento-pero-no-puede-ser-consumida-por-todos-por-que-es-contraindicada-en-casos-especiales/','la-4066073',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4068815"><div class="card-header" onclick="tg('d-la-4068815')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Astrología</span><span class="tag-time">~2 min</span></div><div class="card-title">La astrología revela qué signo es el más engañado en el amor</div><div class="card-note">Adjetivo editorial + fuente completamente vaga</div><div class="etags"><span class="etag b">B03</span><span class="etag b">B04</span></div></div><div class="detail" id="d-la-4068815"><div class="corr"><div class="corr-label">B03+B04 — Fuente vaga y adjetivo editorial</div><div class="corr-orig">Original: Un interesante reporte astrológico determinó...</div><div class="corr-fix">Corrección: Eliminar interesante. Nombrar el reporte o la fuente que lo origina</div><button class="copy-btn" data-copy="Eliminar interesante. Nombrar el reporte o la fuente que lo origina">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/22/la-astrologia-revela-que-signo-es-el-mas-enganado-en-el-amor/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068815&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/la-astrologia-revela-que-signo-es-el-mas-enganado-en-el-amor/','la-4068815',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4068817"><div class="card-header" onclick="tg('d-la-4068817')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Dinero</span><span class="tag-time">~2 min</span></div><div class="card-title">T-Mobile anuncia plan prepago ilimitado a mitad de precio esta temporada de impuestos</div><div class="card-note">Construcción pasiva impersonal; excerpt sin contexto de cuándo ni por qué importa</div><div class="etags"><span class="etag b">B02</span><span class="etag b">B04</span></div></div><div class="detail" id="d-la-4068817"><div class="corr"><div class="corr-label">B04 — Atribución pasiva</div><div class="corr-orig">Original: se conoció que...</div><div class="corr-fix">Corrección: Activar: Metro by T-Mobile publicó una encuesta que muestra que...</div><button class="copy-btn" data-copy="Activar: Metro by T-Mobile publicó una encuesta que muestra que...">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/22/t-mobile-anuncia-plan-prepago-ilimitado-a-mitad-de-precio-esta-temporada-de-impuestos/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068817&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/t-mobile-anuncia-plan-prepago-ilimitado-a-mitad-de-precio-esta-temporada-de-impuestos/','la-4068817',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4068233"><div class="card-header" onclick="tg('d-la-4068233')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Tecnología</span><span class="tag-time">~2 min</span></div><div class="card-title">Sin estos satélites el mundo moderno y las guerras quedarían a ciegas</div><div class="card-note">Excerpt sin gancho noticioso ni quién/cuándo</div><div class="etags"><span class="etag b">B02</span></div></div><div class="detail" id="d-la-4068233"><div class="corr"><div class="corr-label">B02 — Sin anclaje noticioso</div><div class="corr-orig">Original: La navegación por satélite sostiene la vida moderna... y la guerra.</div><div class="corr-fix">Corrección: Añadir contexto: qué evento o reporte reciente origina esta cobertura</div><button class="copy-btn" data-copy="Añadir contexto: qué evento o reporte reciente origina esta cobertura">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/20/estos-son-los-vulnerables-satelites-que-guian-al-mundo-y-sus-guerras/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068233&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/20/estos-son-los-vulnerables-satelites-que-guian-al-mundo-y-sus-guerras/','la-4068233',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4067869"><div class="card-header" onclick="tg('d-la-4067869')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Tecnología</span><span class="tag-time">~2 min</span></div><div class="card-title">Alerta de Google: el fallo crítico de seguridad que expone a los iPhone más antiguos</div><div class="card-note">"Crítico" sin CVE ni versión; expertos de Google sin nombre ni reporte</div><div class="etags"><span class="etag b">B03</span><span class="etag b">B04</span></div></div><div class="detail" id="d-la-4067869"><div class="corr"><div class="corr-label">B03+B04 — Hiperbólico + fuente vaga</div><div class="corr-orig">Original: Expertos en seguridad de Google detectaron una vulnerabilidad...</div><div class="corr-fix">Corrección: Nombrar el equipo (ej. Google Project Zero) y el CVE o advisory específico</div><button class="copy-btn" data-copy="Nombrar el equipo (ej. Google Project Zero) y el CVE o advisory específico">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/20/alerta-de-google-el-grave-fallo-de-seguridad-que-expone-a-los-iphone-mas-antiguos/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4067869&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/20/alerta-de-google-el-grave-fallo-de-seguridad-que-expone-a-los-iphone-mas-antiguos/','la-4067869',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3651166"><div class="card-header" onclick="tg('d-ny-3651166')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~2 min</span></div><div class="card-title">El Estadio Shakira se construirá en dos meses</div><div class="card-note">"Se reveló" sin fuente identificada</div><div class="etags"><span class="etag b">B04</span></div></div><div class="detail" id="d-ny-3651166"><div class="corr"><div class="corr-label">B04 — Pasiva sin fuente</div><div class="corr-orig">Original: Se reveló que el diseño del Estadio Shakira...</div><div class="corr-fix">Corrección: ¿Quién reveló? Identificar: comunicado oficial, entrevista o publicación específica</div><button class="copy-btn" data-copy="¿Quién reveló? Identificar: comunicado oficial, entrevista o publicación específica">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/22/el-estadio-shakira-se-construira-en-dos-meses/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3651166&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/el-estadio-shakira-se-construira-en-dos-meses/','ny-3651166',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3651102"><div class="card-header" onclick="tg('d-ny-3651102')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Salud</span><span class="tag-time">~2 min</span></div><div class="card-title">Los riesgos de tomar omeprazol y otros antiácidos a diario, según expertos</div><div class="card-note">"Según expertos" en titular es vago aunque el cuerpo cite FDA, NIH y Mayo Clinic</div><div class="etags"><span class="etag b">B04</span></div></div><div class="detail" id="d-ny-3651102"><div class="corr"><div class="corr-label">B04 — Titular con fuente vaga</div><div class="corr-orig">Original: "según expertos"</div><div class="corr-fix">Corrección: Especificar en titular o excerpt: según FDA, NIH y Mayo Clinic</div><button class="copy-btn" data-copy="Especificar en titular o excerpt: según FDA, NIH y Mayo Clinic">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/21/riesgos-tomar-omeprazol-y-antiacidos-a-diario-segun-expertos/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3651102&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/21/riesgos-tomar-omeprazol-y-antiacidos-a-diario-segun-expertos/','ny-3651102',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3650051"><div class="card-header" onclick="tg('d-ny-3650051')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Salud</span><span class="tag-time">~2 min</span></div><div class="card-title">Fin de la patente de semaglutida: ¿Revoluciona el mercado de peso?</div><div class="card-note">Pregunta retórica que puede quedar sin responder</div><div class="etags"><span class="etag b">B01</span></div></div><div class="detail" id="d-ny-3650051"><div class="corr"><div class="corr-label">B01 — Pregunta retórica clickbait</div><div class="corr-orig">Original: ¿Revoluciona el mercado de peso?</div><div class="corr-fix">Corrección: Reemplazar con afirmación concreta según lo que el artículo responde</div><button class="copy-btn" data-copy="Reemplazar con afirmación concreta según lo que el artículo responde">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/19/como-el-fin-de-la-patente-de-ozempic-en-india-puede-cambiar-la-lucha-global-contra-la-obesidad-y-cuales-son-los-riesgos/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3650051&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/19/como-el-fin-de-la-patente-de-ozempic-en-india-puede-cambiar-la-lucha-global-contra-la-obesidad-y-cuales-son-los-riesgos/','ny-3650051',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3649434"><div class="card-header" onclick="tg('d-ny-3649434')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Comida</span><span class="tag-time">~2 min</span></div><div class="card-title">Cómo lograr un pescado frito crujiente y sin excesos de aceite, según un chef</div><div class="card-note">"Según un chef" sin identificar; título dice pescado pero el contenido habla de bacalao</div><div class="etags"><span class="etag b">B04</span></div></div><div class="detail" id="d-ny-3649434"><div class="corr"><div class="corr-label">B04 — Fuente sin nombre y desajuste titular/contenido</div><div class="corr-orig">Original: "según un chef" / "pescado" vs. bacalao en el cuerpo</div><div class="corr-fix">Corrección: Nombrar al chef. Ajustar título a "bacalao" o ampliar el artículo a otros pescados</div><button class="copy-btn" data-copy="Nombrar al chef. Ajustar título a &quot;bacalao&quot; o ampliar el artículo a otros pescados">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/21/como-lograr-un-pescado-frito-crujiente-y-sin-excesos-de-aceite-segun-un-chef/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3649434&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/21/como-lograr-un-pescado-frito-crujiente-y-sin-excesos-de-aceite-segun-un-chef/','ny-3649434',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3649409"><div class="card-header" onclick="tg('d-ny-3649409')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span><span class="tag-time">~2 min</span></div><div class="card-title">El error silencioso que daña tu historial crediticio sin darte cuenta</div><div class="card-note">Titular genérico que no especifica el error hasta el excerpt</div><div class="etags"><span class="etag b">B01</span></div></div><div class="detail" id="d-ny-3649409"><div class="corr"><div class="corr-label">B01 — Titular vago</div><div class="corr-orig">Original: El error silencioso que daña tu historial crediticio...</div><div class="corr-fix">Corrección: Especificar: Usar más del 30% de tu crédito disponible daña tu score aunque pagues a tiempo</div><button class="copy-btn" data-copy="Especificar: Usar más del 30% de tu crédito disponible daña tu score aunque pagues a tiempo">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/22/el-error-silencioso-que-dana-tu-historial-crediticio-sin-darte-cuenta/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3649409&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/el-error-silencioso-que-dana-tu-historial-crediticio-sin-darte-cuenta/','ny-3649409',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3648313"><div class="card-header" onclick="tg('d-ny-3648313')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Estilo de vida</span><span class="tag-time">~2 min</span></div><div class="card-title">Columna de María Marín: Cuando no puedes tenerlo… más lo deseas</div><div class="card-note">Excerpt de solo 47 caracteres con una pregunta retórica</div><div class="etags"><span class="etag b">B02</span></div></div><div class="detail" id="d-ny-3648313"><div class="corr"><div class="corr-label">B02 — Excerpt insuficiente</div><div class="corr-orig">Original: ¿Por qué se nos hace tan deseable aquello que no podemos tener?</div><div class="corr-fix">Corrección: Ampliar con la tesis de la columna o su argumento central</div><button class="copy-btn" data-copy="Ampliar con la tesis de la columna o su argumento central">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/21/columna-de-maria-marin-cuando-no-puedes-tenerlomas-lo-deseas/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3648313&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/21/columna-de-maria-marin-cuando-no-puedes-tenerlomas-lo-deseas/','ny-3648313',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3650561"><div class="card-header" onclick="tg('d-ny-3650561')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Estilo de vida</span><span class="tag-time">~2 min</span></div><div class="card-title">EE.UU. cae en el ranking de países más felices 2026: estas son las razones</div><div class="card-note">Fuente del ranking no nombrada en titular ni excerpt</div><div class="etags"><span class="etag b">B04</span></div></div><div class="detail" id="d-ny-3650561"><div class="corr"><div class="corr-label">B04 — Fuente no identificada</div><div class="corr-orig">Original: EE.UU. cayó al puesto 23 en felicidad global 2026...</div><div class="corr-fix">Corrección: Añadir en excerpt: según el World Happiness Report 2026</div><button class="copy-btn" data-copy="Añadir en excerpt: según el World Happiness Report 2026">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/20/ee-uu-cae-en-el-ranking-de-paises-mas-felices-2026-estas-son-las-razones-detras-de-su-descenso/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3650561&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/20/ee-uu-cae-en-el-ranking-de-paises-mas-felices-2026-estas-son-las-razones-detras-de-su-descenso/','ny-3650561',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3650165"><div class="card-header" onclick="tg('d-ny-3650165')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Estilo de vida</span><span class="tag-time">~2 min</span></div><div class="card-title">Esto es lo que hoy se considera inmoral en EE.UU. (y lo que ya dejó de serlo)</div><div class="card-note">Excerpt casi idéntico al titular; Pew Research Center no aparece hasta el cuerpo</div><div class="etags"><span class="etag b">B04</span></div></div><div class="detail" id="d-ny-3650165"><div class="corr"><div class="corr-label">B04 — Fuente ausente en excerpt</div><div class="corr-orig">Original: Qué se considera inmoral en EE.UU. hoy...</div><div class="corr-fix">Corrección: Reemplazar excerpt con hallazgo concreto y citar Pew Research Center</div><button class="copy-btn" data-copy="Reemplazar excerpt con hallazgo concreto y citar Pew Research Center">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/19/esto-es-lo-que-hoy-se-considera-inmoral-en-ee-uu-y-lo-que-ya-dejo-de-serlo/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3650165&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/19/esto-es-lo-que-hoy-se-considera-inmoral-en-ee-uu-y-lo-que-ya-dejo-de-serlo/','ny-3650165',this)">Re-verificar y resolver</button></div></div></div></div>
-    <div class="group-header" onclick="tgg('ok')">✅ Sin observaciones <span>6 artículos</span></div>
-    <div id="g-ok" style="display:none"><div class="card" id="card-la-4068779"><div class="card-header"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Astrología</span></div><div class="card-title">Horóscopo del amor para la semana del 23 al 29 de marzo 2026</div><div class="card-note" style="color:#27ae60">✅ Sin observaciones</div></div></div><div class="card" id="card-la-4067859"><div class="card-header"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Tecnología</span></div><div class="card-title">Descubren fallo en las pantallas OLED que puede quemar tu TV</div><div class="card-note" style="color:#27ae60">✅ Sin observaciones</div></div></div><div class="card" id="card-ny-3651176"><div class="card-header"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span></div><div class="card-title">Paapa Essiedu admite que interpretar a Snape en la serie de “Harry Potter” es un reto</div><div class="card-note" style="color:#27ae60">✅ Sin observaciones</div></div></div><div class="card" id="card-ny-3650679"><div class="card-header"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Salud</span></div><div class="card-title">Cólico renal: tres formas de calmar el dolor sin usar analgésicos</div><div class="card-note" style="color:#27ae60">✅ Sin observaciones</div></div></div><div class="card" id="card-ny-3649948"><div class="card-header"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Comida</span></div><div class="card-title">Refrigeración segura: ¿Cuándo es el momento ideal para guardar la comida?</div><div class="card-note" style="color:#27ae60">✅ Sin observaciones</div></div></div><div class="card" id="card-ny-3650108"><div class="card-header"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span></div><div class="card-title">Comprar un auto de lujo usado puede ser más barato que uno nuevo en 2026</div><div class="card-note" style="color:#27ae60">✅ Sin observaciones</div></div></div></div>
+    <div class="group-header" onclick="tgg('urg')">🔴 Corrígelo ahora <span>6 artículos</span></div>
+    <div id="g-urg"><div class="card" id="card-la-4068931">
+  <div class="card-header" onclick="tg('d-la-4068931')">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~1 min</span></div>
+    <div class="card-title">Dos años de Las mujeres ya no lloran: Shakira celebra el segundo aniversario de su álbum</div>
+    <div class="card-note">D11: Título de álbum sin comillas tipográficas</div>
+    <div class="etags"><span class="etag d">D11</span></div>
+  </div>
+  <div class="detail" id="d-la-4068931">
+    
+    <div class="corr">
+      <div class="corr-label">D11 — Título de obra sin comillas</div>
+      <div class="corr-orig">Original: ...de Las mujeres ya no lloran: Shakira...</div>
+      <div class="corr-fix">Corrección: ...de "Las mujeres ya no lloran": Shakira...</div>
+      <button class="copy-btn" onclick="cp('...de "Las mujeres ya no lloran": Shakira...')">Copiar</button>
+    </div>
+    <div class="corr-seo"><div class="corr-seo-label">SEO</div>S01: 89 chars. Sugerido (56c): Shakira celebra 2 años de "Las mujeres ya no lloran"<br><button class="copy-btn" onclick="cp('Shakira celebra 2 años de "Las mujeres ya no lloran"')">Copiar título SEO</button></div>
+    <div class="actions">
+      <a href="https://laopinion.com/2026/03/22/dos-anos-de-las-mujeres-ya-no-lloran-shakira-celebra-el-segundo-aniversario-de-su-album/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://laopinion.com/wp-admin/post.php?post=4068931&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/dos-anos-de-las-mujeres-ya-no-lloran-shakira-celebra-el-segundo-aniversario-de-su-album/','la-4068931',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-la-4068846">
+  <div class="card-header" onclick="tg('d-la-4068846')">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Astrología</span><span class="tag-time">~1 min</span></div>
+    <div class="card-title">5 hábitos que las relaciones felices hacen, según sanadores espirituales</div>
+    <div class="card-note">D03: Número menor a 10 debe escribirse en letra</div>
+    <div class="etags"><span class="etag d">D03</span></div>
+  </div>
+  <div class="detail" id="d-la-4068846">
+    
+    <div class="corr">
+      <div class="corr-label">D03 — Número en dígito (< 10)</div>
+      <div class="corr-orig">Original: 5 hábitos que las relaciones felices hacen...</div>
+      <div class="corr-fix">Corrección: Cinco hábitos que las relaciones felices hacen...</div>
+      <button class="copy-btn" onclick="cp('Cinco hábitos que las relaciones felices hacen...')">Copiar</button>
+    </div>
+    
+    <div class="actions">
+      <a href="https://laopinion.com/2026/03/22/5-habitos-que-las-relaciones-felices-hacen-segun-sanadores-espirituales/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://laopinion.com/wp-admin/post.php?post=4068846&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/5-habitos-que-las-relaciones-felices-hacen-segun-sanadores-espirituales/','la-4068846',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-ny-3651183">
+  <div class="card-header" onclick="tg('d-ny-3651183')">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~1 min</span></div>
+    <div class="card-title">Piden $6.75 millones de dólares por la casa donde Francis Ford Coppola escribió "The Godfather"</div>
+    <div class="card-note">D05: No usar "de dólares" después del símbolo $</div>
+    <div class="etags"><span class="etag d">D05</span></div>
+  </div>
+  <div class="detail" id="d-ny-3651183">
+    
+    <div class="corr">
+      <div class="corr-label">D05 — $ + "de dólares" juntos</div>
+      <div class="corr-orig">Original: Piden $6.75 millones de dólares por la casa...</div>
+      <div class="corr-fix">Corrección: Piden $6.75 millones por la casa donde Francis Ford Coppola escribió "The Godfather"</div>
+      <button class="copy-btn" onclick="cp('Piden $6.75 millones por la casa donde Francis Ford Coppola escribió "The Godfather"')">Copiar</button>
+    </div>
+    <div class="corr-seo"><div class="corr-seo-label">SEO</div>S01: 97 chars. Sugerido (70c): Venden en $6.75 millones la casa de Coppola donde escribió "The Godfather"<br><button class="copy-btn" onclick="cp('Venden en $6.75 millones la casa de Coppola donde escribió "The Godfather"')">Copiar título SEO</button></div>
+    <div class="actions">
+      <a href="https://eldiariony.com/2026/03/22/piden-6-75-millones-de-dolares-por-la-casa-donde-francis-ford-coppola-escribio-the-godfather/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://eldiariony.com/wp-admin/post.php?post=3651183&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/piden-6-75-millones-de-dolares-por-la-casa-donde-francis-ford-coppola-escribio-the-godfather/','ny-3651183',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-ny-3651166">
+  <div class="card-header" onclick="tg('d-ny-3651166')">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~3 min</span></div>
+    <div class="card-title">El Estadio Shakira se construirá en dos meses</div>
+    <div class="card-note">B01: El titular promete un plazo ("dos meses") que el artículo no respalda</div>
+    <div class="etags"><span class="etag b">B01</span><span class="etag s">S01</span></div>
+  </div>
+  <div class="detail" id="d-ny-3651166">
+    
+    <div class="corr">
+      <div class="corr-label">B01 — Titular no cumplido por el artículo</div>
+      <div class="corr-orig">Original: "se construirá en dos meses" — el cuerpo no confirma ese plazo</div>
+      <div class="corr-fix">Corrección: Revisar con el artículo y ajustar: "El Estadio Shakira llegará antes de lo previsto, según su arquitecto"</div>
+      <button class="copy-btn" onclick="cp('Revisar con el artículo y ajustar: "El Estadio Shakira llegará antes de lo previsto, según su arquitecto"')">Copiar</button>
+    </div>
+    <div class="corr-seo"><div class="corr-seo-label">SEO</div>S01: 46 chars (corto). Ampliar a 55-65 chars con el dato real.</div>
+    <div class="actions">
+      <a href="https://eldiariony.com/2026/03/22/el-estadio-shakira-se-construira-en-dos-meses/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://eldiariony.com/wp-admin/post.php?post=3651166&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/el-estadio-shakira-se-construira-en-dos-meses/','ny-3651166',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-ny-3651367">
+  <div class="card-header" onclick="tg('d-ny-3651367')">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span><span class="tag-time">~1 min</span></div>
+    <div class="card-title">¿Por qué los hot dogs de Costco han mantenido el precio de $1,50 desde 1985?</div>
+    <div class="card-note">D06: Titular abre con signo de interrogación ¿</div>
+    <div class="etags"><span class="etag d">D06</span></div>
+  </div>
+  <div class="detail" id="d-ny-3651367">
+    
+    <div class="corr">
+      <div class="corr-label">D06 — Titular abre con ¿</div>
+      <div class="corr-orig">Original: ¿Por qué los hot dogs de Costco han mantenido el precio de $1,50 desde 1985?</div>
+      <div class="corr-fix">Corrección: Por qué los hot dogs de Costco mantienen el precio en $1.50 desde 1985</div>
+      <button class="copy-btn" onclick="cp('Por qué los hot dogs de Costco mantienen el precio en $1.50 desde 1985')">Copiar</button>
+    </div>
+    <div class="corr-seo"><div class="corr-seo-label">SEO</div>S01: 77 chars. Versión sugerida ya queda en 65 chars.<br><button class="copy-btn" onclick="cp('Por qué los hot dogs de Costco mantienen el precio en $1.50 desde 1985')">Copiar título SEO</button></div>
+    <div class="actions">
+      <a href="https://eldiariony.com/2026/03/22/por-que-los-hot-dogs-de-costco-han-mantenido-el-precio-de-1-50-desde-1985/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://eldiariony.com/wp-admin/post.php?post=3651367&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/por-que-los-hot-dogs-de-costco-han-mantenido-el-precio-de-1-50-desde-1985/','ny-3651367',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-ny-3651372">
+  <div class="card-header" onclick="tg('d-ny-3651372')">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span><span class="tag-time">~1 min</span></div>
+    <div class="card-title">¿Qué ocurre con las hamburguesas de McDonald's que sobran al final del día?</div>
+    <div class="card-note">D06: Titular abre con signo de interrogación ¿</div>
+    <div class="etags"><span class="etag d">D06</span></div>
+  </div>
+  <div class="detail" id="d-ny-3651372">
+    
+    <div class="corr">
+      <div class="corr-label">D06 — Titular abre con ¿</div>
+      <div class="corr-orig">Original: ¿Qué ocurre con las hamburguesas de McDonald's que sobran al final del día?</div>
+      <div class="corr-fix">Corrección: Qué ocurre con las hamburguesas de McDonald's que sobran al final del día</div>
+      <button class="copy-btn" onclick="cp('Qué ocurre con las hamburguesas de McDonald\'s que sobran al final del día')">Copiar</button>
+    </div>
+    
+    <div class="actions">
+      <a href="https://eldiariony.com/2026/03/22/que-ocurre-con-las-hamburguesas-de-mcdonalds-que-sobran-al-final-del-dia/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://eldiariony.com/wp-admin/post.php?post=3651372&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/que-ocurre-con-las-hamburguesas-de-mcdonalds-que-sobran-al-final-del-dia/','ny-3651372',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div></div>
+    <div class="group-header" onclick="tgg('mod')">🟡 Cuando puedas <span>7 artículos</span></div>
+    <div id="g-mod"><div class="card" id="card-la-4068909">
+  <div class="card-header" onclick="tg('d-la-4068909')">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~1 min</span></div>
+    <div class="card-title">Nicole Kidman desata rumores de romance tras su divorcio</div>
+    <div class="card-note">B02: "el también Simon Baker" — falta el sustantivo "actor"</div>
+    <div class="etags"><span class="etag b">B02</span></div>
+  </div>
+  <div class="detail" id="d-la-4068909">
+    
+    <div class="corr">
+      <div class="corr-label">B02 — Atribución incompleta en primer párrafo</div>
+      <div class="corr-orig">Original: "fue captada muy cariñosa con el también Simon Baker"</div>
+      <div class="corr-fix">Corrección: "fue captada muy cariñosa con el también actor Simon Baker"</div>
+      <button class="copy-btn" onclick="cp('"fue captada muy cariñosa con el también actor Simon Baker"')">Copiar</button>
+    </div>
+    
+    <div class="actions">
+      <a href="https://laopinion.com/2026/03/22/nicole-kidman-desata-rumores-de-romance-tras-su-divorcio/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://laopinion.com/wp-admin/post.php?post=4068909&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/nicole-kidman-desata-rumores-de-romance-tras-su-divorcio/','la-4068909',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-la-4066786">
+  <div class="card-header" onclick="tg('d-la-4066786')">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Salud</span><span class="tag-time">~2 min</span></div>
+    <div class="card-title">El café no altera el sueño tal como se cree popularmente, revela estudio</div>
+    <div class="card-note">B04: "revela estudio" sin citar el nombre de la investigación ni la institución</div>
+    <div class="etags"><span class="etag b">B04</span></div>
+  </div>
+  <div class="detail" id="d-la-4066786">
+    
+    <div class="corr">
+      <div class="corr-label">B04 — Fuente sin atribuir</div>
+      <div class="corr-orig">Original: "revela estudio" / "Una investigación en Suecia"</div>
+      <div class="corr-fix">Corrección: Identificar y citar el nombre del estudio o la institución sueca en el primer párrafo</div>
+      <button class="copy-btn" onclick="cp('Identificar y citar el nombre del estudio o la institución sueca en el primer párrafo')">Copiar</button>
+    </div>
+    <div class="corr-seo"><div class="corr-seo-label">SEO</div>S01: 73 chars. Sugerido (63c): El café no afecta el sueño como se creía, según estudio sueco<br><button class="copy-btn" onclick="cp('El café no afecta el sueño como se creía, según estudio sueco')">Copiar título SEO</button></div>
+    <div class="actions">
+      <a href="https://laopinion.com/2026/03/22/el-cafe-no-altera-el-sueno-tal-como-se-cree-popularmente-revela-estudio/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://laopinion.com/wp-admin/post.php?post=4066786&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/el-cafe-no-altera-el-sueno-tal-como-se-cree-popularmente-revela-estudio/','la-4066786',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-la-4068862">
+  <div class="card-header" onclick="tg('d-la-4068862')">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Astrología</span><span class="tag-time">~2 min</span></div>
+    <div class="card-title">Las mujeres con presencia y elegancia pertenecen a un signo zodiacal</div>
+    <div class="card-note">B04: "un análisis astrológico" como fuente — sin nombre ni origen</div>
+    <div class="etags"><span class="etag b">B04</span></div>
+  </div>
+  <div class="detail" id="d-la-4068862">
+    
+    <div class="corr">
+      <div class="corr-label">B04 — Fuente vaga</div>
+      <div class="corr-orig">Original: "Un análisis astrológico reveló a qué signo..."</div>
+      <div class="corr-fix">Corrección: Citar la fuente del análisis (sitio, autor, publicación) o reformular como contenido editorial propio</div>
+      <button class="copy-btn" onclick="cp('Citar la fuente del análisis (sitio, autor, publicación) o reformular como contenido editorial propio')">Copiar</button>
+    </div>
+    
+    <div class="actions">
+      <a href="https://laopinion.com/2026/03/22/las-mujeres-con-presencia-y-elegancia-pertenecen-a-un-signo-zodiacal/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://laopinion.com/wp-admin/post.php?post=4068862&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/las-mujeres-con-presencia-y-elegancia-pertenecen-a-un-signo-zodiacal/','la-4068862',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-la-4068815">
+  <div class="card-header" onclick="tg('d-la-4068815')">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Astrología</span><span class="tag-time">~2 min</span></div>
+    <div class="card-title">La astrología revela qué signo es el más engañado en el amor</div>
+    <div class="card-note">B03 + B04: "interesante reporte astrológico" — adjetivo sin sustento y fuente vaga</div>
+    <div class="etags"><span class="etag b">B03</span><span class="etag b">B04</span></div>
+  </div>
+  <div class="detail" id="d-la-4068815">
+    
+    <div class="corr">
+      <div class="corr-label">B03 — "interesante" sin sustento</div>
+      <div class="corr-orig">Original: "Un interesante reporte astrológico determinó cuál es el signo..."</div>
+      <div class="corr-fix">Corrección: Eliminar "interesante". Citar la fuente del reporte o reformular</div>
+      <button class="copy-btn" onclick="cp('Eliminar "interesante". Citar la fuente del reporte o reformular')">Copiar</button>
+    </div>
+    
+    <div class="actions">
+      <a href="https://laopinion.com/2026/03/22/la-astrologia-revela-que-signo-es-el-mas-enganado-en-el-amor/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://laopinion.com/wp-admin/post.php?post=4068815&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/la-astrologia-revela-que-signo-es-el-mas-enganado-en-el-amor/','la-4068815',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-la-4068874">
+  <div class="card-header" onclick="tg('d-la-4068874')">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Dinero</span><span class="tag-time">~2 min</span></div>
+    <div class="card-title">Target pagará millonaria indemnización: este es el día en que los afectados podrán reclamar hasta $1.711 del acuerdo</div>
+    <div class="card-note">B03: "millonaria indemnización" cuando el pago individual es de $1,711</div>
+    <div class="etags"><span class="etag b">B03</span></div>
+  </div>
+  <div class="detail" id="d-la-4068874">
+    
+    <div class="corr">
+      <div class="corr-label">B03 — Hipérbole sin sustento relativo</div>
+      <div class="corr-orig">Original: "millonaria indemnización" — el pago máximo por persona es $1,711</div>
+      <div class="corr-fix">Corrección: Reformular: "Target pagará hasta $1,711 por persona en acuerdo legal: así puedes reclamar antes del 31 de marzo"</div>
+      <button class="copy-btn" onclick="cp('Reformular: "Target pagará hasta $1,711 por persona en acuerdo legal: así puedes reclamar antes del 31 de marzo"')">Copiar</button>
+    </div>
+    <div class="corr-seo"><div class="corr-seo-label">SEO</div>S01: ~118 chars. Sugerido (72c): Target paga hasta $1,711 por persona: tienes hasta el 31 de marzo para reclamar<br><button class="copy-btn" onclick="cp('Target paga hasta $1,711 por persona: tienes hasta el 31 de marzo para reclamar')">Copiar título SEO</button></div>
+    <div class="actions">
+      <a href="https://laopinion.com/2026/03/22/target-pagara-millonaria-indemnizacion-este-es-el-dia-en-que-los-afectados-podran-reclamar-hasta-1-711-del-acuerdo/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://laopinion.com/wp-admin/post.php?post=4068874&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/target-pagara-millonaria-indemnizacion-este-es-el-dia-en-que-los-afectados-podran-reclamar-hasta-1-711-del-acuerdo/','la-4068874',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-ny-3651412">
+  <div class="card-header" onclick="tg('d-ny-3651412')">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~2 min</span></div>
+    <div class="card-title">Justin Timberlake bromeó con los oficiales durante su arresto por conducir ebrio</div>
+    <div class="card-note">B02: Noticia de junio 2024 publicada sin marcar temporalidad en el titular</div>
+    <div class="etags"><span class="etag b">B02</span></div>
+  </div>
+  <div class="detail" id="d-ny-3651412">
+    
+    <div class="corr">
+      <div class="corr-label">B02 — Sin contexto temporal (noticia de 2024)</div>
+      <div class="corr-orig">Original: El titular no aclara que el arresto fue en 2024</div>
+      <div class="corr-fix">Corrección: Añadir contexto: "Justin Timberlake bromeó con los policías en su arresto de 2024 por conducir ebrio"</div>
+      <button class="copy-btn" onclick="cp('Añadir contexto: "Justin Timberlake bromeó con los policías en su arresto de 2024 por conducir ebrio"')">Copiar</button>
+    </div>
+    <div class="corr-seo"><div class="corr-seo-label">SEO</div>S01: 82 chars. Sugerido con fecha (69c): Justin Timberlake bromeó con la policía en su arresto de 2024 por DUI<br><button class="copy-btn" onclick="cp('Justin Timberlake bromeó con la policía en su arresto de 2024 por DUI')">Copiar título SEO</button></div>
+    <div class="actions">
+      <a href="https://eldiariony.com/2026/03/22/justin-timberlake-bromeo-con-los-oficiales-durante-su-arresto-por-conducir-ebrio/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://eldiariony.com/wp-admin/post.php?post=3651412&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/justin-timberlake-bromeo-con-los-oficiales-durante-su-arresto-por-conducir-ebrio/','ny-3651412',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-ny-3651365">
+  <div class="card-header" onclick="tg('d-ny-3651365')">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span><span class="tag-time">~2 min</span></div>
+    <div class="card-title">Cuánta fortuna tenía Chuck Norris al momento de su fallecimiento</div>
+    <div class="card-note">B04: "fallecimiento" — el artículo debería confirmar la fecha y causa de muerte</div>
+    <div class="etags"><span class="etag b">B04</span></div>
+  </div>
+  <div class="detail" id="d-ny-3651365">
+    
+    <div class="corr">
+      <div class="corr-label">B04 — Dato sensible sin respaldo explícito en titular</div>
+      <div class="corr-orig">Original: "al momento de su fallecimiento" — verificar que el artículo confirma fecha y causa de muerte</div>
+      <div class="corr-fix">Corrección: Si está confirmado, añadir año en titular: "...al momento de su muerte en [año]"</div>
+      <button class="copy-btn" onclick="cp('Si está confirmado, añadir año en titular: "...al momento de su muerte en [año]"')">Copiar</button>
+    </div>
+    
+    <div class="actions">
+      <a href="https://eldiariony.com/2026/03/22/cuanta-fortuna-tenia-chuck-norris-al-momento-de-su-fallecimiento/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://eldiariony.com/wp-admin/post.php?post=3651365&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/cuanta-fortuna-tenia-chuck-norris-al-momento-de-su-fallecimiento/','ny-3651365',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div></div>
+    <div class="group-header" onclick="tgg('ok')">✅ Sin observaciones <span>26 artículos</span></div>
+    <div id="g-ok" style="display:none"><div class="card" id="card-ok-4069036" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">"Project Hail Mary" de Ryan Gosling bate récords y se corona como el mayor estreno del año</div>
+  </div>
+</div><div class="card" id="card-ok-4068969" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">Galilea Montijo aclara los rumores sobre su rostro y desmiente cirugías estéticas</div>
+  </div>
+</div><div class="card" id="card-ok-4068904" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">Laura Pausini expresó su admiración por Shakira: “Es una de las artistas que más adoro”</div>
+  </div>
+</div><div class="card" id="card-ok-4068959" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">Jason Momoa huye de su casa en Oahu tras las devastadoras inundaciones que azotan Hawái</div>
+  </div>
+</div><div class="card" id="card-ok-4068925" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">"Eso es una locura": Chappell Roan niega que odie a los niños tras el incidente con la hij…</div>
+  </div>
+</div><div class="card" id="card-ok-4068886" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">Fátima Bosch habló sobre el bullying que sufrió en Tailandia por disfrutar la comida sin c…</div>
+  </div>
+</div><div class="card" id="card-ok-4068864" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">El gesto de Tom Holland que reavivó los rumores de boda con Zendaya</div>
+  </div>
+</div><div class="card" id="card-ok-4067486" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Salud</span></div>
+    <div class="card-title" style="font-size:13px">Duermes y no recuerdas ningún sueño: esto es lo que ocurre en tu cerebro</div>
+  </div>
+</div><div class="card" id="card-ok-4068779" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Astrología</span></div>
+    <div class="card-title" style="font-size:13px">Horóscopo del amor para la semana del 23 al 29 de marzo 2026</div>
+  </div>
+</div><div class="card" id="card-ok-4068750" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Astrología</span></div>
+    <div class="card-title" style="font-size:13px">La suerte espera a tres signos del zodiaco chino del 23 al 29 de marzo</div>
+  </div>
+</div><div class="card" id="card-ok-4068817" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Dinero</span></div>
+    <div class="card-title" style="font-size:13px">T-Mobile anuncia plan prepago ilimitado a mitad de precio esta temporada de impuestos</div>
+  </div>
+</div><div class="card" id="card-ok-4068796" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Dinero</span></div>
+    <div class="card-title" style="font-size:13px">Cinco nuevas tiendas de Publix antes de abril: ya hay ubicaciones confirmadas</div>
+  </div>
+</div><div class="card" id="card-ok-4068771" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Dinero</span></div>
+    <div class="card-title" style="font-size:13px">Tasas hipotecarias EE.UU. aumentan al 6.22%: el nivel más alto en más de tres meses</div>
+  </div>
+</div><div class="card" id="card-ok-4068976" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Tecnología</span></div>
+    <div class="card-title" style="font-size:13px">OnePlus 15T: ¿el nuevo gama media será un flagship killer?</div>
+  </div>
+</div><div class="card" id="card-ok-4068932" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Tecnología</span></div>
+    <div class="card-title" style="font-size:13px">Ni suscripciones ni pagos: este teléfono de hace 10 años te ofrece almacenamiento en la nu…</div>
+  </div>
+</div><div class="card" id="card-ok-3651406" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">Esposa de Bruce Willis le dedica mensaje por su aniversario tras diagnóstico de demencia d…</div>
+  </div>
+</div><div class="card" id="card-ok-3651351" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">Jason Momoa huye de la costa norte de Oahu tras inundaciones Hawái</div>
+  </div>
+</div><div class="card" id="card-ok-3651334" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">Alcalde de Río prohíbe a Chappell Roan actuar en festival tras polémica con estrella de fú…</div>
+  </div>
+</div><div class="card" id="card-ok-3651176" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">Paapa Essiedu admite que interpretar a Snape en la serie de “Harry Potter” es un reto</div>
+  </div>
+</div><div class="card" id="card-ok-3651172" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">La nueva película de Ryan Gosling lidera la taquilla estadounidense</div>
+  </div>
+</div><div class="card" id="card-ok-3649948" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Comida</span></div>
+    <div class="card-title" style="font-size:13px">Refrigeración segura: ¿Cuándo es el momento ideal para guardar la comida?</div>
+  </div>
+</div><div class="card" id="card-ok-3650002" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Comida</span></div>
+    <div class="card-title" style="font-size:13px">Esto explica por qué el queso azul sí se puede comer y otros quesos con moho no</div>
+  </div>
+</div><div class="card" id="card-ok-3651366" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span></div>
+    <div class="card-title" style="font-size:13px">Cambios en beneficios de SNAP podrían provocar 70,000 muertes, según el grupo Center for A…</div>
+  </div>
+</div><div class="card" id="card-ok-3651369" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span></div>
+    <div class="card-title" style="font-size:13px">Seguro Social enviará pagos directos de $994 el 1 de abril, ¿quiénes lo recibirán?</div>
+  </div>
+</div><div class="card" id="card-ok-3650108" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span></div>
+    <div class="card-title" style="font-size:13px">Comprar un auto de lujo usado puede ser más barato que uno nuevo en 2026</div>
+  </div>
+</div><div class="card" id="card-ok-3649409" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span></div>
+    <div class="card-title" style="font-size:13px">El error silencioso que daña tu historial crediticio sin darte cuenta</div>
+  </div>
+</div></div>
   </div>
   <div id="tab-la" style="display:none">
-    <div class="group-header" onclick="tgg('la-urg')">🔴 Urgentes</div><div id="g-la-urg"><div class="card" id="card-la-4068347"><div class="card-header" onclick="tg('d-la-4068347')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~1 min</span></div><div class="card-title">Zendaya y Robert Pattinson en “The Drama”: Tráiler, fecha de estreno y todo sobre la nueva película de A24</div><div class="card-note">Fecha escrita en letra en el excerpt</div><div class="etags"><span class="etag d">D02</span></div></div><div class="detail" id="d-la-4068347"><div class="corr"><div class="corr-label">D02 — Día del mes en letra</div><div class="corr-orig">Original: el tres de abril de 2026</div><div class="corr-fix">Corrección: el 3 de abril de 2026</div><button class="copy-btn" data-copy="el 3 de abril de 2026">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/21/zendaya-y-robert-pattinson-en-the-drama-trailer-fecha-de-estreno-y-todo-sobre-la-nueva-pelicula-de-a24/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068347&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/21/zendaya-y-robert-pattinson-en-the-drama-trailer-fecha-de-estreno-y-todo-sobre-la-nueva-pelicula-de-a24/','la-4068347',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4068750"><div class="card-header" onclick="tg('d-la-4068750')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Astrología</span><span class="tag-time">~1 min</span></div><div class="card-title">La suerte espera a 3 signos del zodiaco chino del 23 al 29 de marzo</div><div class="card-note">Número menor a 10 en dígito — título y excerpt</div><div class="etags"><span class="etag d">D03</span></div></div><div class="detail" id="d-la-4068750"><div class="corr"><div class="corr-label">D03 — Título: número en dígito</div><div class="corr-orig">Original: La suerte espera a 3 signos del zodiaco chino</div><div class="corr-fix">Corrección: La suerte espera a tres signos del zodiaco chino</div><button class="copy-btn" data-copy="La suerte espera a tres signos del zodiaco chino">Copiar</button></div><div class="corr"><div class="corr-label">D03 — Excerpt: número en dígito</div><div class="corr-orig">Original: estos 3 signos del horóscopo chino</div><div class="corr-fix">Corrección: estos tres signos del horóscopo chino</div><button class="copy-btn" data-copy="estos tres signos del horóscopo chino">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/22/la-suerte-espera-a-3-signos-del-zodiaco-chino-del-23-al-29-de-marzo/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068750&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/la-suerte-espera-a-3-signos-del-zodiaco-chino-del-23-al-29-de-marzo/','la-4068750',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4068796"><div class="card-header" onclick="tg('d-la-4068796')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Dinero</span><span class="tag-time">~1 min</span></div><div class="card-title">5 nuevas tiendas de Publix antes de abril: ya hay ubicaciones confirmadas</div><div class="card-note">Número menor a 10 en dígito en el titular</div><div class="etags"><span class="etag d">D03</span></div></div><div class="detail" id="d-la-4068796"><div class="corr"><div class="corr-label">D03 — Titular: dígito en lugar de letra</div><div class="corr-orig">Original: 5 nuevas tiendas de Publix antes de abril</div><div class="corr-fix">Corrección: Cinco nuevas tiendas de Publix antes de abril</div><button class="copy-btn" data-copy="Cinco nuevas tiendas de Publix antes de abril">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/22/5-nuevas-tiendas-de-publix-antes-de-abril-ya-hay-ubicaciones-confirmadas/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068796&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/5-nuevas-tiendas-de-publix-antes-de-abril-ya-hay-ubicaciones-confirmadas/','la-4068796',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4068771"><div class="card-header" onclick="tg('d-la-4068771')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Dinero</span><span class="tag-time">~1 min</span></div><div class="card-title">Tasas hipotecarias EE.UU. aumentan al 6.22%: el nivel más alto en más de 3 meses</div><div class="card-note">Número menor a 10 en dígito en el titular</div><div class="etags"><span class="etag d">D03</span></div></div><div class="detail" id="d-la-4068771"><div class="corr"><div class="corr-label">D03 — Titular: dígito en lugar de letra</div><div class="corr-orig">Original: el nivel más alto en más de 3 meses</div><div class="corr-fix">Corrección: el nivel más alto en más de tres meses</div><button class="copy-btn" data-copy="el nivel más alto en más de tres meses">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/22/tasas-hipotecarias-ee-uu-aumentan-al-6-22-el-nivel-mas-alto-en-mas-de-3-meses/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068771&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/tasas-hipotecarias-ee-uu-aumentan-al-6-22-el-nivel-mas-alto-en-mas-de-3-meses/','la-4068771',this)">Re-verificar y resolver</button></div></div></div></div>
-    <div class="group-header" onclick="tgg('la-mod')">🟡 Cuando puedas</div><div id="g-la-mod"><div class="card" id="card-la-4068619"><div class="card-header" onclick="tg('d-la-4068619')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~2 min</span></div><div class="card-title">Barry Keoghan revela que el acoso en línea lo ha llevado al aislamiento</div><div class="card-note">Fuente de la entrevista no identificada</div><div class="etags"><span class="etag b">B04</span></div></div><div class="detail" id="d-la-4068619"><div class="corr"><div class="corr-label">B04 — Fuente vaga</div><div class="corr-orig">Original: En una nueva entrevista...</div><div class="corr-fix">Corrección: Especificar: En entrevista con [nombre del medio], Barry Keoghan...</div><button class="copy-btn" data-copy="Especificar: En entrevista con [nombre del medio], Barry Keoghan...">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/21/barry-keoghan-revela-que-el-acoso-en-linea-lo-ha-llevado-al-aislamiento-ya-no-quiero-salir-a-la-calle/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068619&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/21/barry-keoghan-revela-que-el-acoso-en-linea-lo-ha-llevado-al-aislamiento-ya-no-quiero-salir-a-la-calle/','la-4068619',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4068612"><div class="card-header" onclick="tg('d-la-4068612')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~2 min</span></div><div class="card-title">"Nací para amarlo": Emma Heming celebra su 17º aniversario de bodas con Bruce Willis</div><div class="card-note">Adjetivo sin sustento en excerpt</div><div class="etags"><span class="etag b">B03</span></div></div><div class="detail" id="d-la-4068612"><div class="corr"><div class="corr-label">B03 — Hiperbólico sin sustento</div><div class="corr-orig">Original: ha sido un ejemplo de unidad frente a la adversidad</div><div class="corr-fix">Corrección: Sustituir con dato concreto del aniversario o de la situación actual</div><button class="copy-btn" data-copy="Sustituir con dato concreto del aniversario o de la situación actual">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/21/naci-para-amarlo-emma-heming-celebra-su-17o-aniversario-de-bodas-con-bruce-willis/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068612&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/21/naci-para-amarlo-emma-heming-celebra-su-17o-aniversario-de-bodas-con-bruce-willis/','la-4068612',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4067486"><div class="card-header" onclick="tg('d-la-4067486')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Salud</span><span class="tag-time">~2 min</span></div><div class="card-title">Duermes y no recuerdas ningún sueño: esto es lo que ocurre en tu cerebro</div><div class="card-note">Excerpt sin anclaje noticioso ni fuente</div><div class="etags"><span class="etag b">B02</span></div></div><div class="detail" id="d-la-4067486"><div class="corr"><div class="corr-label">B02 — Sin anclaje noticioso</div><div class="corr-orig">Original: Para entender qué ocurre, hay que adentrarse en la arquitectura del sueño...</div><div class="corr-fix">Corrección: Añadir en excerpt: la investigación, institución o contexto que origina la nota</div><button class="copy-btn" data-copy="Añadir en excerpt: la investigación, institución o contexto que origina la nota">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/22/por-que-duermes-y-sientes-que-no-suenas/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4067486&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/por-que-duermes-y-sientes-que-no-suenas/','la-4067486',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4066786"><div class="card-header" onclick="tg('d-la-4066786')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Salud</span><span class="tag-time">~2 min</span></div><div class="card-title">El café no altera el sueño tal como se cree popularmente, revela estudio</div><div class="card-note">Estudio sin nombre ni publicación identificada</div><div class="etags"><span class="etag b">B04</span></div></div><div class="detail" id="d-la-4066786"><div class="corr"><div class="corr-label">B04 — Fuente vaga</div><div class="corr-orig">Original: Una investigación en Suecia...</div><div class="corr-fix">Corrección: Especificar: estudio publicado en [revista], de la Universidad de [nombre], Suecia</div><button class="copy-btn" data-copy="Especificar: estudio publicado en [revista], de la Universidad de [nombre], Suecia">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/22/el-cafe-no-altera-el-sueno-tal-como-se-cree-popularmente-revela-estudio/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4066786&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/el-cafe-no-altera-el-sueno-tal-como-se-cree-popularmente-revela-estudio/','la-4066786',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4066073"><div class="card-header" onclick="tg('d-la-4066073')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Salud</span><span class="tag-time">~2 min</span></div><div class="card-title">La espinaca es un superalimento, pero no puede ser consumida por todos</div><div class="card-note">Término hiperbólico sin sustento en excerpt</div><div class="etags"><span class="etag b">B03</span></div></div><div class="detail" id="d-la-4066073"><div class="corr"><div class="corr-label">B03 — Hiperbólico</div><div class="corr-orig">Original: es un superalimento</div><div class="corr-fix">Corrección: Sustituir con descripción concreta: alimento rico en hierro y oxalatos, contraindicado para...</div><button class="copy-btn" data-copy="Sustituir con descripción concreta: alimento rico en hierro y oxalatos, contraindicado para...">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/21/la-espinaca-es-un-superalimento-pero-no-puede-ser-consumida-por-todos-por-que-es-contraindicada-en-casos-especiales/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4066073&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/21/la-espinaca-es-un-superalimento-pero-no-puede-ser-consumida-por-todos-por-que-es-contraindicada-en-casos-especiales/','la-4066073',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4068815"><div class="card-header" onclick="tg('d-la-4068815')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Astrología</span><span class="tag-time">~2 min</span></div><div class="card-title">La astrología revela qué signo es el más engañado en el amor</div><div class="card-note">Adjetivo editorial + fuente completamente vaga</div><div class="etags"><span class="etag b">B03</span><span class="etag b">B04</span></div></div><div class="detail" id="d-la-4068815"><div class="corr"><div class="corr-label">B03+B04 — Fuente vaga y adjetivo editorial</div><div class="corr-orig">Original: Un interesante reporte astrológico determinó...</div><div class="corr-fix">Corrección: Eliminar interesante. Nombrar el reporte o la fuente que lo origina</div><button class="copy-btn" data-copy="Eliminar interesante. Nombrar el reporte o la fuente que lo origina">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/22/la-astrologia-revela-que-signo-es-el-mas-enganado-en-el-amor/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068815&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/la-astrologia-revela-que-signo-es-el-mas-enganado-en-el-amor/','la-4068815',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4068817"><div class="card-header" onclick="tg('d-la-4068817')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Dinero</span><span class="tag-time">~2 min</span></div><div class="card-title">T-Mobile anuncia plan prepago ilimitado a mitad de precio esta temporada de impuestos</div><div class="card-note">Construcción pasiva impersonal; excerpt sin contexto de cuándo ni por qué importa</div><div class="etags"><span class="etag b">B02</span><span class="etag b">B04</span></div></div><div class="detail" id="d-la-4068817"><div class="corr"><div class="corr-label">B04 — Atribución pasiva</div><div class="corr-orig">Original: se conoció que...</div><div class="corr-fix">Corrección: Activar: Metro by T-Mobile publicó una encuesta que muestra que...</div><button class="copy-btn" data-copy="Activar: Metro by T-Mobile publicó una encuesta que muestra que...">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/22/t-mobile-anuncia-plan-prepago-ilimitado-a-mitad-de-precio-esta-temporada-de-impuestos/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068817&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/t-mobile-anuncia-plan-prepago-ilimitado-a-mitad-de-precio-esta-temporada-de-impuestos/','la-4068817',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4068233"><div class="card-header" onclick="tg('d-la-4068233')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Tecnología</span><span class="tag-time">~2 min</span></div><div class="card-title">Sin estos satélites el mundo moderno y las guerras quedarían a ciegas</div><div class="card-note">Excerpt sin gancho noticioso ni quién/cuándo</div><div class="etags"><span class="etag b">B02</span></div></div><div class="detail" id="d-la-4068233"><div class="corr"><div class="corr-label">B02 — Sin anclaje noticioso</div><div class="corr-orig">Original: La navegación por satélite sostiene la vida moderna... y la guerra.</div><div class="corr-fix">Corrección: Añadir contexto: qué evento o reporte reciente origina esta cobertura</div><button class="copy-btn" data-copy="Añadir contexto: qué evento o reporte reciente origina esta cobertura">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/20/estos-son-los-vulnerables-satelites-que-guian-al-mundo-y-sus-guerras/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4068233&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/20/estos-son-los-vulnerables-satelites-que-guian-al-mundo-y-sus-guerras/','la-4068233',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-la-4067869"><div class="card-header" onclick="tg('d-la-4067869')"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Tecnología</span><span class="tag-time">~2 min</span></div><div class="card-title">Alerta de Google: el fallo crítico de seguridad que expone a los iPhone más antiguos</div><div class="card-note">"Crítico" sin CVE ni versión; expertos de Google sin nombre ni reporte</div><div class="etags"><span class="etag b">B03</span><span class="etag b">B04</span></div></div><div class="detail" id="d-la-4067869"><div class="corr"><div class="corr-label">B03+B04 — Hiperbólico + fuente vaga</div><div class="corr-orig">Original: Expertos en seguridad de Google detectaron una vulnerabilidad...</div><div class="corr-fix">Corrección: Nombrar el equipo (ej. Google Project Zero) y el CVE o advisory específico</div><button class="copy-btn" data-copy="Nombrar el equipo (ej. Google Project Zero) y el CVE o advisory específico">Copiar</button></div><div class="actions"><a href="https://laopinion.com/2026/03/20/alerta-de-google-el-grave-fallo-de-seguridad-que-expone-a-los-iphone-mas-antiguos/" target="_blank" class="lnk">Ver artículo</a><a href="https://laopinion.com/wp-admin/post.php?post=4067869&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/20/alerta-de-google-el-grave-fallo-de-seguridad-que-expone-a-los-iphone-mas-antiguos/','la-4067869',this)">Re-verificar y resolver</button></div></div></div></div>
-    <div class="group-header" onclick="tgg('la-ok')">✅ OK</div><div id="g-la-ok" style="display:none"><div class="card" id="card-la-4068779"><div class="card-header"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Astrología</span></div><div class="card-title">Horóscopo del amor para la semana del 23 al 29 de marzo 2026</div><div class="card-note" style="color:#27ae60">✅ Sin observaciones</div></div></div><div class="card" id="card-la-4067859"><div class="card-header"><div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Tecnología</span></div><div class="card-title">Descubren fallo en las pantallas OLED que puede quemar tu TV</div><div class="card-note" style="color:#27ae60">✅ Sin observaciones</div></div></div></div>
+    <div class="group-header" onclick="tgg('la-urg')">🔴 Urgentes</div><div id="g-la-urg"><div class="card" id="card-la-4068931">
+  <div class="card-header" onclick="tg('d-la-4068931')">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~1 min</span></div>
+    <div class="card-title">Dos años de Las mujeres ya no lloran: Shakira celebra el segundo aniversario de su álbum</div>
+    <div class="card-note">D11: Título de álbum sin comillas tipográficas</div>
+    <div class="etags"><span class="etag d">D11</span></div>
+  </div>
+  <div class="detail" id="d-la-4068931">
+    
+    <div class="corr">
+      <div class="corr-label">D11 — Título de obra sin comillas</div>
+      <div class="corr-orig">Original: ...de Las mujeres ya no lloran: Shakira...</div>
+      <div class="corr-fix">Corrección: ...de "Las mujeres ya no lloran": Shakira...</div>
+      <button class="copy-btn" onclick="cp('...de "Las mujeres ya no lloran": Shakira...')">Copiar</button>
+    </div>
+    <div class="corr-seo"><div class="corr-seo-label">SEO</div>S01: 89 chars. Sugerido (56c): Shakira celebra 2 años de "Las mujeres ya no lloran"<br><button class="copy-btn" onclick="cp('Shakira celebra 2 años de "Las mujeres ya no lloran"')">Copiar título SEO</button></div>
+    <div class="actions">
+      <a href="https://laopinion.com/2026/03/22/dos-anos-de-las-mujeres-ya-no-lloran-shakira-celebra-el-segundo-aniversario-de-su-album/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://laopinion.com/wp-admin/post.php?post=4068931&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/dos-anos-de-las-mujeres-ya-no-lloran-shakira-celebra-el-segundo-aniversario-de-su-album/','la-4068931',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-la-4068846">
+  <div class="card-header" onclick="tg('d-la-4068846')">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Astrología</span><span class="tag-time">~1 min</span></div>
+    <div class="card-title">5 hábitos que las relaciones felices hacen, según sanadores espirituales</div>
+    <div class="card-note">D03: Número menor a 10 debe escribirse en letra</div>
+    <div class="etags"><span class="etag d">D03</span></div>
+  </div>
+  <div class="detail" id="d-la-4068846">
+    
+    <div class="corr">
+      <div class="corr-label">D03 — Número en dígito (< 10)</div>
+      <div class="corr-orig">Original: 5 hábitos que las relaciones felices hacen...</div>
+      <div class="corr-fix">Corrección: Cinco hábitos que las relaciones felices hacen...</div>
+      <button class="copy-btn" onclick="cp('Cinco hábitos que las relaciones felices hacen...')">Copiar</button>
+    </div>
+    
+    <div class="actions">
+      <a href="https://laopinion.com/2026/03/22/5-habitos-que-las-relaciones-felices-hacen-segun-sanadores-espirituales/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://laopinion.com/wp-admin/post.php?post=4068846&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/5-habitos-que-las-relaciones-felices-hacen-segun-sanadores-espirituales/','la-4068846',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div></div>
+    <div class="group-header" onclick="tgg('la-mod')">🟡 Cuando puedas</div><div id="g-la-mod"><div class="card" id="card-la-4068909">
+  <div class="card-header" onclick="tg('d-la-4068909')">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~1 min</span></div>
+    <div class="card-title">Nicole Kidman desata rumores de romance tras su divorcio</div>
+    <div class="card-note">B02: "el también Simon Baker" — falta el sustantivo "actor"</div>
+    <div class="etags"><span class="etag b">B02</span></div>
+  </div>
+  <div class="detail" id="d-la-4068909">
+    
+    <div class="corr">
+      <div class="corr-label">B02 — Atribución incompleta en primer párrafo</div>
+      <div class="corr-orig">Original: "fue captada muy cariñosa con el también Simon Baker"</div>
+      <div class="corr-fix">Corrección: "fue captada muy cariñosa con el también actor Simon Baker"</div>
+      <button class="copy-btn" onclick="cp('"fue captada muy cariñosa con el también actor Simon Baker"')">Copiar</button>
+    </div>
+    
+    <div class="actions">
+      <a href="https://laopinion.com/2026/03/22/nicole-kidman-desata-rumores-de-romance-tras-su-divorcio/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://laopinion.com/wp-admin/post.php?post=4068909&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/nicole-kidman-desata-rumores-de-romance-tras-su-divorcio/','la-4068909',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-la-4066786">
+  <div class="card-header" onclick="tg('d-la-4066786')">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Salud</span><span class="tag-time">~2 min</span></div>
+    <div class="card-title">El café no altera el sueño tal como se cree popularmente, revela estudio</div>
+    <div class="card-note">B04: "revela estudio" sin citar el nombre de la investigación ni la institución</div>
+    <div class="etags"><span class="etag b">B04</span></div>
+  </div>
+  <div class="detail" id="d-la-4066786">
+    
+    <div class="corr">
+      <div class="corr-label">B04 — Fuente sin atribuir</div>
+      <div class="corr-orig">Original: "revela estudio" / "Una investigación en Suecia"</div>
+      <div class="corr-fix">Corrección: Identificar y citar el nombre del estudio o la institución sueca en el primer párrafo</div>
+      <button class="copy-btn" onclick="cp('Identificar y citar el nombre del estudio o la institución sueca en el primer párrafo')">Copiar</button>
+    </div>
+    <div class="corr-seo"><div class="corr-seo-label">SEO</div>S01: 73 chars. Sugerido (63c): El café no afecta el sueño como se creía, según estudio sueco<br><button class="copy-btn" onclick="cp('El café no afecta el sueño como se creía, según estudio sueco')">Copiar título SEO</button></div>
+    <div class="actions">
+      <a href="https://laopinion.com/2026/03/22/el-cafe-no-altera-el-sueno-tal-como-se-cree-popularmente-revela-estudio/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://laopinion.com/wp-admin/post.php?post=4066786&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/el-cafe-no-altera-el-sueno-tal-como-se-cree-popularmente-revela-estudio/','la-4066786',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-la-4068862">
+  <div class="card-header" onclick="tg('d-la-4068862')">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Astrología</span><span class="tag-time">~2 min</span></div>
+    <div class="card-title">Las mujeres con presencia y elegancia pertenecen a un signo zodiacal</div>
+    <div class="card-note">B04: "un análisis astrológico" como fuente — sin nombre ni origen</div>
+    <div class="etags"><span class="etag b">B04</span></div>
+  </div>
+  <div class="detail" id="d-la-4068862">
+    
+    <div class="corr">
+      <div class="corr-label">B04 — Fuente vaga</div>
+      <div class="corr-orig">Original: "Un análisis astrológico reveló a qué signo..."</div>
+      <div class="corr-fix">Corrección: Citar la fuente del análisis (sitio, autor, publicación) o reformular como contenido editorial propio</div>
+      <button class="copy-btn" onclick="cp('Citar la fuente del análisis (sitio, autor, publicación) o reformular como contenido editorial propio')">Copiar</button>
+    </div>
+    
+    <div class="actions">
+      <a href="https://laopinion.com/2026/03/22/las-mujeres-con-presencia-y-elegancia-pertenecen-a-un-signo-zodiacal/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://laopinion.com/wp-admin/post.php?post=4068862&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/las-mujeres-con-presencia-y-elegancia-pertenecen-a-un-signo-zodiacal/','la-4068862',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-la-4068815">
+  <div class="card-header" onclick="tg('d-la-4068815')">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Astrología</span><span class="tag-time">~2 min</span></div>
+    <div class="card-title">La astrología revela qué signo es el más engañado en el amor</div>
+    <div class="card-note">B03 + B04: "interesante reporte astrológico" — adjetivo sin sustento y fuente vaga</div>
+    <div class="etags"><span class="etag b">B03</span><span class="etag b">B04</span></div>
+  </div>
+  <div class="detail" id="d-la-4068815">
+    
+    <div class="corr">
+      <div class="corr-label">B03 — "interesante" sin sustento</div>
+      <div class="corr-orig">Original: "Un interesante reporte astrológico determinó cuál es el signo..."</div>
+      <div class="corr-fix">Corrección: Eliminar "interesante". Citar la fuente del reporte o reformular</div>
+      <button class="copy-btn" onclick="cp('Eliminar "interesante". Citar la fuente del reporte o reformular')">Copiar</button>
+    </div>
+    
+    <div class="actions">
+      <a href="https://laopinion.com/2026/03/22/la-astrologia-revela-que-signo-es-el-mas-enganado-en-el-amor/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://laopinion.com/wp-admin/post.php?post=4068815&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/la-astrologia-revela-que-signo-es-el-mas-enganado-en-el-amor/','la-4068815',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-la-4068874">
+  <div class="card-header" onclick="tg('d-la-4068874')">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Dinero</span><span class="tag-time">~2 min</span></div>
+    <div class="card-title">Target pagará millonaria indemnización: este es el día en que los afectados podrán reclamar hasta $1.711 del acuerdo</div>
+    <div class="card-note">B03: "millonaria indemnización" cuando el pago individual es de $1,711</div>
+    <div class="etags"><span class="etag b">B03</span></div>
+  </div>
+  <div class="detail" id="d-la-4068874">
+    
+    <div class="corr">
+      <div class="corr-label">B03 — Hipérbole sin sustento relativo</div>
+      <div class="corr-orig">Original: "millonaria indemnización" — el pago máximo por persona es $1,711</div>
+      <div class="corr-fix">Corrección: Reformular: "Target pagará hasta $1,711 por persona en acuerdo legal: así puedes reclamar antes del 31 de marzo"</div>
+      <button class="copy-btn" onclick="cp('Reformular: "Target pagará hasta $1,711 por persona en acuerdo legal: así puedes reclamar antes del 31 de marzo"')">Copiar</button>
+    </div>
+    <div class="corr-seo"><div class="corr-seo-label">SEO</div>S01: ~118 chars. Sugerido (72c): Target paga hasta $1,711 por persona: tienes hasta el 31 de marzo para reclamar<br><button class="copy-btn" onclick="cp('Target paga hasta $1,711 por persona: tienes hasta el 31 de marzo para reclamar')">Copiar título SEO</button></div>
+    <div class="actions">
+      <a href="https://laopinion.com/2026/03/22/target-pagara-millonaria-indemnizacion-este-es-el-dia-en-que-los-afectados-podran-reclamar-hasta-1-711-del-acuerdo/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://laopinion.com/wp-admin/post.php?post=4068874&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://laopinion.com/2026/03/22/target-pagara-millonaria-indemnizacion-este-es-el-dia-en-que-los-afectados-podran-reclamar-hasta-1-711-del-acuerdo/','la-4068874',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div></div>
+    <div class="group-header" onclick="tgg('la-ok')">✅ Sin obs. <span style="font-weight:normal">(click para ver)</span></div><div id="g-la-ok" style="display:none"><div class="card" id="card-ok-4069036" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">"Project Hail Mary" de Ryan Gosling bate récords y se corona como el mayor estreno del año</div>
+  </div>
+</div><div class="card" id="card-ok-4068969" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">Galilea Montijo aclara los rumores sobre su rostro y desmiente cirugías estéticas</div>
+  </div>
+</div><div class="card" id="card-ok-4068904" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">Laura Pausini expresó su admiración por Shakira: “Es una de las artistas que más adoro”</div>
+  </div>
+</div><div class="card" id="card-ok-4068959" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">Jason Momoa huye de su casa en Oahu tras las devastadoras inundaciones que azotan Hawái</div>
+  </div>
+</div><div class="card" id="card-ok-4068925" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">"Eso es una locura": Chappell Roan niega que odie a los niños tras el incidente con la hij…</div>
+  </div>
+</div><div class="card" id="card-ok-4068886" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">Fátima Bosch habló sobre el bullying que sufrió en Tailandia por disfrutar la comida sin c…</div>
+  </div>
+</div><div class="card" id="card-ok-4068864" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">El gesto de Tom Holland que reavivó los rumores de boda con Zendaya</div>
+  </div>
+</div><div class="card" id="card-ok-4067486" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Salud</span></div>
+    <div class="card-title" style="font-size:13px">Duermes y no recuerdas ningún sueño: esto es lo que ocurre en tu cerebro</div>
+  </div>
+</div><div class="card" id="card-ok-4068779" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Astrología</span></div>
+    <div class="card-title" style="font-size:13px">Horóscopo del amor para la semana del 23 al 29 de marzo 2026</div>
+  </div>
+</div><div class="card" id="card-ok-4068750" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Astrología</span></div>
+    <div class="card-title" style="font-size:13px">La suerte espera a tres signos del zodiaco chino del 23 al 29 de marzo</div>
+  </div>
+</div><div class="card" id="card-ok-4068817" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Dinero</span></div>
+    <div class="card-title" style="font-size:13px">T-Mobile anuncia plan prepago ilimitado a mitad de precio esta temporada de impuestos</div>
+  </div>
+</div><div class="card" id="card-ok-4068796" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Dinero</span></div>
+    <div class="card-title" style="font-size:13px">Cinco nuevas tiendas de Publix antes de abril: ya hay ubicaciones confirmadas</div>
+  </div>
+</div><div class="card" id="card-ok-4068771" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Dinero</span></div>
+    <div class="card-title" style="font-size:13px">Tasas hipotecarias EE.UU. aumentan al 6.22%: el nivel más alto en más de tres meses</div>
+  </div>
+</div><div class="card" id="card-ok-4068976" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Tecnología</span></div>
+    <div class="card-title" style="font-size:13px">OnePlus 15T: ¿el nuevo gama media será un flagship killer?</div>
+  </div>
+</div><div class="card" id="card-ok-4068932" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Tecnología</span></div>
+    <div class="card-title" style="font-size:13px">Ni suscripciones ni pagos: este teléfono de hace 10 años te ofrece almacenamiento en la nu…</div>
+  </div>
+</div></div>
   </div>
   <div id="tab-ny" style="display:none">
-    <div class="group-header" onclick="tgg('ny-urg')">🔴 Urgentes</div><div id="g-ny-urg"><div class="card" id="card-ny-3651172"><div class="card-header" onclick="tg('d-ny-3651172')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~1 min</span></div><div class="card-title">La nueva película de Ryan Gosling lidera la taquilla estadounidense</div><div class="card-note">Monto con símbolo $ y palabra dólares simultáneamente</div><div class="etags"><span class="etag d">D05</span></div></div><div class="detail" id="d-ny-3651172"><div class="corr"><div class="corr-label">D05 — $ y dólares juntos</div><div class="corr-orig">Original: $33 millones de dólares</div><div class="corr-fix">Corrección: $33 millones</div><button class="copy-btn" data-copy="$33 millones">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/22/la-nueva-pelicula-de-ryan-gosling-lidera-la-taquilla-estadounidense/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3651172&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/la-nueva-pelicula-de-ryan-gosling-lidera-la-taquilla-estadounidense/','ny-3651172',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3650002"><div class="card-header" onclick="tg('d-ny-3650002')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Comida</span><span class="tag-time">~1 min</span></div><div class="card-title">¿Por qué el queso azul sí se puede comer y otros quesos con moho no?</div><div class="card-note">Titular abre con signo de interrogación (¿)</div><div class="etags"><span class="etag d">D06</span></div></div><div class="detail" id="d-ny-3650002"><div class="corr"><div class="corr-label">D06 — Titular abre con ¿</div><div class="corr-orig">Original: ¿Por qué el queso azul sí se puede comer y otros quesos con moho no?</div><div class="corr-fix">Corrección: Esto explica por qué el queso azul sí se puede comer y otros quesos con moho no</div><button class="copy-btn" data-copy="Esto explica por qué el queso azul sí se puede comer y otros quesos con moho no">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/22/por-que-el-queso-azul-si-se-puede-comer-y-otros-quesos-con-moho-no/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3650002&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/por-que-el-queso-azul-si-se-puede-comer-y-otros-quesos-con-moho-no/','ny-3650002',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3650720"><div class="card-header" onclick="tg('d-ny-3650720')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span><span class="tag-time">~1 min</span></div><div class="card-title">Los 10 productos más vendidos en Walmart por el Spring Break: el último es vital</div><div class="card-note">Clickbait de listicle sin respaldo editorial</div><div class="etags"><span class="etag b">B01</span></div></div><div class="detail" id="d-ny-3650720"><div class="corr"><div class="corr-label">B01 — Clickbait: el último es vital</div><div class="corr-orig">Original: el último es vital</div><div class="corr-fix">Corrección: Eliminar. Sugerencia: Los 10 productos más vendidos en Walmart para el Spring Break 2026</div><button class="copy-btn" data-copy="Eliminar. Sugerencia: Los 10 productos más vendidos en Walmart para el Spring Break 2026">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/21/los-10-productos-mas-vendidos-en-walmart-por-el-spring-break-el-ultimo-es-vital/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3650720&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/21/los-10-productos-mas-vendidos-en-walmart-por-el-spring-break-el-ultimo-es-vital/','ny-3650720',this)">Re-verificar y resolver</button></div></div></div></div>
-    <div class="group-header" onclick="tgg('ny-mod')">🟡 Cuando puedas</div><div id="g-ny-mod"><div class="card" id="card-ny-3651166"><div class="card-header" onclick="tg('d-ny-3651166')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~2 min</span></div><div class="card-title">El Estadio Shakira se construirá en dos meses</div><div class="card-note">"Se reveló" sin fuente identificada</div><div class="etags"><span class="etag b">B04</span></div></div><div class="detail" id="d-ny-3651166"><div class="corr"><div class="corr-label">B04 — Pasiva sin fuente</div><div class="corr-orig">Original: Se reveló que el diseño del Estadio Shakira...</div><div class="corr-fix">Corrección: ¿Quién reveló? Identificar: comunicado oficial, entrevista o publicación específica</div><button class="copy-btn" data-copy="¿Quién reveló? Identificar: comunicado oficial, entrevista o publicación específica">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/22/el-estadio-shakira-se-construira-en-dos-meses/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3651166&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/el-estadio-shakira-se-construira-en-dos-meses/','ny-3651166',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3651102"><div class="card-header" onclick="tg('d-ny-3651102')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Salud</span><span class="tag-time">~2 min</span></div><div class="card-title">Los riesgos de tomar omeprazol y otros antiácidos a diario, según expertos</div><div class="card-note">"Según expertos" en titular es vago aunque el cuerpo cite FDA, NIH y Mayo Clinic</div><div class="etags"><span class="etag b">B04</span></div></div><div class="detail" id="d-ny-3651102"><div class="corr"><div class="corr-label">B04 — Titular con fuente vaga</div><div class="corr-orig">Original: "según expertos"</div><div class="corr-fix">Corrección: Especificar en titular o excerpt: según FDA, NIH y Mayo Clinic</div><button class="copy-btn" data-copy="Especificar en titular o excerpt: según FDA, NIH y Mayo Clinic">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/21/riesgos-tomar-omeprazol-y-antiacidos-a-diario-segun-expertos/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3651102&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/21/riesgos-tomar-omeprazol-y-antiacidos-a-diario-segun-expertos/','ny-3651102',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3650051"><div class="card-header" onclick="tg('d-ny-3650051')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Salud</span><span class="tag-time">~2 min</span></div><div class="card-title">Fin de la patente de semaglutida: ¿Revoluciona el mercado de peso?</div><div class="card-note">Pregunta retórica que puede quedar sin responder</div><div class="etags"><span class="etag b">B01</span></div></div><div class="detail" id="d-ny-3650051"><div class="corr"><div class="corr-label">B01 — Pregunta retórica clickbait</div><div class="corr-orig">Original: ¿Revoluciona el mercado de peso?</div><div class="corr-fix">Corrección: Reemplazar con afirmación concreta según lo que el artículo responde</div><button class="copy-btn" data-copy="Reemplazar con afirmación concreta según lo que el artículo responde">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/19/como-el-fin-de-la-patente-de-ozempic-en-india-puede-cambiar-la-lucha-global-contra-la-obesidad-y-cuales-son-los-riesgos/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3650051&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/19/como-el-fin-de-la-patente-de-ozempic-en-india-puede-cambiar-la-lucha-global-contra-la-obesidad-y-cuales-son-los-riesgos/','ny-3650051',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3649434"><div class="card-header" onclick="tg('d-ny-3649434')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Comida</span><span class="tag-time">~2 min</span></div><div class="card-title">Cómo lograr un pescado frito crujiente y sin excesos de aceite, según un chef</div><div class="card-note">"Según un chef" sin identificar; título dice pescado pero el contenido habla de bacalao</div><div class="etags"><span class="etag b">B04</span></div></div><div class="detail" id="d-ny-3649434"><div class="corr"><div class="corr-label">B04 — Fuente sin nombre y desajuste titular/contenido</div><div class="corr-orig">Original: "según un chef" / "pescado" vs. bacalao en el cuerpo</div><div class="corr-fix">Corrección: Nombrar al chef. Ajustar título a "bacalao" o ampliar el artículo a otros pescados</div><button class="copy-btn" data-copy="Nombrar al chef. Ajustar título a &quot;bacalao&quot; o ampliar el artículo a otros pescados">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/21/como-lograr-un-pescado-frito-crujiente-y-sin-excesos-de-aceite-segun-un-chef/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3649434&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/21/como-lograr-un-pescado-frito-crujiente-y-sin-excesos-de-aceite-segun-un-chef/','ny-3649434',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3649409"><div class="card-header" onclick="tg('d-ny-3649409')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span><span class="tag-time">~2 min</span></div><div class="card-title">El error silencioso que daña tu historial crediticio sin darte cuenta</div><div class="card-note">Titular genérico que no especifica el error hasta el excerpt</div><div class="etags"><span class="etag b">B01</span></div></div><div class="detail" id="d-ny-3649409"><div class="corr"><div class="corr-label">B01 — Titular vago</div><div class="corr-orig">Original: El error silencioso que daña tu historial crediticio...</div><div class="corr-fix">Corrección: Especificar: Usar más del 30% de tu crédito disponible daña tu score aunque pagues a tiempo</div><button class="copy-btn" data-copy="Especificar: Usar más del 30% de tu crédito disponible daña tu score aunque pagues a tiempo">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/22/el-error-silencioso-que-dana-tu-historial-crediticio-sin-darte-cuenta/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3649409&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/el-error-silencioso-que-dana-tu-historial-crediticio-sin-darte-cuenta/','ny-3649409',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3648313"><div class="card-header" onclick="tg('d-ny-3648313')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Estilo de vida</span><span class="tag-time">~2 min</span></div><div class="card-title">Columna de María Marín: Cuando no puedes tenerlo… más lo deseas</div><div class="card-note">Excerpt de solo 47 caracteres con una pregunta retórica</div><div class="etags"><span class="etag b">B02</span></div></div><div class="detail" id="d-ny-3648313"><div class="corr"><div class="corr-label">B02 — Excerpt insuficiente</div><div class="corr-orig">Original: ¿Por qué se nos hace tan deseable aquello que no podemos tener?</div><div class="corr-fix">Corrección: Ampliar con la tesis de la columna o su argumento central</div><button class="copy-btn" data-copy="Ampliar con la tesis de la columna o su argumento central">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/21/columna-de-maria-marin-cuando-no-puedes-tenerlomas-lo-deseas/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3648313&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/21/columna-de-maria-marin-cuando-no-puedes-tenerlomas-lo-deseas/','ny-3648313',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3650561"><div class="card-header" onclick="tg('d-ny-3650561')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Estilo de vida</span><span class="tag-time">~2 min</span></div><div class="card-title">EE.UU. cae en el ranking de países más felices 2026: estas son las razones</div><div class="card-note">Fuente del ranking no nombrada en titular ni excerpt</div><div class="etags"><span class="etag b">B04</span></div></div><div class="detail" id="d-ny-3650561"><div class="corr"><div class="corr-label">B04 — Fuente no identificada</div><div class="corr-orig">Original: EE.UU. cayó al puesto 23 en felicidad global 2026...</div><div class="corr-fix">Corrección: Añadir en excerpt: según el World Happiness Report 2026</div><button class="copy-btn" data-copy="Añadir en excerpt: según el World Happiness Report 2026">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/20/ee-uu-cae-en-el-ranking-de-paises-mas-felices-2026-estas-son-las-razones-detras-de-su-descenso/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3650561&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/20/ee-uu-cae-en-el-ranking-de-paises-mas-felices-2026-estas-son-las-razones-detras-de-su-descenso/','ny-3650561',this)">Re-verificar y resolver</button></div></div></div><div class="card" id="card-ny-3650165"><div class="card-header" onclick="tg('d-ny-3650165')"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Estilo de vida</span><span class="tag-time">~2 min</span></div><div class="card-title">Esto es lo que hoy se considera inmoral en EE.UU. (y lo que ya dejó de serlo)</div><div class="card-note">Excerpt casi idéntico al titular; Pew Research Center no aparece hasta el cuerpo</div><div class="etags"><span class="etag b">B04</span></div></div><div class="detail" id="d-ny-3650165"><div class="corr"><div class="corr-label">B04 — Fuente ausente en excerpt</div><div class="corr-orig">Original: Qué se considera inmoral en EE.UU. hoy...</div><div class="corr-fix">Corrección: Reemplazar excerpt con hallazgo concreto y citar Pew Research Center</div><button class="copy-btn" data-copy="Reemplazar excerpt con hallazgo concreto y citar Pew Research Center">Copiar</button></div><div class="actions"><a href="https://eldiariony.com/2026/03/19/esto-es-lo-que-hoy-se-considera-inmoral-en-ee-uu-y-lo-que-ya-dejo-de-serlo/" target="_blank" class="lnk">Ver artículo</a><a href="https://eldiariony.com/wp-admin/post.php?post=3650165&action=edit" target="_blank" class="lnk">Editar en WP</a><button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/19/esto-es-lo-que-hoy-se-considera-inmoral-en-ee-uu-y-lo-que-ya-dejo-de-serlo/','ny-3650165',this)">Re-verificar y resolver</button></div></div></div></div>
-    <div class="group-header" onclick="tgg('ny-ok')">✅ OK</div><div id="g-ny-ok" style="display:none"><div class="card" id="card-ny-3651176"><div class="card-header"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span></div><div class="card-title">Paapa Essiedu admite que interpretar a Snape en la serie de “Harry Potter” es un reto</div><div class="card-note" style="color:#27ae60">✅ Sin observaciones</div></div></div><div class="card" id="card-ny-3650679"><div class="card-header"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Salud</span></div><div class="card-title">Cólico renal: tres formas de calmar el dolor sin usar analgésicos</div><div class="card-note" style="color:#27ae60">✅ Sin observaciones</div></div></div><div class="card" id="card-ny-3649948"><div class="card-header"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Comida</span></div><div class="card-title">Refrigeración segura: ¿Cuándo es el momento ideal para guardar la comida?</div><div class="card-note" style="color:#27ae60">✅ Sin observaciones</div></div></div><div class="card" id="card-ny-3650108"><div class="card-header"><div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span></div><div class="card-title">Comprar un auto de lujo usado puede ser más barato que uno nuevo en 2026</div><div class="card-note" style="color:#27ae60">✅ Sin observaciones</div></div></div></div>
+    <div class="group-header" onclick="tgg('ny-urg')">🔴 Urgentes</div><div id="g-ny-urg"><div class="card" id="card-ny-3651183">
+  <div class="card-header" onclick="tg('d-ny-3651183')">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~1 min</span></div>
+    <div class="card-title">Piden $6.75 millones de dólares por la casa donde Francis Ford Coppola escribió "The Godfather"</div>
+    <div class="card-note">D05: No usar "de dólares" después del símbolo $</div>
+    <div class="etags"><span class="etag d">D05</span></div>
   </div>
-  <div id="tab-pat" style="display:none">
-    <div class="patterns"><h3>Errores más frecuentes hoy</h3><div class="pi"><span>B04 — Fuente vaga o sin atribuir</span><span class="pc">9 casos</span></div><div class="pi"><span>D03 — Número 1-9 escrito en dígito</span><span class="pc">3 casos</span></div><div class="pi"><span>B01 — Clickbait o pregunta retórica</span><span class="pc">3 casos</span></div><div class="pi"><span>B02 — Excerpt sin anclaje noticioso</span><span class="pc">3 casos</span></div><div class="pi"><span>B03 — Adjetivo hiperbólico sin sustento</span><span class="pc">3 casos</span></div><div class="pi"><span>D02 / D05 / D06 — Formato en fechas y montos</span><span class="pc">3 casos</span></div></div>
+  <div class="detail" id="d-ny-3651183">
+    
+    <div class="corr">
+      <div class="corr-label">D05 — $ + "de dólares" juntos</div>
+      <div class="corr-orig">Original: Piden $6.75 millones de dólares por la casa...</div>
+      <div class="corr-fix">Corrección: Piden $6.75 millones por la casa donde Francis Ford Coppola escribió "The Godfather"</div>
+      <button class="copy-btn" onclick="cp('Piden $6.75 millones por la casa donde Francis Ford Coppola escribió "The Godfather"')">Copiar</button>
+    </div>
+    <div class="corr-seo"><div class="corr-seo-label">SEO</div>S01: 97 chars. Sugerido (70c): Venden en $6.75 millones la casa de Coppola donde escribió "The Godfather"<br><button class="copy-btn" onclick="cp('Venden en $6.75 millones la casa de Coppola donde escribió "The Godfather"')">Copiar título SEO</button></div>
+    <div class="actions">
+      <a href="https://eldiariony.com/2026/03/22/piden-6-75-millones-de-dolares-por-la-casa-donde-francis-ford-coppola-escribio-the-godfather/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://eldiariony.com/wp-admin/post.php?post=3651183&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/piden-6-75-millones-de-dolares-por-la-casa-donde-francis-ford-coppola-escribio-the-godfather/','ny-3651183',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-ny-3651166">
+  <div class="card-header" onclick="tg('d-ny-3651166')">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~3 min</span></div>
+    <div class="card-title">El Estadio Shakira se construirá en dos meses</div>
+    <div class="card-note">B01: El titular promete un plazo ("dos meses") que el artículo no respalda</div>
+    <div class="etags"><span class="etag b">B01</span><span class="etag s">S01</span></div>
+  </div>
+  <div class="detail" id="d-ny-3651166">
+    
+    <div class="corr">
+      <div class="corr-label">B01 — Titular no cumplido por el artículo</div>
+      <div class="corr-orig">Original: "se construirá en dos meses" — el cuerpo no confirma ese plazo</div>
+      <div class="corr-fix">Corrección: Revisar con el artículo y ajustar: "El Estadio Shakira llegará antes de lo previsto, según su arquitecto"</div>
+      <button class="copy-btn" onclick="cp('Revisar con el artículo y ajustar: "El Estadio Shakira llegará antes de lo previsto, según su arquitecto"')">Copiar</button>
+    </div>
+    <div class="corr-seo"><div class="corr-seo-label">SEO</div>S01: 46 chars (corto). Ampliar a 55-65 chars con el dato real.</div>
+    <div class="actions">
+      <a href="https://eldiariony.com/2026/03/22/el-estadio-shakira-se-construira-en-dos-meses/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://eldiariony.com/wp-admin/post.php?post=3651166&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/el-estadio-shakira-se-construira-en-dos-meses/','ny-3651166',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-ny-3651367">
+  <div class="card-header" onclick="tg('d-ny-3651367')">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span><span class="tag-time">~1 min</span></div>
+    <div class="card-title">¿Por qué los hot dogs de Costco han mantenido el precio de $1,50 desde 1985?</div>
+    <div class="card-note">D06: Titular abre con signo de interrogación ¿</div>
+    <div class="etags"><span class="etag d">D06</span></div>
+  </div>
+  <div class="detail" id="d-ny-3651367">
+    
+    <div class="corr">
+      <div class="corr-label">D06 — Titular abre con ¿</div>
+      <div class="corr-orig">Original: ¿Por qué los hot dogs de Costco han mantenido el precio de $1,50 desde 1985?</div>
+      <div class="corr-fix">Corrección: Por qué los hot dogs de Costco mantienen el precio en $1.50 desde 1985</div>
+      <button class="copy-btn" onclick="cp('Por qué los hot dogs de Costco mantienen el precio en $1.50 desde 1985')">Copiar</button>
+    </div>
+    <div class="corr-seo"><div class="corr-seo-label">SEO</div>S01: 77 chars. Versión sugerida ya queda en 65 chars.<br><button class="copy-btn" onclick="cp('Por qué los hot dogs de Costco mantienen el precio en $1.50 desde 1985')">Copiar título SEO</button></div>
+    <div class="actions">
+      <a href="https://eldiariony.com/2026/03/22/por-que-los-hot-dogs-de-costco-han-mantenido-el-precio-de-1-50-desde-1985/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://eldiariony.com/wp-admin/post.php?post=3651367&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/por-que-los-hot-dogs-de-costco-han-mantenido-el-precio-de-1-50-desde-1985/','ny-3651367',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-ny-3651372">
+  <div class="card-header" onclick="tg('d-ny-3651372')">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span><span class="tag-time">~1 min</span></div>
+    <div class="card-title">¿Qué ocurre con las hamburguesas de McDonald's que sobran al final del día?</div>
+    <div class="card-note">D06: Titular abre con signo de interrogación ¿</div>
+    <div class="etags"><span class="etag d">D06</span></div>
+  </div>
+  <div class="detail" id="d-ny-3651372">
+    
+    <div class="corr">
+      <div class="corr-label">D06 — Titular abre con ¿</div>
+      <div class="corr-orig">Original: ¿Qué ocurre con las hamburguesas de McDonald's que sobran al final del día?</div>
+      <div class="corr-fix">Corrección: Qué ocurre con las hamburguesas de McDonald's que sobran al final del día</div>
+      <button class="copy-btn" onclick="cp('Qué ocurre con las hamburguesas de McDonald\'s que sobran al final del día')">Copiar</button>
+    </div>
+    
+    <div class="actions">
+      <a href="https://eldiariony.com/2026/03/22/que-ocurre-con-las-hamburguesas-de-mcdonalds-que-sobran-al-final-del-dia/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://eldiariony.com/wp-admin/post.php?post=3651372&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/que-ocurre-con-las-hamburguesas-de-mcdonalds-que-sobran-al-final-del-dia/','ny-3651372',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div></div>
+    <div class="group-header" onclick="tgg('ny-mod')">🟡 Cuando puedas</div><div id="g-ny-mod"><div class="card" id="card-ny-3651412">
+  <div class="card-header" onclick="tg('d-ny-3651412')">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span><span class="tag-time">~2 min</span></div>
+    <div class="card-title">Justin Timberlake bromeó con los oficiales durante su arresto por conducir ebrio</div>
+    <div class="card-note">B02: Noticia de junio 2024 publicada sin marcar temporalidad en el titular</div>
+    <div class="etags"><span class="etag b">B02</span></div>
+  </div>
+  <div class="detail" id="d-ny-3651412">
+    
+    <div class="corr">
+      <div class="corr-label">B02 — Sin contexto temporal (noticia de 2024)</div>
+      <div class="corr-orig">Original: El titular no aclara que el arresto fue en 2024</div>
+      <div class="corr-fix">Corrección: Añadir contexto: "Justin Timberlake bromeó con los policías en su arresto de 2024 por conducir ebrio"</div>
+      <button class="copy-btn" onclick="cp('Añadir contexto: "Justin Timberlake bromeó con los policías en su arresto de 2024 por conducir ebrio"')">Copiar</button>
+    </div>
+    <div class="corr-seo"><div class="corr-seo-label">SEO</div>S01: 82 chars. Sugerido con fecha (69c): Justin Timberlake bromeó con la policía en su arresto de 2024 por DUI<br><button class="copy-btn" onclick="cp('Justin Timberlake bromeó con la policía en su arresto de 2024 por DUI')">Copiar título SEO</button></div>
+    <div class="actions">
+      <a href="https://eldiariony.com/2026/03/22/justin-timberlake-bromeo-con-los-oficiales-durante-su-arresto-por-conducir-ebrio/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://eldiariony.com/wp-admin/post.php?post=3651412&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/justin-timberlake-bromeo-con-los-oficiales-durante-su-arresto-por-conducir-ebrio/','ny-3651412',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div><div class="card" id="card-ny-3651365">
+  <div class="card-header" onclick="tg('d-ny-3651365')">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span><span class="tag-time">~2 min</span></div>
+    <div class="card-title">Cuánta fortuna tenía Chuck Norris al momento de su fallecimiento</div>
+    <div class="card-note">B04: "fallecimiento" — el artículo debería confirmar la fecha y causa de muerte</div>
+    <div class="etags"><span class="etag b">B04</span></div>
+  </div>
+  <div class="detail" id="d-ny-3651365">
+    
+    <div class="corr">
+      <div class="corr-label">B04 — Dato sensible sin respaldo explícito en titular</div>
+      <div class="corr-orig">Original: "al momento de su fallecimiento" — verificar que el artículo confirma fecha y causa de muerte</div>
+      <div class="corr-fix">Corrección: Si está confirmado, añadir año en titular: "...al momento de su muerte en [año]"</div>
+      <button class="copy-btn" onclick="cp('Si está confirmado, añadir año en titular: "...al momento de su muerte en [año]"')">Copiar</button>
+    </div>
+    
+    <div class="actions">
+      <a href="https://eldiariony.com/2026/03/22/cuanta-fortuna-tenia-chuck-norris-al-momento-de-su-fallecimiento/" target="_blank" class="lnk">Ver artículo</a>
+      <a href="https://eldiariony.com/wp-admin/post.php?post=3651365&action=edit" target="_blank" class="lnk">Editar en WP</a>
+      <button class="rev-btn" onclick="openVerify('https://eldiariony.com/2026/03/22/cuanta-fortuna-tenia-chuck-norris-al-momento-de-su-fallecimiento/','ny-3651365',this)">Re-verificar y resolver</button>
+    </div>
+  </div>
+</div></div>
+    <div class="group-header" onclick="tgg('ny-ok')">✅ Sin obs. <span style="font-weight:normal">(click para ver)</span></div><div id="g-ny-ok" style="display:none"><div class="card" id="card-ok-3651406" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">Esposa de Bruce Willis le dedica mensaje por su aniversario tras diagnóstico de demencia d…</div>
+  </div>
+</div><div class="card" id="card-ok-3651351" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">Jason Momoa huye de la costa norte de Oahu tras inundaciones Hawái</div>
+  </div>
+</div><div class="card" id="card-ok-3651334" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">Alcalde de Río prohíbe a Chappell Roan actuar en festival tras polémica con estrella de fú…</div>
+  </div>
+</div><div class="card" id="card-ok-3651176" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">Paapa Essiedu admite que interpretar a Snape en la serie de “Harry Potter” es un reto</div>
+  </div>
+</div><div class="card" id="card-ok-3651172" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span></div>
+    <div class="card-title" style="font-size:13px">La nueva película de Ryan Gosling lidera la taquilla estadounidense</div>
+  </div>
+</div><div class="card" id="card-ok-3649948" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Comida</span></div>
+    <div class="card-title" style="font-size:13px">Refrigeración segura: ¿Cuándo es el momento ideal para guardar la comida?</div>
+  </div>
+</div><div class="card" id="card-ok-3650002" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Comida</span></div>
+    <div class="card-title" style="font-size:13px">Esto explica por qué el queso azul sí se puede comer y otros quesos con moho no</div>
+  </div>
+</div><div class="card" id="card-ok-3651366" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span></div>
+    <div class="card-title" style="font-size:13px">Cambios en beneficios de SNAP podrían provocar 70,000 muertes, según el grupo Center for A…</div>
+  </div>
+</div><div class="card" id="card-ok-3651369" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span></div>
+    <div class="card-title" style="font-size:13px">Seguro Social enviará pagos directos de $994 el 1 de abril, ¿quiénes lo recibirán?</div>
+  </div>
+</div><div class="card" id="card-ok-3650108" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span></div>
+    <div class="card-title" style="font-size:13px">Comprar un auto de lujo usado puede ser más barato que uno nuevo en 2026</div>
+  </div>
+</div><div class="card" id="card-ok-3649409" style="border-left:3px solid #27ae60">
+  <div class="card-header">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Dinero</span></div>
+    <div class="card-title" style="font-size:13px">El error silencioso que daña tu historial crediticio sin darte cuenta</div>
+  </div>
+</div></div>
+  </div>
+  <div id="tab-seo" style="display:none">
+    <p style="font-size:13px;color:#666;padding:8px 0 12px">Señales de posicionamiento en Google Search y Discover. Independiente de la auditoría editorial.</p>
+    <div class="seo-card">
+  <div class="card-header" onclick="tg('seo-4069036')">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span><span class="seo-score warn">SEO mejorable</span></div>
+    <div class="card-title">"Project Hail Mary" de Ryan Gosling bate récords y se corona como el mayor estreno de…</div>
+    <div class="seo-meta">Título: <span>85 chars</span> · Meta desc: <span>96 chars</span> · Imagen OG: <span>✅ 1200px</span></div>
+  </div>
+  <div class="detail" id="seo-4069036"><div class="corr-seo"><div class="corr-seo-label">S01 — Título largo (85 chars)</div>85c — se corta en Discover.<br>Sugerido (62c): Ryan Gosling rompe récords con "Project Hail Mary", el mayor estreno del año<br><button class="copy-btn" onclick="cp('Ryan Gosling rompe récords con "Project Hail Mary", el mayor estreno del año')">Copiar título SEO</button></div><div class="corr-seo" style="margin-top:8px"><div class="corr-seo-label">S03 — Meta descripción corta (96 chars)</div>96 chars — breve para Google. Sugerido: La nueva película de Ryan Gosling, de Amazon MGM, supera expectativas con 95% en Rotten Tomatoes y lidera la taquilla.<br><button class="copy-btn" onclick="cp('La nueva película de Ryan Gosling, de Amazon MGM, supera expectativas con 95% en Rotten Tomatoes y lidera la taquilla.')">Copiar meta desc</button></div>
+    <div class="actions"><a href="https://laopinion.com/wp-admin/post.php?post=4069036&action=edit" target="_blank" class="lnk">Editar en WP</a></div>
+  </div>
+</div><div class="seo-card">
+  <div class="card-header" onclick="tg('seo-3651412')">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span><span class="seo-score warn">SEO mejorable</span></div>
+    <div class="card-title">Justin Timberlake bromeó con los oficiales durante su arresto por conducir ebrio</div>
+    <div class="seo-meta">Título: <span>82 chars</span> · Meta desc: <span>98 chars</span> · Imagen OG: <span>✅ 1200px</span></div>
+  </div>
+  <div class="detail" id="seo-3651412"><div class="corr-seo"><div class="corr-seo-label">S01 — Título largo (82 chars)</div>82c — se corta en Discover.<br>Sugerido (69c): Justin Timberlake bromeó con la policía en su arresto de 2024 por DUI<br><button class="copy-btn" onclick="cp('Justin Timberlake bromeó con la policía en su arresto de 2024 por DUI')">Copiar título SEO</button></div><div class="corr-seo" style="margin-top:8px"><div class="corr-seo-label">S03 — Meta descripción corta (98 chars)</div>98 chars — al límite. Sugerido: Justin Timberlake fue arrestado en junio de 2024 por conducir bajo los efectos del alcohol en los Hamptons, Nueva York.<br><button class="copy-btn" onclick="cp('Justin Timberlake fue arrestado en junio de 2024 por conducir bajo los efectos del alcohol en los Hamptons, Nueva York.')">Copiar meta desc</button></div>
+    <div class="actions"><a href="https://eldiariony.com/wp-admin/post.php?post=3651412&action=edit" target="_blank" class="lnk">Editar en WP</a></div>
+  </div>
+</div><div class="seo-card">
+  <div class="card-header" onclick="tg('seo-3650002')">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Comida</span><span class="seo-score warn">SEO mejorable</span></div>
+    <div class="card-title">Esto explica por qué el queso azul sí se puede comer y otros quesos con moho no</div>
+    <div class="seo-meta">Título: <span>83 chars</span> · Meta desc: <span>92 chars</span> · Imagen OG: <span>✅ 1200px</span></div>
+  </div>
+  <div class="detail" id="seo-3650002"><div class="corr-seo"><div class="corr-seo-label">S01 — Título largo (83 chars)</div>83c — largo.<br>Sugerido (59c): Por qué el queso azul es seguro y otros quesos con moho no<br><button class="copy-btn" onclick="cp('Por qué el queso azul es seguro y otros quesos con moho no')">Copiar título SEO</button></div><div class="corr-seo" style="margin-top:8px"><div class="corr-seo-label">S03 — Meta descripción corta (92 chars)</div>92 chars — muy corto. Sugerido: Montserrat Meléndez explica la diferencia entre hongos nobles y tóxicos en quesos, y cuándo sí es seguro comer moho.<br><button class="copy-btn" onclick="cp('Montserrat Meléndez explica la diferencia entre hongos nobles y tóxicos en quesos, y cuándo sí es seguro comer moho.')">Copiar meta desc</button></div>
+    <div class="actions"><a href="https://eldiariony.com/wp-admin/post.php?post=3650002&action=edit" target="_blank" class="lnk">Editar en WP</a></div>
+  </div>
+</div><div class="seo-card">
+  <div class="card-header" onclick="tg('seo-3651334')">
+    <div class="card-meta"><span class="badge-NY">NY</span><span class="tag-sec">Entretenimiento</span><span class="seo-score warn">SEO mejorable</span></div>
+    <div class="card-title">Alcalde de Río prohíbe a Chappell Roan actuar en festival tras polémica con estrella …</div>
+    <div class="seo-meta">Título: <span>93 chars</span> · Meta desc: <span>122 chars</span> · Imagen OG: <span>✅ 1200px</span></div>
+  </div>
+  <div class="detail" id="seo-3651334"><div class="corr-seo"><div class="corr-seo-label">S01 — Título largo (93 chars)</div>93c — largo.<br>Sugerido (68c): Alcalde de Río prohíbe a Chappell Roan actuar en festival por incidente con Jorginho<br><button class="copy-btn" onclick="cp('Alcalde de Río prohíbe a Chappell Roan actuar en festival por incidente con Jorginho')">Copiar título SEO</button></div>
+    <div class="actions"><a href="https://eldiariony.com/wp-admin/post.php?post=3651334&action=edit" target="_blank" class="lnk">Editar en WP</a></div>
+  </div>
+</div><div class="seo-card">
+  <div class="card-header" onclick="tg('seo-4068931')">
+    <div class="card-meta"><span class="badge-LA">LA</span><span class="tag-sec">Entretenimiento</span><span class="seo-score warn">SEO mejorable</span></div>
+    <div class="card-title">Dos años de Las mujeres ya no lloran: Shakira celebra el segundo aniversario de su ál…</div>
+    <div class="seo-meta">Título: <span>89 chars</span> · Meta desc: <span>152 chars</span> · Imagen OG: <span>✅ 1200px</span></div>
+  </div>
+  <div class="detail" id="seo-4068931"><div class="corr-seo"><div class="corr-seo-label">S01 — Título largo (89 chars)</div>89c — largo.<br>Sugerido (52c): Shakira celebra 2 años de "Las mujeres ya no lloran"<br><button class="copy-btn" onclick="cp('Shakira celebra 2 años de "Las mujeres ya no lloran"')">Copiar título SEO</button></div>
+    <div class="actions"><a href="https://laopinion.com/wp-admin/post.php?post=4068931&action=edit" target="_blank" class="lnk">Editar en WP</a></div>
   </div>
 </div>
-<script>function showTab(t){["todo","la","ny","pat"].forEach(id=>document.getElementById("tab-"+id).style.display="none");document.getElementById("tab-"+t).style.display="block";document.querySelectorAll(".tab").forEach((el,i)=>el.classList.toggle("active",["todo","la","ny","pat"][i]===t))}function tg(id){document.getElementById(id).classList.toggle("open")}function tgg(id){const el=document.getElementById("g-"+id);el.style.display=el.style.display==="none"?"block":"none"}document.addEventListener("click",e=>{if(e.target.classList.contains("copy-btn")){const txt=e.target.dataset.copy||"";navigator.clipboard.writeText(txt).catch(()=>{const t=document.createElement("textarea");t.value=txt;document.body.appendChild(t);t.select();document.execCommand("copy");document.body.removeChild(t)})}});const SK="audit_resolved_v2";function getR(){try{return JSON.parse(localStorage.getItem(SK)||"{}")}catch{return{}}}function openVerify(url,id,btn){window.open(url,"_blank");btn.textContent="Confirmar resuelto";btn.classList.add("pending");btn.onclick=()=>markR(id,btn)}function markR(id,btn){const r=getR();r[id]=new Date().toISOString();localStorage.setItem(SK,JSON.stringify(r));document.getElementById("card-"+id)?.classList.add("resolved");btn.textContent="✅ Resuelto";btn.disabled=true}window.addEventListener("DOMContentLoaded",()=>{const r=getR();Object.keys(r).forEach(id=>{const c=document.getElementById("card-"+id);if(c){c.classList.add("resolved");const b=c.querySelector(".rev-btn");if(b){b.textContent="✅ Resuelto";b.disabled=true}}})})</script>
+    <p style="font-size:12px;color:#aaa;padding:8px 0">Nota: todas las imágenes OG están presentes (1200px). El resto de artículos tienen títulos entre 46-74 chars y meta desc > 100 chars.</p>
+  </div>
+  <div id="tab-pat" style="display:none">
+    <div class="patterns"><h3>Errores más frecuentes — domingo 22 de marzo</h3>
+<div class="pi"><span>D06: Títulos que abren con ¿</span><span class="pc">2 artículos (NY:Dinero)</span></div>
+<div class="pi"><span>S01: Títulos > 70 chars (se cortan en Discover)</span><span class="pc">17 artículos — patrón sistémico</span></div>
+<div class="pi"><span>D03: Números 1-9 en dígitos en vez de letra</span><span class="pc">1 artículo (LA:Astrología)</span></div>
+<div class="pi"><span>D05: "$ + millones de dólares" juntos</span><span class="pc">1 artículo (NY:Entretenimiento)</span></div>
+<div class="pi"><span>D11: Títulos de obras sin comillas tipográficas</span><span class="pc">1 artículo (LA:Entretenimiento)</span></div>
+<div class="pi"><span>B04: Fuentes vagas ("análisis", "reporte", "estudio")</span><span class="pc">3 artículos (LA:Salud, LA:Astrología x2)</span></div>
+<div class="pi"><span>B03: Adjetivos hiperbólicos sin respaldo</span><span class="pc">2 artículos (LA:Dinero, LA:Astrología)</span></div>
+<div class="pi"><span>S03: Meta descripciones cortas (< 100 chars)</span><span class="pc">3 artículos (LA, NY x2)</span></div>
+    <div class="pattern-note">⚠️ El patrón más crítico es S01 (títulos largos): 17 de 39 artículos superan los 70 chars. Afecta directamente la visibilidad en Discover. Considera establecer límite de 65 chars como regla de cierre.</div>
+    </div>
+    <div class="patterns" style="margin-top:10px"><h3>Secciones sin publicaciones</h3>
+    <div class="pi"><span>El Diario NY — Salud</span><span style="color:#888">0 artículos el 22/03</span></div>
+    <div class="pi"><span>El Diario NY — Estilo de vida</span><span style="color:#888">0 artículos el 22/03</span></div>
+    </div>
+  </div>
+</div>
+<script>
+function showTab(t){['todo','la','ny','seo','pat'].forEach(id=>document.getElementById('tab-'+id).style.display='none');document.getElementById('tab-'+t).style.display='block';document.querySelectorAll('.tab').forEach((el,i)=>el.classList.toggle('active',['todo','la','ny','seo','pat'][i]===t))}
+function tg(id){const el=document.getElementById(id);if(el)el.classList.toggle('open')}
+function tgg(id){const el=document.getElementById('g-'+id);if(el)el.style.display=el.style.display==='none'?'block':'none'}
+function cp(txt){navigator.clipboard.writeText(txt).catch(()=>{const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t)})}
+const SK='audit_resolved_v2';
+function getR(){try{return JSON.parse(localStorage.getItem(SK)||'{}')}catch{return{}}}
+function openVerify(url,id,btn){window.open(url,'_blank');btn.textContent='Confirmar resuelto';btn.classList.add('pending');btn.onclick=()=>markR(id,btn)}
+function markR(id,btn){const r=getR();r[id]=new Date().toISOString();localStorage.setItem(SK,JSON.stringify(r));document.getElementById('card-'+id)?.classList.add('resolved');btn.textContent='✅ Resuelto';btn.disabled=true}
+window.addEventListener('DOMContentLoaded',()=>{const r=getR();Object.keys(r).forEach(id=>{const c=document.getElementById('card-'+id);if(c){c.classList.add('resolved');const b=c.querySelector('.rev-btn');if(b){b.textContent='✅ Resuelto';b.disabled=true}}})})
+</script>
 </body>
 </html>
